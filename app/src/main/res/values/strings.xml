@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">XEdit</string>
+    <string name="app_crash_title">Application Crashed</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">XEdit</string>
+    <string name="nav_header_desc">Navigation header</string>
+    
+    <string name="action_settings">settings</string>
+    <string name="action_undo">undo</string>
+    <string name="action_redo">redo</string>
+    <string name="action_edit_mode">edit mode</string>
+    <string name="action_open_file">open</string>
+    <string name="action_search">search</string>
+    <string name="action_close">close</string>
+    <string name="action_save_file">save</string>
+    <string name="action_replace_all">replace all</string>
+    <string name="action_report">report</string>
+    <string name="action_copy">copy</string>
+    <string name="action_restart">restart</string>
+    
+    <string name="action_find_prev">prev</string>
+    <string name="action_find_next">next</string>
+    
+    <string name="action_create_dir">create dir</string>
+    <string name="action_create_file">create file</string>
+    <string name="action_favorite">favorite</string>
+    <string name="action_favorite_off">unfavorite</string>
+    <string name="action_rename_file">rename</string>
+    <string name="action_delete_file">delete</string>
+    
+    <string name="create_dir_prompt">New directory name</string>
+    <string name="create_file_prompt">New file name</string>
+    <string name="rename_prompt">Please type a new file name</string>
+    <string name="replace_prompt">Please type a replacement text</string>
+    
+    <string name="app_exit_prompt">Are you sure you want to save all files and quit the application?</string>
+    
+    <string name="delete_file_prompt">Do you want to delete the file</string>
+    <string name="type_dir">directory</string>
+    <string name="type_file">file</string>
+    
+    <string name="option_regex">regex</string>
+    <string name="option_match">match</string>
+    <string name="option_ignorecase">ignorecase</string>
+    
+    <string name="search_text_hint">search text</string>
+    <string name="replace_text_hint">replace text</string>
+    <string name="copy_text_hint">text copied</string>   
+    
+    <!-- app preferences -->
+    <string name="pref_app_theme_title">App theme</string>
+    
+    <string name="pref_app_actionbar_title">ActionBar</string>
+    <string name="pref_app_actionbar_summary">Set whether to show the app action bar</string>
+    
+    <string name="pref_app_editor_title">Editor</string>
+    <string name="pref_app_editor_summary">Configure the editor propery style</string>
+    
+    <string name="pref_app_license_title">License Apache 2.0</string>
+    <string name="pref_app_license_summary">Report bugs, submit pull requests, and view the source code</string>
+    
+    <string name="pref_app_copyright_title">Copyright agreement</string>
+    <string name="pref_app_copyright_summary">Copyright agreement of the third-party open source libraries</string>
+    
+    <string name="pref_app_about_title">About application</string>
+    <string name="pref_app_about_summary">App package version and build sdk information</string>
+    
+    <string name="dialog_neutral_button_text">reset</string>
+    
+        <!-- editor preferences -->
+    <string name="pref_editor_textsize_title">Font size</string>
+    <string name="pref_editor_textsize_summary">Set editor text size</string>
+    
+    <string name="pref_editor_scheme_title">Color scheme</string>
+    <string name="pref_editor_scheme_summary">Configure highlighting scheme</string>
+    
+    <string name="document_base_uri">content://com.android.externalstorage.documents</string>
+    
+    <string name="success">success</string>
+    <string name="fail">fail</string>
+    
+    <string name="file_download">download file</string>
+    <string name="file_extract">unzip file</string>
+    <string name="file_done">download completed</string>
+    
+    <string name="default_theme_index">0</string>
+    
+    <string-array name="pref_theme_config">
+        <item>System</item>
+        <item>Light</item>
+        <item>Night</item>
+    </string-array>
+    
+    <string-array name="pref_theme_values">
+        <item>0</item>
+        <item>1</item>
+        <item>-1</item>
+    </string-array>
+    
+</resources>
