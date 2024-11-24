@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_crash_title">应用发生了错误</string>
+    <string name="action_settings">设置</string>
+    <string name="action_undo">撤销</string>
+    <string name="action_redo">重做</string>
+    <string name="action_edit_mode">编辑模式</string>
+    <string name="action_open_file">打开</string>
+    <string name="action_search">搜索</string>
+    <string name="action_close">关闭</string>
+    <string name="action_save_file">保存</string>
+    <string name="action_replace_all">全部替换</string>
+    <string name="action_report">报告</string>
+    <string name="action_copy">复制</string>
+    <string name="action_restart">重启</string>
+    
+    <string name="action_find_prev">上一个</string>
+    <string name="action_find_next">下一个</string>
+    
+    <string name="action_create_dir">创建目录</string>
+    <string name="action_create_file">创建文件</string>
+    <string name="action_favorite">收藏</string>
+    <string name="action_favorite_off">取消收藏</string>
+    <string name="action_rename_file">重命名</string>
+    <string name="action_delete_file">删除</string>
+    
+    <string name="create_dir_prompt">输入新的目录名</string>
+    <string name="create_file_prompt">输入新的文件名</string>
+    <string name="rename_prompt">请输入新的文件名</string>
+    <string name="replace_prompt">请输入替换的文本</string>
+    
+    <string name="app_exit_prompt">你确定要保存所有文件并退出应用程序？</string>
+    
+    <string name="delete_file_prompt">你确定要删除文件</string>
+    <string name="type_dir">目录</string>
+    <string name="type_file">文件</string>
+    
+    <string name="option_regex">正则表达式</string>
+    <string name="option_match">全词匹配</string>
+    <string name="option_ignorecase">忽略大小写</string>
+    
+    <string name="search_text_hint">搜索文本</string>
+    <string name="replace_text_hint">替换文本</string>
+    <string name="copy_text_hint">文本已复制</string>
+    
+    <string name="dialog_neutral_button_text">重置</string>
+    
+    <!-- app preferences -->
+    <string name="pref_app_theme_title">主题</string>
+    
+    <string name="pref_app_actionbar_title">导航栏</string>
+    <string name="pref_app_actionbar_summary">设置是否显示应用导航栏</string>
+    
+    <string name="pref_app_editor_title">编辑器</string>
+    <string name="pref_app_editor_summary">配置编辑器属性风格</string>
+    
+    <string name="pref_app_license_title">开源许可 Apache 2.0</string>
+    <string name="pref_app_license_summary">报告bug，追踪issues, 以及贡献源代码</string>
+    
+    <string name="pref_app_copyright_title">版权协议</string>
+    <string name="pref_app_copyright_summary">所使用到的一些第三方开源库的版权协议</string>
+    
+    <string name="pref_app_about_title">关于应用</string>
+    <string name="pref_app_about_summary">应用包信息，以及所支持的最低sdk等</string>
+    
+    <!-- editor preferences -->
+    <string name="pref_editor_textsize_title">字体大小</string>
+    <string name="pref_editor_textsize_summary">编辑器文本大小</string>
+    
+    <string name="pref_editor_scheme_title">配色方案</string>
+    <string name="pref_editor_scheme_summary">编辑器语法配色</string>
+    
+    <string name="success">成功</string>
+    <string name="fail">失败</string>
+    
+    <string name="file_download">下载文件</string>
+    <string name="file_extract">解压文件</string>
+    <string name="file_done">下载完成</string>
+    
+    <string-array name="pref_theme_values">
+        <item>跟随系统</item>
+        <item>浅色主题</item>
+        <item>深色主题</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<io.github.code.app.view.AppDrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:animateLayoutChanges="true">
+    
+    <FrameLayout
+        android:id="@+id/content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"/>
+    
+    <include
+        android:id="@+id/app_bar_main"
+        layout="@layout/app_bar_main"/>
+    
+    <!-- NavigationView left -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view_start"
+        android:layout_gravity="start"
+        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        app:insetForeground="@android:color/transparent"
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/activity_main_drawer"/>
+    
+    <!-- NavigationView end -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view_end"
+        android:layout_gravity="end"
+        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        app:insetForeground="@android:color/transparent">
+        
+        <!-- DrawerLayout end -->
+        <include
+            android:id="@+id/nav_drawer_end"
+            layout="@layout/nav_drawer_end"/>
+        
+    </com.google.android.material.navigation.NavigationView>
+
+</io.github.code.app.view.AppDrawerLayout>
+

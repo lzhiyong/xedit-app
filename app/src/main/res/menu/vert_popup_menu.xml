@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/action_favorite"
+        android:title="@string/action_favorite"
+        android:icon="@drawable/ic_favorite"/>
+        
+    <item
+        android:id="@+id/action_rename_file"
+        android:title="@string/action_rename_file"
+        android:icon="@drawable/ic_rename"/>
+        
+    <item
+        android:id="@+id/action_delete_file"
+        android:title="@string/action_delete_file"
+        android:icon="@drawable/ic_delete"/>
+</menu>

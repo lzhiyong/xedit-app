@@ -1,0 +1,10 @@
+{
+    "tree-sitter-libraries": {
+        "aarch64": "https://github.com/lzhiyong/tree-sitter-grammar/releases/download/tree-sitter/libtree-sitter-aarch64.zip",
+        "arm": "https://github.com/lzhiyong/tree-sitter-grammar/releases/download/tree-sitter/libtree-sitter-arm.zip",
+        "i686": "https://github.com/lzhiyong/tree-sitter-grammar/releases/download/tree-sitter/libtree-sitter-i686.zip",
+        "x86_64": "https://github.com/lzhiyong/tree-sitter-grammar/releases/download/tree-sitter/libtree-sitter-x86_64.zip"
+    },
+    "tree-sitter-queries": "https://github.com/lzhiyong/tree-sitter-grammar/releases/download/tree-sitter/tree-sitter-queries.zip",
+    "tree-sitter-themes": "https://github.com/lzhiyong/tree-sitter-grammar/releases/download/tree-sitter/tree-sitter-themes.zip"
+}

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/action_undo"
+        android:title="@string/action_undo"
+        android:icon="@drawable/ic_undo"
+        app:showAsAction="always"/>
+        
+    <item
+        android:id="@+id/action_redo"
+        android:title="@string/action_redo"
+        android:icon="@drawable/ic_redo"
+        app:showAsAction="always"/>
+    
+    <item
+        android:id="@+id/action_save_file"
+        android:title="@string/action_save_file"
+        android:icon="@drawable/ic_save"
+        app:showAsAction="always"/>
+            
+    <item
+        android:id="@+id/action_edit_mode"
+        android:title="@string/action_edit_mode"
+        android:icon="@drawable/ic_read_write"
+        app:showAsAction="always"/>
+        
+    <item
+        android:id="@+id/action_open_file"
+        android:title="@string/action_open_file"
+        android:icon="@drawable/ic_folder"
+        app:showAsAction="never"/>
+        
+    <item
+        android:id="@+id/action_search"
+        android:title="@string/action_search"
+        android:icon="@drawable/ic_search"
+        app:showAsAction="never"/>
+        
+    <item
+        android:id="@+id/action_tree_sitter"
+        android:title="tree-sitter"
+        android:icon="@drawable/ic_code"
+        app:showAsAction="never"/>
+        
+</menu>
