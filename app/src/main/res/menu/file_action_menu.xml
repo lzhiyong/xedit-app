@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/create_dir"
+        android:title="@string/create_dir"
+        android:icon="@drawable/ic_add_folder"/>
+        
+    <item
+        android:id="@+id/create_file"
+        android:title="@string/create_file"
+        android:icon="@drawable/ic_add_file"/>
+        
+    <item
+        android:id="@+id/rename_file"
+        android:title="@string/rename_file"
+        android:icon="@drawable/ic_rename"/>
+        
+    <item
+        android:id="@+id/delete_file"
+        android:title="@string/delete_file"
+        android:icon="@drawable/ic_delete"/>
+</menu>

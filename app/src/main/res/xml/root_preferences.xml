@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+        
+    <ListPreference
+        app:key="pref_app_theme"
+        app:title="@string/pref_app_theme_title"
+        app:persistent="true"
+        app:defaultValue="@string/default_theme_index"
+        app:entries="@array/pref_theme_config"
+        app:entryValues="@array/pref_theme_values"
+        app:icon="@drawable/ic_theme_settings"/>
+    
+    <SwitchPreferenceCompat
+        app:key="pref_app_actionbar"
+        app:defaultValue="true"
+        app:title="@string/pref_app_actionbar_title"
+        app:summary="@string/pref_app_actionbar_summary"
+        app:icon="@drawable/ic_navigation"/>
+    
+    <Preference
+        app:key="pref_app_editor"
+        app:title="@string/pref_app_editor_title"
+        app:summary="@string/pref_app_editor_summary"
+        app:icon="@drawable/ic_code"/>
+    
+    <Preference
+        app:key="pref_app_license"
+        app:title="@string/pref_app_license_title"
+        app:summary="@string/pref_app_license_summary"
+        app:icon="@drawable/ic_github">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://github.com/lzhiyong/codex-app" />
+    </Preference>
+    
+    <Preference
+        app:key="pref_app_copyright"
+        app:title="@string/pref_app_copyright_title"
+        app:summary="@string/pref_app_copyright_summary"
+        app:icon="@drawable/ic_copyright"/>
+        
+    <Preference
+        app:key="pref_app_about"
+        app:title="@string/pref_app_about_title"
+        app:summary="@string/pref_app_about_summary"
+        app:icon="@drawable/ic_about"/>
+
+</PreferenceScreen>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    
+    <Preference
+        app:key="pref_editor_scheme"
+        app:title="@string/pref_editor_scheme_title"
+        app:summary="@string/pref_editor_scheme_summary"
+        app:icon="@drawable/ic_color_lens"/>
+    
+    <Preference
+        app:key="pref_editor_textsize"
+        app:title="@string/pref_editor_textsize_title"
+        app:summary="@string/pref_editor_textsize_summary"
+        app:icon="@drawable/ic_text_fields"/>
+        
+</PreferenceScreen>
