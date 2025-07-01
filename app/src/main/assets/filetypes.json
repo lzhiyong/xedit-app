@@ -1,0 +1,21 @@
+{
+  "tree_sitter_bash": ["configure", ".bashrc", ".bash2", ".sh", ".ash", ".rc", ".zsh", ".zshrc"],
+  "tree_sitter_c": [".c", ".h"],
+  "tree_sitter_cpp": [".cc", ".cpp", ".cxx", ".h", ".hh", ".hpp", ".hxx", ".ipp", ".moc", ".tcc", ".inl"],
+  "tree_sitter_cmake": ["CMakeLists.txt", ".cmake", ".cmake.in"],
+  "tree_sitter_c_sharp": [".cs", ".csx"],
+  "tree_sitter_go": [".go"],
+  "tree_sitter_html": [".htm", ".html", ".shtml", ".stm", ".cshtml"],
+  "tree_sitter_java": [".java", ".jsp"],
+  "tree_sitter_javascript": [".js", ".jsm", ".jsx", ".javascript", ".es", ".mjs", ".cjs"],
+  "tree_sitter_json": [".json", ".jsonp", ".webmanifest"],
+  "tree_sitter_kotlin": [".kt", ".ktm", ".kts"],
+  "tree_sitter_lua": [".lua"],
+  "tree_sitter_make": ["Makefile", ".mk", ".mak", ".dsp"],
+  "tree_sitter_markdown": ["README", ".markdown", ".mdown", ".mkd", ".mkdn", ".mdwn", ".md"],
+  "tree_sitter_python": [".py", ".pyw", ".ptl", ".pyi", ".pythonrc"],
+  "tree_sitter_query": [".query", ".scm", ".textobject"],
+  "tree_sitter_rust": [".rs"],
+  "tree_sitter_smali": [".smali", ".class"],
+  "tree_sitter_swift": [".swift"]
+}

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/flClickShield"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:clickable="false">
+
+    <LinearLayout
+        android:id="@+id/llAlertBackground"
+        style="@style/AlertStyle"
+        android:background="@android:color/darker_gray"
+        android:clickable="true"
+        android:clipToPadding="false"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/alerter_padding_default"
+        android:paddingTop="@dimen/alerter_alert_view_padding_top"
+        android:paddingEnd="@dimen/alerter_padding_default"
+        android:paddingBottom="@dimen/alerter_padding_default"
+        tools:visibility="visible">
+
+        <ViewStub
+            android:id="@+id/vAlertContentContainer"
+			android:inflatedId="@+id/vAlertContentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+			tools:layout="@layout/alerter_alert_default_layout"
+			tools:visibility="visible" />
+
+        <LinearLayout
+            android:id="@+id/llButtonContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:orientation="horizontal" />
+
+    </LinearLayout>
+
+</FrameLayout>
