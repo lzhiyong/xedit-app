@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/action_regex"
+        android:title="@string/option_regex"
+        android:checkable="true"
+        android:checked="true"/>
+        
+    <item
+        android:id="@+id/action_ignorecase"
+        android:title="@string/option_ignorecase"
+        android:checkable="true"/>
+    
+    <item
+        android:id="@+id/action_close"
+        android:title="@string/action_close"/>
+        
+</menu>

@@ -1,0 +1,16 @@
+{
+    "projects": [
+        {
+            "name": "tree-sitter",
+            "license": "MIT license",
+            "hyperlink": "https://github.com/tree-sitter/tree-sitter",
+            "describe": "Tree-sitter is a parser generator tool and an incremental parsing library. It can build a concrete syntax tree for a source file and efficiently update the syntax tree as the source file is edited."
+        },
+        {
+            "name": "libmagic",
+            "license": "BSD license",
+            "hyperlink": "https://github.com/file/file",
+            "describe": "Determines mime type of a file and get the charset of a text file. Cannot detect various flavors of extended ASCII, that will returns unknown result, for many uses this is good enough."
+        }
+    ]
+}
