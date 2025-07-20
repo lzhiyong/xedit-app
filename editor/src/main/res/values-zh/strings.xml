@@ -1,0 +1,8 @@
+<resources>
+    <string name="copy_text">复制</string>
+    <string name="cut_text">剪切</string>
+    <string name="paste_text">粘贴</string>
+    <string name="select_all_text">全选</string>
+    <string name="copy_text_hint">文本已复制</string>
+    <string name="copy_text_error">复制的文本过大，限制是1MB</string>
+</resources>

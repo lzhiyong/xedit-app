@@ -1,0 +1,8 @@
+<resources>
+    <string name="copy_text">copy</string>
+    <string name="cut_text">cut</string>
+    <string name="paste_text">paste</string>
+    <string name="select_all_text">select all</string>
+    <string name="copy_text_hint">text copied</string>
+    <string name="copy_text_error">the copied text too large, limit is 1MB</string>
+</resources>

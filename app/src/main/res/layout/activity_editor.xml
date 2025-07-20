@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x.code.app.view.ContentTranslatingDrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="?attr/colorSurfaceDim"
+    android:animateLayoutChanges="true"
+    tools:ignore="DuplicateIncludedIds">
+    
+    <!-- main content layout -->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout 
+        android:id="@+id/content_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    
+        <!-- app bar layout -->
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorSurface"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:elevation="10dp"/>
+        
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/progress_bar"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginTop="-4dp"
+                android:layout_gravity="bottom"
+                android:indeterminate="true"
+                android:visibility="gone"
+                app:trackColor="@android:color/transparent"/>
+        </com.google.android.material.appbar.AppBarLayout>
+        
+        <!-- editor content layout -->
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+           
+           <!-- editor view -->
+            <x.code.app.view.HighlightTextView
+                android:id="@+id/editor"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+    
+            <!-- recycler view for bottom extra keys -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_keys"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:overScrollMode="always"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editor"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+    
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>   
+    
+    <!-- navigation view start -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view_start"
+        android:layout_gravity="start"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        app:insetForeground="@android:color/transparent">
+        
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_no_files"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:visibility="visible"
+            android:text="@string/no_files_text"
+            style="?textAppearanceHeadlineSmall"/>
+        
+        <!-- recycler view for file list -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_files"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"/>
+                
+    </com.google.android.material.navigation.NavigationView>
+
+</x.code.app.view.ContentTranslatingDrawerLayout>
+

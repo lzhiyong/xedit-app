@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:ignore="DuplicateIncludedIds">
+    
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorSurface"
+        android:fitsSystemWindows="true"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:elevation="10dp"/>
+        
+    </com.google.android.material.appbar.AppBarLayout>
+    
+    <!-- splash screen content layout -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/title_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="50dp"
+            android:text="隐私条约"            
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="?textAppearanceTitleLarge"/>
+          
+        <View
+            android:id="@+id/top_horizontal_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:background="?attr/colorSurfaceContainer"
+            app:layout_constraintTop_toBottomOf="@id/title_text_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        
+        <ScrollView
+            android:id="@+id/scroll_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:textColor="?attr/colorControlNormal"
+            android:fillViewport="true"          
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/top_horizontal_divider"
+            app:layout_constraintBottom_toTopOf="@id/bottom_horizontal_divider">
+            
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/summary_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"            
+                style="?textAppearanceBodyLarge"/>        
+        </ScrollView>
+        
+        <View
+            android:id="@+id/bottom_horizontal_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:background="?attr/colorSurfaceContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"  
+            app:layout_constraintTop_toBottomOf="@id/scroll_text_view"          
+            app:layout_constraintBottom_toTopOf="@id/storage_permission_access_button"
+            app:layout_constraintVertical_chainStyle="packed"/>
+        
+        <Button            
+            android:id="@+id/storage_permission_access_button"            
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"            
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginBottom="@dimen/nav_header_vertical_spacing"                              
+            android:text="@string/storage_permission_access_button_label"            
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/storage_permission_denied_button"/>
+                    
+        <Button
+            android:id="@+id/storage_permission_denied_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/nav_header_vertical_spacing"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:text="@string/storage_permission_denied_button_label"
+            android:textColor="?attr/colorControlNormal"
+            app:backgroundTint="?attr/colorSurfaceVariant"           
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+               
+        
+    </androidx.constraintlayout.widget.ConstraintLayout>
+     
+</androidx.constraintlayout.widget.ConstraintLayout>
+
