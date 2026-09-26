@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_sheet"
+    android:background="@drawable/bottom_sheet_background"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:behavior_peekHeight="0dp"
+    app:behavior_hideable="true"
+    app:layout_behavior="@string/bottom_sheet_behavior">
+    
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_search_result"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_gravity="center_vertical" 
+        android:text="@string/search_result_count"
+        app:layout_constraintWidth_percent="0.6"     
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/divider1"/>
+        
+    <Button
+        android:id="@+id/button_ignore_case"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Cc"
+        android:textColor="?attr/colorError"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toEndOf="@id/tv_search_result"
+        app:layout_constraintEnd_toStartOf="@id/button_match_word"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/divider1"
+        style="@style/Widget.Material3.Button.TextButton"/>
+        
+    <Button
+        android:id="@+id/button_match_word"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="W"
+        android:textColor="?android:attr/textColorSecondary"
+        app:layout_constraintStart_toEndOf="@id/button_ignore_case"
+        app:layout_constraintEnd_toStartOf="@id/button_match_regex"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/divider1"
+        style="@style/Widget.Material3.Button.TextButton"/>
+        
+    <Button
+        android:id="@+id/button_match_regex"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text=".*"
+        android:textColor="?attr/colorError"
+        app:layout_constraintStart_toEndOf="@id/button_match_word"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/divider1"
+        style="@style/Widget.Material3.Button.TextButton"/>
+    
+    <!-- first divider -->
+    <View
+        android:id="@+id/divider1"
+        android:layout_width="0dp"  
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"          
+        android:background="?attr/colorOnSecondary" 
+        app:layout_constraintTop_toBottomOf="@id/tv_search_result"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+    
+    <!-- search box -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"    
+        android:text="@string/search_box_prompt"
+        app:layout_constraintTop_toTopOf="@id/scroll_view_search"
+        app:layout_constraintBottom_toBottomOf="@id/scroll_view_search"
+        app:layout_constraintStart_toStartOf="parent"/>
+    
+    <x.editor.app.view.XScrollView
+        android:id="@+id/scroll_view_search"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="3dp"     
+        android:fillViewport="true"
+        android:fadeScrollbars="true"
+        android:scrollbars="vertical"
+        app:layout_constraintWidth_percent="0.75"
+        app:layout_constraintTop_toBottomOf="@id/divider1"
+        app:layout_constraintBottom_toTopOf="@id/scroll_view_replace"
+        app:layout_constraintStart_toEndOf="@id/tv_search"
+        app:layout_constraintEnd_toStartOf="@id/drop_down_search">
+        
+        <HorizontalScrollView
+            android:id="@+id/horiz_scroll_view_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"            
+            android:fillViewport="true"
+            android:fadeScrollbars="true"
+            android:scrollbars="horizontal">       
+            <EditText
+                android:id="@+id/tv_search_box"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_underline"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"/>
+            
+        </HorizontalScrollView>
+    </x.editor.app.view.XScrollView>
+    
+    <Button            
+        android:id="@+id/drop_down_search"            
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:icon="@drawable/ic_arrow_drop_down"
+        app:iconTint="@drawable/icon_tint_selector"
+        app:layout_constraintTop_toBottomOf="@id/divider1"
+        app:layout_constraintBottom_toTopOf="@id/drop_down_replace"        
+        app:layout_constraintStart_toEndOf="@id/scroll_view_search"
+        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/Widget.Material3.Button.IconButton"/>
+    
+    <!-- replace box -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_replace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"        
+        android:layout_marginStart="10dp"       
+        android:visibility="gone"   
+        android:text="@string/button_replace"
+        app:layout_constraintTop_toTopOf="@id/scroll_view_replace"
+        app:layout_constraintBottom_toBottomOf="@id/scroll_view_replace"
+        app:layout_constraintStart_toStartOf="parent"/>
+    
+    <x.editor.app.view.XScrollView
+        android:id="@+id/scroll_view_replace"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:fillViewport="true"      
+        android:fadeScrollbars="true"
+        android:scrollbars="vertical"
+        app:layout_constraintWidth_percent="0.75"
+        app:layout_constraintTop_toBottomOf="@id/scroll_view_search"
+        app:layout_constraintBottom_toTopOf="@id/divider2" 
+        app:layout_constraintStart_toEndOf="@id/tv_replace"
+        app:layout_constraintEnd_toStartOf="@id/drop_down_replace">
+        
+        <HorizontalScrollView
+            android:id="@+id/horiz_scroll_view_replace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:fadeScrollbars="true"
+            android:scrollbars="horizontal">          
+            <EditText
+                android:id="@+id/tv_replace_box"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:background="@drawable/edit_text_underline"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"/>
+            
+        </HorizontalScrollView>
+    </x.editor.app.view.XScrollView>
+    
+    <Button            
+        android:id="@+id/drop_down_replace"            
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:icon="@drawable/ic_arrow_drop_down"
+        app:iconTint="@drawable/icon_tint_selector"
+        app:layout_constraintTop_toBottomOf="@id/drop_down_search"
+        app:layout_constraintStart_toEndOf="@id/scroll_view_replace"
+        app:layout_constraintBottom_toTopOf="@id/divider2"       
+        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/Widget.Material3.Button.IconButton"/>
+    
+    <!-- second divider -->
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="0dp"  
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="?attr/colorOnSecondary" 
+        app:layout_constraintTop_toBottomOf="@id/scroll_view_replace"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+    
+    <!-- some buttons -->
+    <Button            
+        android:id="@+id/button_prev"            
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/button_prev"        
+        app:layout_constraintHorizontal_chainStyle="spread"        
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/button_next"
+        app:layout_constraintTop_toBottomOf="@id/divider2"
+        style="@style/Widget.Material3.Button.TextButton"/>
+        
+    <Button            
+        android:id="@+id/button_next"            
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"             
+        android:text="@string/button_next"
+        app:layout_constraintTop_toTopOf="@id/button_prev"
+        app:layout_constraintStart_toEndOf="@id/button_prev"
+        app:layout_constraintEnd_toStartOf="@id/button_replace"
+        style="@style/Widget.Material3.Button.TextButton"/>
+        
+    <Button            
+        android:id="@+id/button_replace"            
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"             
+        android:text="@string/button_replace"
+        app:layout_constraintTop_toTopOf="@id/button_prev" 
+        app:layout_constraintStart_toEndOf="@id/button_next"
+        app:layout_constraintEnd_toStartOf="@id/button_replace_all"
+        style="@style/Widget.Material3.Button.TextButton"/>
+    
+    <Button            
+        android:id="@+id/button_replace_all"            
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"             
+        android:enabled="false"
+        android:text="@string/button_replace_all"
+        app:layout_constraintTop_toTopOf="@id/button_prev"
+        app:layout_constraintStart_toEndOf="@id/button_replace"
+        app:layout_constraintEnd_toStartOf="@id/button_close"
+        style="@style/Widget.Material3.Button.TextButton"/>
+    
+    <Button            
+        android:id="@+id/button_close"            
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" 
+        app:iconGravity="textStart"
+        app:icon="@drawable/ic_close"
+        app:layout_constraintTop_toTopOf="@id/button_prev"
+        app:layout_constraintStart_toEndOf="@id/button_replace_all"
+        app:layout_constraintEnd_toEndOf="parent"        
+        style="@style/Widget.Material3.Button.IconButton"/>
+                
+</androidx.constraintlayout.widget.ConstraintLayout>
+
