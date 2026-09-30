@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_crash">应用发生了错误</string>
+    <string name="action_undo">撤销</string>
+    <string name="action_redo">重做</string>
+    <string name="action_edit_mode">编辑模式</string>
+    <string name="action_open_file">打开</string>
+    <string name="action_save_file">保存</string>
+    <string name="action_close">关闭</string>
+    <string name="action_search">搜索</string>
+    <string name="action_settings">设置</string>
+
+    <string name="action_replace_all">全部替换</string>
+    <string name="action_report">报告</string>
+    <string name="action_copy">复制</string>
+    <string name="action_restart">重启</string>
+
+    <string name="content_search">搜索</string>
+    <string name="content_copy">复制</string>
+    <string name="content_cut">剪切</string>
+    <string name="content_paste">粘贴</string>
+    <string name="content_select_all">全选</string>
+
+    <!-- app preferences -->
+    <string name="pref_app_theme_title">主题</string>
+
+    <string name="pref_app_editor_title">编辑器</string>
+    <string name="pref_app_editor_summary">配置编辑器属性风格</string>
+
+    <string name="pref_app_github_title">Github</string>
+    <string name="pref_app_github_summary">报告bug，追踪issues, 以及贡献源代码</string>
+
+    <string name="pref_app_license_title">版权协议</string>
+    <string name="pref_app_license_summary">所使用到的一些第三方开源库的版权协议</string>
+
+    <string name="pref_app_about_title">关于应用</string>
+    <string name="pref_app_about_summary">应用安装包信息，以及所支持的sdk架构等</string>
+
+    <!-- editor preferences -->
+    <string name="pref_editor_textsize_title">字体大小</string>
+    <string name="pref_editor_textsize_summary">编辑器文本大小</string>
+
+    <string name="pref_editor_scheme_title">配色方案</string>
+    <string name="pref_editor_scheme_summary">编辑器语法配色</string>
+
+    <string name="dialog_msg_file_changed">文件内容已经被修改了，是否重新进行加载？</string>
+    <string name="dialog_msg_file_deleted">文件已经被删除，是否继续保留在编辑器中？</string>
+
+    <string name="dialog_button_neutral">重置</string>
+    <string name="no_opened_files">没有文件</string>
+
+    <string name="search_box_prompt">搜索</string>
+    <string name="search_result_count">搜索结果</string>
+    <string name="button_prev">上个</string>
+    <string name="button_next">下个</string>
+    <string name="button_replace">替换</string>
+    <string name="button_replace_all">全部</string>
+
+    <string-array name="pref_theme_lists">
+        <item>跟随系统</item>
+        <item>浅色主题</item>
+        <item>深色主题</item>
+    </string-array>
+
+</resources>
