@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">XEdit</string>
+    <string name="app_crash">Application Crashed</string>
+    
+    <string name="action_undo">undo</string>
+    <string name="action_redo">redo</string>
+    <string name="action_edit_mode">edit mode</string>
+    <string name="action_open_file">open</string>
+    <string name="action_save_file">save</string>
+    <string name="action_close">close</string>    
+    <string name="action_search">search</string>
+    <string name="action_settings">settings</string>
+    
+    <string name="action_replace_all">replace all</string>
+    <string name="action_report">report</string>
+    <string name="action_copy">copy</string>
+    <string name="action_restart">restart</string>
+    
+    <string name="content_search">search</string>
+    <string name="content_copy">copy</string>
+    <string name="content_cut">cut</string>
+    <string name="content_paste">paste</string>
+    <string name="content_select_all">select all</string>
+        
+    <!-- app preferences -->
+    <string name="pref_app_theme_title">App theme</string>
+    
+    <string name="pref_app_editor_title">Editor</string>
+    <string name="pref_app_editor_summary">Configure the editor propery style</string>
+    
+    <string name="pref_app_github_title">Github</string>
+    <string name="pref_app_github_summary">Report bugs, submit pull requests, and view the source code</string>
+    
+    <string name="pref_app_license_title">License agreement</string>
+    <string name="pref_app_license_summary">License agreement of the third-party open source libraries</string>
+    
+    <string name="pref_app_about_title">About application</string>
+    <string name="pref_app_about_summary">App package version and build sdk information</string>
+    
+    <!-- editor preferences -->
+    <string name="pref_editor_textsize_title">Font size</string>
+    <string name="pref_editor_textsize_summary">Set editor text size</string>
+    
+    <string name="pref_editor_scheme_title">Color scheme</string>
+    <string name="pref_editor_scheme_summary">Configure highlighting scheme</string>
+    
+    <string name="base_download_url">https://github.com/lzhiyong/xedit-app/releases/download</string>
+    <string name="dialog_button_neutral">reset</string>
+    <string name="no_opened_files">No Files</string>
+    
+    <string name="dialog_msg_file_changed">The file content has changed, do you want to reload it?</string>
+    <string name="dialog_msg_file_deleted">The file has been deleted, do you want to keep it in the editor?</string>
+    
+    <string name="search_box_prompt">search</string>
+    <string name="search_result_count">search result</string>    
+    <string name="button_prev">prev</string>
+    <string name="button_next">next</string>
+    <string name="button_replace">replace</string>
+    <string name="button_replace_all">all</string>
+        
+    <string name="default_theme_index">0</string>
+    
+    <string-array name="pref_theme_lists">
+        <item>System</item>
+        <item>Light</item>
+        <item>Dark</item>
+    </string-array>
+    
+    <string-array name="pref_theme_values">
+        <item>0</item>
+        <item>1</item>
+        <item>-1</item>
+    </string-array>
+    
+</resources>

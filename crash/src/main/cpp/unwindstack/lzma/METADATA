@@ -1,0 +1,19 @@
+name: "lzma"
+description: "LZMA is default and general compression method of 7z format."
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://7-zip.org/"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://7-zip.org/a/lzma1900.7z"
+  }
+  version: "19.00"
+  license_type: UNENCUMBERED
+  last_upgrade_date {
+    year: 2023
+    month: 2
+    day: 14
+  }
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">    
+    
+    <item
+        android:id="@+id/action_report"
+        android:title="@string/action_report"
+        android:icon="@drawable/ic_bug_report"
+        app:showAsAction="never"/>
+    
+    <item
+        android:id="@+id/action_copy"
+        android:title="@string/action_copy"
+        android:icon="@drawable/ic_content_copy"
+        app:showAsAction="never"/>          
+        
+    <item
+        android:id="@+id/action_restart"
+        android:title="@string/action_restart"
+        android:icon="@drawable/ic_restart_alt"
+        app:showAsAction="never"/>
+    
+    <item
+        android:id="@+id/action_close"
+        android:title="@string/action_close"
+        android:icon="@drawable/ic_close"
+        app:showAsAction="never"/>
+        
+</menu>
