@@ -1,0 +1,606 @@
+//
+// Copyright (C) 2011 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "art_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["art_license"],
+}
+
+cc_defaults {
+    name: "libdexfile_defaults",
+    defaults: ["art_defaults"],
+    host_supported: true,
+    tidy_timeout_srcs: [
+        "dex/dex_file_verifier.cc",
+    ],
+    srcs: [
+        "dex/art_dex_file_loader.cc",
+        "dex/compact_dex_file.cc",
+        "dex/compact_offset_table.cc",
+        "dex/descriptors_names.cc",
+        "dex/dex_file.cc",
+        "dex/dex_file_exception_helpers.cc",
+        "dex/dex_file_layout.cc",
+        "dex/dex_file_loader.cc",
+        "dex/dex_file_tracking_registrar.cc",
+        "dex/dex_file_verifier.cc",
+        "dex/dex_instruction.cc",
+        "dex/modifiers.cc",
+        "dex/primitive.cc",
+        "dex/signature.cc",
+        "dex/standard_dex_file.cc",
+        "dex/type_lookup_table.cc",
+        "dex/utf.cc",
+    ],
+    header_libs: [
+        "jni_headers",
+        "libdexfile_external_headers",
+    ],
+    export_header_lib_headers: [
+        "jni_headers",
+        "libdexfile_external_headers",
+    ],
+    static: {
+        cflags: ["-DSTATIC_LIB"],
+    },
+    target: {
+        android: {
+            srcs: [
+                "external/dex_file_ext.cc",
+            ],
+            static_libs: [
+                "libziparchive",
+            ],
+            shared_libs: [
+                // libz provides a stub from platform, shouldn't be statically linked
+                "libz",
+                // For MemMap.
+                "libartpalette",
+                "liblog",
+                // For common macros.
+                "libbase",
+            ],
+            export_shared_lib_headers: [
+                "libbase",
+            ],
+        },
+        not_windows: {
+            srcs: [
+                "external/dex_file_ext.cc",
+            ],
+            shared_libs: [
+                "libziparchive",
+                "libz",
+                // For MemMap.
+                "libartpalette",
+                "liblog",
+                // For common macros.
+                "libbase",
+            ],
+            export_shared_lib_headers: [
+                "libbase",
+            ],
+        },
+        windows: {
+            static_libs: [
+                "libziparchive",
+                "libz",
+                // For MemMap.
+                "libartpalette",
+                "liblog",
+                // For common macros.
+                "libbase",
+            ],
+            export_static_lib_headers: [
+                "libbase",
+            ],
+            cflags: ["-Wno-thread-safety"],
+        },
+        darwin: {
+            enabled: true,
+        },
+    },
+    generated_sources: ["dexfile_operator_srcs"],
+    export_include_dirs: ["."],
+}
+
+cc_defaults {
+    name: "libdexfile_static_base_defaults",
+    whole_static_libs: [
+        "libbase",
+        "liblog",
+        "libz",
+        "libziparchive",
+    ],
+}
+
+cc_defaults {
+    name: "libdexfile_static_defaults",
+    defaults: [
+        "libartbase_static_defaults",
+        "libdexfile_static_base_defaults",
+    ],
+    defaults_visibility: [
+        "//art:__subpackages__",
+    ],
+    whole_static_libs: ["libdexfile"],
+}
+
+cc_defaults {
+    name: "libdexfiled_static_defaults",
+    defaults: [
+        "libartbased_static_defaults",
+        "libdexfile_static_base_defaults",
+    ],
+    whole_static_libs: ["libdexfiled"],
+}
+
+gensrcs {
+    name: "dexfile_operator_srcs",
+    cmd: "$(location generate_operator_out) art/libdexfile $(in) > $(out)",
+    tools: ["generate_operator_out"],
+    srcs: [
+        "dex/dex_file.h",
+        "dex/dex_file_layout.h",
+        "dex/dex_instruction.h",
+        "dex/dex_instruction_utils.h",
+        "dex/invoke_type.h",
+    ],
+    output_extension: "operator_out.cc",
+}
+
+art_cc_library {
+    name: "libdexfile",
+    visibility: [
+        // Allow libdexfile_support users to list this as a runtime_libs
+        // dependency - see comment for libdexfile_support. It shouldn't be used
+        // for any other purpose.
+        "//external/perfetto",
+        "//system/core/debuggerd",
+        "//system/extras/simpleperf",
+        "//system/unwinding/libunwindstack",
+    ],
+    defaults: [
+        "libdexfile_defaults",
+        "libart_nativeunwind_defaults",
+    ],
+    target: {
+        android: {
+            shared_libs: [
+                "libartbase",
+            ],
+            export_shared_lib_headers: [
+                "libartbase",
+            ],
+        },
+        not_windows: {
+            shared_libs: [
+                "libartbase",
+            ],
+            export_shared_lib_headers: [
+                "libartbase",
+            ],
+        },
+        windows: {
+            enabled: true,
+            shared: {
+                enabled: false,
+            },
+            static_libs: [
+                "libartbase",
+            ],
+            export_static_lib_headers: [
+                "libartbase",
+            ],
+        },
+    },
+    apex_available: [
+        "com.android.art",
+        "com.android.art.debug",
+        "test_broken_com.android.art",
+    ],
+    stubs: {
+        symbol_file: "libdexfile.map.txt",
+        versions: ["1"],
+    },
+}
+
+art_cc_library {
+    name: "libdexfiled",
+    defaults: [
+        "art_debug_defaults",
+        "libdexfile_defaults",
+    ],
+    target: {
+        android: {
+            shared_libs: [
+                "libartbased",
+            ],
+            export_shared_lib_headers: [
+                "libartbased",
+            ],
+        },
+        not_windows: {
+            shared_libs: [
+                "libartbased",
+            ],
+            export_shared_lib_headers: [
+                "libartbased",
+            ],
+        },
+        windows: {
+            enabled: true,
+            shared: {
+                enabled: false,
+            },
+            static_libs: [
+                "libartbased",
+            ],
+            export_static_lib_headers: [
+                "libartbased",
+            ],
+        },
+    },
+    apex_available: [
+        "com.android.art.debug",
+        // TODO(b/183882457): This lib doesn't go into com.android.art, but
+        // apex_available lists need to be the same for internal libs to avoid
+        // stubs, and libartd depends on this.
+        "com.android.art",
+    ],
+}
+
+art_cc_defaults {
+    name: "art_libdexfile_tests_defaults",
+    tidy_timeout_srcs: [
+        "dex/dex_file_verifier_test.cc",
+    ],
+    srcs: [
+        "dex/art_dex_file_loader_test.cc",
+        "dex/class_accessor_test.cc",
+        "dex/code_item_accessors_test.cc",
+        "dex/compact_dex_file_test.cc",
+        "dex/compact_offset_table_test.cc",
+        "dex/descriptors_names_test.cc",
+        "dex/test_dex_file_builder_test.cc",
+        "dex/dex_file_loader_test.cc",
+        "dex/dex_file_verifier_test.cc",
+        "dex/dex_instruction_test.cc",
+        "dex/primitive_test.cc",
+        "dex/string_reference_test.cc",
+        "dex/type_lookup_table_test.cc",
+        "dex/utf_test.cc",
+    ],
+    data: [
+        ":art-gtest-jars-GetMethodSignature",
+        ":art-gtest-jars-Lookup",
+        ":art-gtest-jars-Main",
+        ":art-gtest-jars-MainEmptyUncompressed",
+        ":art-gtest-jars-MultiDex",
+        ":art-gtest-jars-Nested",
+    ],
+    header_libs: ["jni_headers"],
+    static_libs: [
+        "libziparchive",
+    ],
+    shared_libs: [
+        "libunwindstack",
+        "libz", // libziparchive dependency; must be repeated here since it's a static lib.
+    ],
+}
+
+// Version of ART gtest `art_libdexfile_tests` bundled with the ART APEX on target.
+// TODO(b/192274705): Remove this module when the migration to standalone ART gtests is complete.
+art_cc_test {
+    name: "art_libdexfile_tests",
+    defaults: [
+        "art_gtest_defaults",
+        "art_libdexfile_tests_defaults",
+    ],
+}
+
+// Standalone version of ART gtest `art_libdexfile_tests`, not bundled with the ART APEX on target.
+art_cc_test {
+    name: "art_standalone_libdexfile_tests",
+    defaults: [
+        "art_standalone_gtest_defaults",
+        "art_libdexfile_tests_defaults",
+    ],
+    test_config: "art_standalone_libdexfile_tests.xml",
+}
+
+cc_library_headers {
+    name: "libdexfile_external_headers",
+    defaults: ["art_defaults"],
+    visibility: ["//visibility:public"],
+    host_supported: true,
+    header_libs: ["libbase_headers"],
+    export_header_lib_headers: ["libbase_headers"],
+    export_include_dirs: ["external/include"],
+
+    target: {
+        windows: {
+            enabled: true,
+        },
+        darwin: {
+            enabled: true,
+        },
+    },
+
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.art",
+        "com.android.art.debug",
+        "com.android.media",
+        "com.android.runtime",
+    ],
+}
+
+// Make dex_instruction_list.h available for tools/jvmti-agents/titrace
+cc_library_headers {
+    name: "libdexfile_all_headers",
+    defaults: ["art_defaults"],
+    visibility: ["//art:__subpackages__"],
+    host_supported: true,
+    export_include_dirs: ["."],
+
+    apex_available: [
+        "com.android.art",
+        "com.android.art.debug",
+    ],
+}
+
+art_cc_defaults {
+    name: "art_libdexfile_external_tests_defaults",
+    defaults: [
+        "art_module_source_build_defaults",
+    ],
+    test_suites: ["general-tests"],
+    srcs: [
+        "external/dex_file_ext_c_test.c",
+        "external/dex_file_ext_test.cc",
+    ],
+    shared_libs: [
+        "libartbase",
+        "libdexfile",
+    ],
+    header_libs: [
+        "jni_headers",
+        "libdexfile_external_headers",
+    ],
+}
+
+// Version of ART gtest `art_libdexfile_external_tests` bundled with the ART APEX on target.
+// TODO(b/192274705): Remove this module when the migration to standalone ART gtests is complete.
+art_cc_test {
+    name: "art_libdexfile_external_tests",
+    defaults: [
+        "art_test_defaults",
+        "art_libdexfile_external_tests_defaults",
+    ],
+}
+
+// Standalone version of ART gtest `art_libdexfile_external_tests`, not bundled with the ART APEX on
+// target.
+art_cc_test {
+    name: "art_standalone_libdexfile_external_tests",
+    defaults: [
+        "art_standalone_test_defaults",
+        "art_libdexfile_external_tests_defaults",
+    ],
+
+    test_config_template: ":art-gtests-target-standalone-cts-template",
+    test_suites: ["cts"], // For backed-by API coverage.
+}
+
+// Support library with a C++ API for accessing the libdexfile API for external
+// (non-ART) users.
+//
+// This library dlopens libdexfile(d).so on first use, so there is no build time
+// dependency on dex file logic. It is therefore safe to use from binaries
+// compiled without dex file support, given they won't encounter any dex file
+// stack frames.
+//
+// IMPORTANT: When adding a static_libs dependency on this library, please
+// remember to also add a corresponding
+//
+//     runtime_libs: ["libdexfile"],
+//
+// That is necessary since Soong doesn't propagate dependencies transitively for
+// static libraries (b/169779783).
+art_cc_library_static {
+    name: "libdexfile_support",
+    defaults: ["art_defaults"],
+    visibility: ["//visibility:public"],
+    host_supported: true,
+    srcs: [
+        "external/dex_file_supp.cc",
+    ],
+    runtime_libs: ["libdexfile"],
+    shared_libs: [
+        "liblog",
+        "libbase",
+    ],
+    header_libs: ["libdexfile_external_headers"],
+    export_header_lib_headers: ["libdexfile_external_headers"],
+
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.art",
+        "com.android.art.debug",
+        "com.android.media",
+        "com.android.media.swcodec",
+        "com.android.runtime",
+    ],
+}
+
+art_cc_defaults {
+    name: "art_libdexfile_support_tests_defaults",
+    defaults: [
+        "art_module_source_build_defaults",
+    ],
+    test_suites: ["general-tests"],
+    srcs: [
+        "external/dex_file_supp_test.cc",
+    ],
+    shared_libs: [
+        "libartbase",
+        "libbase",
+        "libdexfile",
+        "liblog",
+    ],
+    static_libs: [
+        "libdexfile_support",
+    ],
+}
+
+// Version of ART gtest `art_libdexfile_support_tests` bundled with the ART APEX on target.
+// TODO(b/192274705): Remove this module when the migration to standalone ART gtests is complete.
+art_cc_test {
+    name: "art_libdexfile_support_tests",
+    host_supported: true,
+    defaults: [
+        "art_test_defaults",
+        "art_libdexfile_support_tests_defaults",
+    ],
+}
+
+// Standalone version of ART gtest `art_libdexfile_support_tests`, not bundled with the ART APEX on
+// target.
+art_cc_test {
+    name: "art_standalone_libdexfile_support_tests",
+    defaults: [
+        "art_standalone_test_defaults",
+        "art_libdexfile_support_tests_defaults",
+    ],
+    test_suites: [
+        "mts-art",
+    ],
+}
+
+cc_library_static {
+    name: "libdexfile_support_static",
+    defaults: ["art_defaults"],
+    host_supported: true,
+    srcs: [
+        "external/dex_file_supp.cc",
+    ],
+    cflags: ["-DSTATIC_LIB"],
+    header_libs: ["libdexfile_external_headers"],
+    export_header_lib_headers: ["libdexfile_external_headers"],
+}
+
+cc_defaults {
+    name: "libdexfile_support_static_defaults",
+    defaults: [
+        "libdexfile_static_defaults",
+    ],
+    whole_static_libs: [
+        "libdexfile",
+        "libdexfile_support_static",
+    ],
+}
+
+cc_defaults {
+    name: "libdexfiled_support_static_defaults",
+    defaults: [
+        "libdexfiled_static_defaults",
+    ],
+    whole_static_libs: [
+        "libdexfiled",
+        "libdexfile_support_static",
+    ],
+}
+
+art_cc_test {
+    name: "art_libdexfile_support_static_tests",
+    test_suites: ["general-tests"],
+    defaults: [
+        "art_module_source_build_defaults",
+        "art_test_defaults",
+        "libdexfile_support_static_defaults",
+    ],
+    srcs: [
+        "external/dex_file_supp_test.cc",
+    ],
+}
+
+// For use by external packages allowed to link in static libdexfile_support.
+// This is not allowed in any module that may end up in an APEX or platform
+// image, so visibility is restrictive.
+cc_library_static {
+    name: "libdexfile_static",
+    host_supported: true,
+    visibility: [
+        // Required for simpleperf, libsimpleperf_record, and libsimpleperf_report
+        // in the NDK.
+        "//system/extras/simpleperf",
+        "//cts/tests/tests/simpleperf",
+    ],
+    // Using libdexfile_support_static_defaults will link in external libs like
+    // libbase and libz statically as well, which are likely to cause duplicate
+    // copies in the depending module.
+    // TODO(b/169885605): Avoid exposing symbols from those libs.
+    defaults: [
+        "art_defaults",
+        "libdexfile_support_static_defaults",
+    ],
+}
+
+art_cc_test {
+    name: "art_libdexfile_static_tests",
+    defaults: ["art_test_defaults"],
+    test_suites: ["general-tests"],
+    srcs: [
+        "external/dex_file_supp_test.cc",
+    ],
+    static_libs: [
+        "libdexfile_static",
+    ],
+    enabled: false,
+    target: {
+        android: {
+            // Build static test binary on device, to make sure libdexfile_static can be used in
+            // static simpleperf binary in ndk.
+            static_executable: true,
+            static_libs: [
+                "libc",
+            ],
+        },
+        linux: {
+            enabled: true,
+        },
+    },
+    // TODO(b/181740144): Enable a ubsan check to create a dependency on
+    // ubsan_minimal. It's needed to be able to link with the prebuilt
+    // libdexfile_static.a, which contains libziparchive.a, which is
+    // built with some ubsan checks
+    // (https://cs.android.com/android/platform/superproject/+/master:system/libziparchive/Android.bp;l=47-59;drc=c7b498fdf2002194709e40ea58ce39f43684fc14)
+    // that the SDK snapshots currently don't propagate properly for static
+    // libs.
+    sanitize: {
+        misc_undefined: ["shift"],
+    },
+}
+
+filegroup {
+    name: "art_libdexfile_dex_instruction_list_header",
+    srcs: ["dex/dex_instruction_list.h"],
+}

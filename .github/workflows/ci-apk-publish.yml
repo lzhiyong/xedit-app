@@ -1,0 +1,142 @@
+# Builds the app on every push and publishes the APK to GitHub Releases.
+# - Same app version  -> keep the existing tag, only re-upload the APK
+# - New app version   -> create a new tag (v<versionName>) and a new release
+name: CI APK Publish
+
+on:
+  push:
+    branches: [main]   # Change to the branches you want to publish from
+  workflow_dispatch:   # Allow manual runs from the Actions tab
+
+# Required so the workflow can create tags/releases and upload assets
+permissions:
+  contents: write
+
+# Run one publish at a time so concurrent pushes don't race on the same tag
+concurrency:
+  group: ci-apk-publish
+  cancel-in-progress: false
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}   # Auth for the gh CLI
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1              # Only the latest commit is needed for the release notes
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - uses: gradle/actions/setup-gradle@v4   # Gradle cache
+
+      # Extract versionName from the module's Gradle file and derive the tag name.
+      # Works with both `versionName "1.0"` (Groovy) and `versionName = "1.0"` (Kotlin DSL).
+      # A leading "v" in versionName is stripped first, so the tag is always v<version>.
+      - name: Read app version
+        id: ver
+        run: |
+          FILE=$(ls app/build.gradle.kts app/build.gradle 2>/dev/null | head -n1)
+          VERSION=$(grep -oP 'versionName\s*=?\s*"\K[^"]+' "$FILE" | head -n1)
+          if [ -z "$VERSION" ]; then
+            echo "Could not read versionName from $FILE" >&2
+            exit 1
+          fi
+          echo "tag=v${VERSION#v}" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      # The clone script skips directories that already exist, so caching them is safe.
+      # The cache key changes whenever repos.json changes, forcing a fresh clone.
+      - name: Cache tree-sitter grammar sources
+        uses: actions/cache@v4
+        with:
+          path: treesitter/src/main/cpp
+          key: grammars-${{ hashFiles('treesitter/repos.json') }}
+
+      # The script resolves repos.json and src/main/cpp relative to the current directory,
+      # so run it from the module directory (adjust the script name to your layout).
+      # Empty directories are removed first: the script skips any target that already exists,
+      # and checkout can leave empty placeholder dirs for stale gitlinks.
+      - name: Clone native sources
+        working-directory: treesitter
+        run: |
+          find src/main/cpp -mindepth 1 -maxdepth 1 -type d -empty -delete
+          python3 get_sources.py
+
+      # Install the CMake version defined in libs.versions.toml ([versions] cmake = "...").
+      # A trailing "+" (meaning "this version or newer") is stripped, so the plain version is
+      # what gets installed. If you pin ndkVersion, add it here too, e.g. "ndk;<version>".
+      - name: Install CMake via sdkmanager
+        run: |
+          CMAKE_VERSION=$(grep -oP '^cmake\s*=\s*"\K[^"+]+' libs.versions.toml | head -n1)
+          if [ -z "$CMAKE_VERSION" ]; then
+            echo "Could not read cmake version from libs.versions.toml" >&2
+            exit 1
+          fi
+          SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          yes | "$SDKMANAGER" --licenses > /dev/null || true   # Accept licenses ("yes" exits with SIGPIPE, ignore it)
+          "$SDKMANAGER" "cmake;$CMAKE_VERSION"
+
+      - name: Build APK (assembleDebug)
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug --stacktrace
+
+      # Copy every built APK to release-assets/ as <repo>-debug-<abi>.apk,
+      # e.g. xedit-app-debug-arm64-v8a.apk. The "debug" part mirrors the Gradle build type.
+      # The ABI is taken from the file name (ABI splits); if absent, it is detected from the
+      # lib/<abi>/ folders inside the APK. Multiple ABIs (or none) are named "universal".
+      - name: Prepare APK files
+        run: |
+          mkdir -p release-assets
+          REPO="${GITHUB_REPOSITORY#*/}"
+          while read -r SRC; do
+            BASE=$(basename "$SRC")
+            ABI=""
+            for A in arm64-v8a armeabi-v7a x86_64 x86; do   # x86_64 is checked before x86
+              case "$BASE" in *"$A"*) ABI="$A"; break ;; esac
+            done
+            if [ -z "$ABI" ]; then
+              LIBS=$(unzip -Z1 "$SRC" 'lib/*' 2>/dev/null | cut -d/ -f2 | sort -u || true)
+              if [ "$(printf '%s\n' "$LIBS" | grep -c .)" = "1" ]; then ABI="$LIBS"; else ABI="universal"; fi
+            fi
+            cp "$SRC" "release-assets/${REPO}-debug-${ABI}.apk"
+          done < <(find app/build/outputs/apk/debug -name '*.apk')
+          ls -l release-assets
+          ls release-assets/*.apk >/dev/null   # Fail early if nothing was produced
+
+      - name: Publish to GitHub Releases
+        run: |
+          TAG="${{ steps.ver.outputs.tag }}"
+
+          # Release notes = only the latest commit (the one that was just built).
+          # The old notes are never kept, so the release always shows a single entry.
+          NEW=$(git log -1 --pretty=format:"- %s (%h)" "$GITHUB_SHA")
+
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            # ---- Version unchanged: the tag/release already exists ----
+            # Replace the notes with the latest commit under a timestamp heading,
+            # then re-upload the APKs
+            printf '### %s update\n%s\n' "$(date -u +%F' '%H:%M' UTC')" "$NEW" > notes.md
+
+            gh release edit "$TAG" --notes-file notes.md
+            gh release upload "$TAG" release-assets/*.apk --clobber   # Overwrite same-named APK assets
+          else
+            # ---- New version: create the tag and release ----
+            printf '%s\n' "$NEW" > notes.md
+
+            # --target pins the new tag to the commit that was just built
+            # --prerelease marks it as a CI build on the Releases page
+            gh release create "$TAG" release-assets/*.apk \
+              --target "$GITHUB_SHA" \
+              --title "$TAG" \
+              --notes-file notes.md \
+              --prerelease
+          fi
