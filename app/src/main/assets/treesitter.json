@@ -1,0 +1,25 @@
+{
+  "comment": "Where the tree-sitter resources come from and where they go. {arch} is the architecture of the device: aarch64, arm, x86_64 or x86. A target is a directory below files/<root>; \".\" is the root itself. A package owns the entries at the top of its zip (configs: config/ and themes/), and only those are replaced when it is updated.",
+  "root": "treesitter",
+  "packages": [
+    {
+      "id": "configs",
+      "url": "https://github.com/lzhiyong/tree-sitter-parser/releases/download/android-tree-sitter/tree-sitter-configs.zip",
+      "target": "."
+    },
+    {
+      "id": "languages",
+      "url": "https://github.com/lzhiyong/tree-sitter-parser/releases/download/android-tree-sitter/tree-sitter-languages-{arch}.zip",
+      "target": "{arch}"
+    },
+    {
+      "id": "queries",
+      "url": "https://github.com/lzhiyong/tree-sitter-parser/releases/download/android-tree-sitter/tree-sitter-queries.zip",
+      "target": "queries"
+    }
+  ],
+  "update": {
+    "checkIntervalHours": 12,
+    "meteredMaxBytes": 2097152
+  }
+}

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    A preference as one row of a card (see CardPreferenceStyler): the single row
+    of its group. The four layouts preference_card_{top,middle,bottom,single}
+    differ only in the background and the gap under the row.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/pref_card_margin_horizontal"
+    android:layout_marginEnd="@dimen/pref_card_margin_horizontal"
+    android:layout_marginBottom="0dp"
+    android:background="@drawable/bg_pref_card_single"
+    android:baselineAligned="false"
+    android:clipToPadding="false"
+    android:focusable="true"
+    android:gravity="center_vertical"
+    android:minHeight="@dimen/pref_item_min_height"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/pref_item_padding_horizontal"
+    android:paddingTop="@dimen/pref_item_padding_vertical"
+    android:paddingEnd="@dimen/pref_item_padding_horizontal"
+    android:paddingBottom="@dimen/pref_item_padding_vertical">
+
+    <FrameLayout
+        android:id="@android:id/icon_frame"
+        android:layout_width="@dimen/pref_icon_container_size"
+        android:layout_height="@dimen/pref_icon_container_size"
+        android:layout_marginEnd="@dimen/pref_item_padding_horizontal"
+        android:background="@drawable/bg_pref_icon"
+        android:backgroundTint="@color/pref_icon_container">
+
+        <ImageView
+            android:id="@android:id/icon"
+            android:layout_width="@dimen/pref_icon_size"
+            android:layout_height="@dimen/pref_icon_size"
+            android:layout_gravity="center"
+            android:importantForAccessibility="no"
+            android:scaleType="fitCenter"
+            android:tint="@color/pref_icon_tint" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@android:id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:textAlignment="viewStart"
+            android:textAppearance="?attr/textAppearanceBodyLarge"
+            android:textColor="@color/pref_title" />
+
+        <TextView
+            android:id="@android:id/summary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:maxLines="4"
+            android:textAlignment="viewStart"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            android:textColor="@color/pref_summary" />
+
+    </LinearLayout>
+
+    <!-- a switch, a chevron, ... -->
+    <LinearLayout
+        android:id="@android:id/widget_frame"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/pref_item_padding_horizontal" />
+
+</LinearLayout>

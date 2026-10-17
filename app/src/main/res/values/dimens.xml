@@ -1,0 +1,35 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <!-- settings: the preferences are grouped into cards -->
+    <dimen name="pref_card_margin_horizontal">16dp</dimen>
+    <dimen name="pref_card_gap">2dp</dimen>
+    <dimen name="pref_card_corner_outer">24dp</dimen>
+    <dimen name="pref_card_corner_inner">4dp</dimen>
+    <dimen name="pref_item_min_height">72dp</dimen>
+    <dimen name="pref_item_padding_horizontal">16dp</dimen>
+    <dimen name="pref_item_padding_vertical">14dp</dimen>
+    <dimen name="pref_icon_container_size">40dp</dimen>
+    <dimen name="pref_icon_size">22dp</dimen>
+    <!-- card margin + padding: the header starts where the text of a card does -->
+    <dimen name="pref_category_padding_start">32dp</dimen>
+    <dimen name="pref_category_padding_top">24dp</dimen>
+    <dimen name="pref_category_padding_bottom">10dp</dimen>
+    <dimen name="pref_list_padding_top">4dp</dimen>
+    <dimen name="pref_list_padding_bottom">24dp</dimen>
+
+    <!-- settings: the drop-down menu of SimpleMenuPreference -->
+    <dimen name="simple_menu_item_height">52dp</dimen>
+    <dimen name="simple_menu_item_padding_horizontal">20dp</dimen>
+    <dimen name="simple_menu_padding_vertical">8dp</dimen>
+    <dimen name="simple_menu_corner">16dp</dimen>
+    <dimen name="simple_menu_elevation">6dp</dimen>
+    <dimen name="simple_menu_min_width">128dp</dimen>
+    <dimen name="simple_menu_max_width">296dp</dimen>
+    <dimen name="simple_menu_screen_margin">8dp</dimen>
+</resources>

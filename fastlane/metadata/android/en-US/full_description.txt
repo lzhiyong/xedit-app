@@ -1,0 +1,51 @@
+XEdit is a code editor for Android, built to stay smooth on large source files. An 8.8 MB, 239,000-line sqlite3.c scrolls, folds and edits without dropping frames.
+
+<b>Editing</b>
+<ul>
+<li>Text lives in a piece tree, the data structure of VS Code's text buffer</li>
+<li>Undo and redo; the cursor and history are restored when a file is reopened</li>
+<li>Word wrap, line numbers, indent guides, color literal preview</li>
+<li>Code folding and bracket matching, configurable auto pairs</li>
+<li>Search and replace with regular expressions</li>
+<li>Go to line, with a preview of the target line</li>
+<li>Floating selection bar, pinch to zoom, magnifier, and an extra key row above the keyboard</li>
+<li>Several files in tabs, a file tree in the drawer, read-only and edit modes</li>
+</ul>
+
+<b>Highlighting</b>
+<ul>
+<li>Syntax highlighting with tree-sitter, worked out off the main thread, so typing never waits for it</li>
+<li>Highlighting themes (astrodark and astrolight are included)</li>
+</ul>
+
+<b>Language servers (LSP)</b>
+<ul>
+<li>Connect your own servers such as clangd, pyright or lua-language-server (the app ships none)</li>
+<li>Completion, diagnostics, hover, signature help, go to definition, find references, rename, code actions, formatting and outline</li>
+<li>Servers can be started in Termux. Without a server, words in the text are completed</li>
+</ul>
+
+<b>Console</b>
+<ul>
+<li>Output of the app and the language servers, a problems tab, and a build tab that runs a command in Termux and finds gcc, clang and Python errors in its output</li>
+</ul>
+
+<b>Look and feel</b>
+<ul>
+<li>Light, dark and pure-black themes, and the system's dynamic colors</li>
+<li>JetBrains Mono and Source Code Pro included, or import your own font; font size and tab width</li>
+<li>English and Chinese interface</li>
+</ul>
+
+<b>Robustness</b>
+<ul>
+<li>Java crashes, native crashes and ANRs are caught and shown in a separate process, where they can be copied, exported or reported</li>
+</ul>
+
+<b>Good to know</b>
+<ul>
+<li>Files are opened and saved through the Storage Access Framework. Allowing access to all files is optional</li>
+<li>Grammars, queries and themes are not part of the APK. On first start, the app downloads them from the project's GitHub releases (Settings → Highlighting resources)</li>
+</ul>
+
+Open source under the Apache License 2.0.

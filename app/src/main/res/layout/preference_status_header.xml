@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    The top of the resources status: whether all is well (or how many problems
+    there are), in a card of the color of that, with the numbers of what is
+    installed below it. See StatusHeaderPreference.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/status_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/pref_card_margin_horizontal"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="@dimen/pref_card_margin_horizontal"
+    android:layout_marginBottom="4dp"
+    android:background="@drawable/bg_status_header"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:id="@+id/status_badge"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/bg_pref_icon">
+
+            <ImageView
+                android:id="@+id/status_icon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center"
+                android:importantForAccessibility="no" />
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/status_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                android:visibility="gone"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                app:indicatorSize="32dp"
+                app:trackThickness="3dp" />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/status_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceHeadlineSmall" />
+
+            <TextView
+                android:id="@+id/status_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:alpha="0.8"
+                android:textAppearance="?attr/textAppearanceBodyMedium" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/status_stats"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/stat_file_types"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="0dp"
+            android:background="@drawable/bg_status_tile"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="12dp"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:id="@+id/stat_file_types_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:textAppearance="?attr/textAppearanceTitleLarge" />
+
+            <TextView
+                android:id="@+id/stat_file_types_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/resources_stat_file_types"
+                android:textAppearance="?attr/textAppearanceLabelMedium" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/stat_themes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/bg_status_tile"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="12dp"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:id="@+id/stat_themes_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:textAppearance="?attr/textAppearanceTitleLarge" />
+
+            <TextView
+                android:id="@+id/stat_themes_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/resources_stat_themes"
+                android:textAppearance="?attr/textAppearanceLabelMedium" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/stat_libraries"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/bg_status_tile"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="12dp"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:id="@+id/stat_libraries_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:textAppearance="?attr/textAppearanceTitleLarge" />
+
+            <TextView
+                android:id="@+id/stat_libraries_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/resources_stat_libraries"
+                android:textAppearance="?attr/textAppearanceLabelMedium" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/stat_queries"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/bg_status_tile"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="12dp"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:id="@+id/stat_queries_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:textAppearance="?attr/textAppearanceTitleLarge" />
+
+            <TextView
+                android:id="@+id/stat_queries_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/resources_stat_queries"
+                android:textAppearance="?attr/textAppearanceLabelMedium" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

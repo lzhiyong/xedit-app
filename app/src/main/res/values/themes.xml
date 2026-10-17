@@ -1,0 +1,92 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+     <style name="AppTheme" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Customize your theme here. -->        
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+   
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!--
+        The pure black dark theme ("pure black dark theme" in the settings): laid
+        over the dark theme by BaseActivity. The background is black, and the
+        surfaces the cards and bars use step up from it a little, so they still
+        stand out.
+    -->
+    <style name="ThemeOverlay.XEdit.PureBlack" parent="">
+        <item name="android:colorBackground">@color/black</item>
+        <item name="colorSurface">@color/black</item>
+        <item name="colorSurfaceDim">@color/black</item>
+        <item name="colorSurfaceBright">#FF262626</item>
+        <item name="colorSurfaceContainerLowest">@color/black</item>
+        <item name="colorSurfaceContainerLow">#FF0C0C0C</item>
+        <item name="colorSurfaceContainer">#FF121212</item>
+        <item name="colorSurfaceContainerHigh">#FF1A1A1A</item>
+        <item name="colorSurfaceContainerHighest">#FF222222</item>
+    </style>
+
+    <!--
+        The tabs of the open documents: scrolling, starting at the start, as tall
+        as a dense tab row, the indicator as wide as the name.
+    -->
+    <style name="Widget.XEdit.EditorTabs" parent="Widget.Material3.TabLayout">
+        <item name="tabMode">scrollable</item>
+        <item name="tabGravity">start</item>
+        <item name="tabContentStart">0dp</item>
+        <item name="tabMinWidth">72dp</item>
+        <item name="tabMaxWidth">240dp</item>
+        <item name="tabPaddingStart">12dp</item>
+        <item name="tabPaddingEnd">4dp</item>
+        <item name="tabIndicatorFullWidth">false</item>
+        <item name="tabInlineLabel">true</item>
+        <item name="android:background">?attr/colorSurface</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!-- search panel: a card along the bottom edge, its top corners rounded -->
+    <style name="ShapeAppearanceOverlay.SearchPanel" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">24dp</item>
+        <item name="cornerSizeTopRight">24dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
+    <!-- an action of the search panel: a standard icon button -->
+    <style name="Widget.SearchPanel.ActionButton" parent="Widget.Material3.Button.IconButton">
+        <item name="iconTint">@color/search_action_icon</item>
+    </style>
+
+    <!-- an option of the search panel: a toggle icon button, tonal while on -->
+    <style name="Widget.SearchPanel.OptionButton" parent="Widget.Material3.Button.IconButton">
+        <item name="android:checkable">true</item>
+        <item name="backgroundTint">@color/search_option_background</item>
+        <item name="iconTint">@color/search_option_icon</item>
+    </style>
+
+    <!-- the search and replace boxes: outlined, without a floating label -->
+    <style name="Widget.SearchPanel.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox.Dense">
+        <item name="hintEnabled">false</item>
+        <item name="boxCornerRadiusTopStart">16dp</item>
+        <item name="boxCornerRadiusTopEnd">16dp</item>
+        <item name="boxCornerRadiusBottomStart">16dp</item>
+        <item name="boxCornerRadiusBottomEnd">16dp</item>
+        <item name="startIconTint">?attr/colorOnSurfaceVariant</item>
+        <item name="endIconTint">?attr/colorOnSurfaceVariant</item>
+    </style>
+
+    <style name="Widget.SearchPanel.EditText" parent="">
+        <item name="android:inputType">textMultiLine|textNoSuggestions</item>
+        <item name="android:maxLines">3</item>
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textAppearance">?attr/textAppearanceBodyMedium</item>
+    </style>
+
+</resources>

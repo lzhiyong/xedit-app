@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Go to line: the line (and column) typed in, a preview of that line, a slider over
+     the whole file, and chips for the first, the current and the last line. -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingStart="24dp"
+    android:paddingTop="8dp"
+    android:paddingEnd="24dp"
+    android:paddingBottom="4dp">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/goto_line_input_layout"
+        style="?attr/textInputOutlinedStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/goto_line_hint"
+        app:endIconMode="clear_text"
+        app:startIconDrawable="@drawable/ic_goto_line"
+        app:helperTextEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/goto_line_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:digits="0123456789:"
+            android:fontFamily="monospace"
+            android:imeOptions="actionGo|flagNoExtractUi"
+            android:inputType="time"
+            android:maxLength="16"
+            android:singleLine="true" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- the line it lands on -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/goto_line_preview"
+        style="?attr/materialCardViewFilledStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:cardCornerRadius="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:minHeight="48dp"
+            android:orientation="horizontal"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp">
+
+            <TextView
+                android:id="@+id/goto_line_preview_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:minWidth="40dp"
+                android:textAppearance="?attr/textAppearanceLabelLarge"
+                android:textColor="?attr/colorPrimary" />
+
+            <TextView
+                android:id="@+id/goto_line_preview_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:fontFamily="monospace"
+                android:singleLine="true"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:textColor="?attr/colorOnSurfaceVariant" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.slider.Slider
+        android:id="@+id/goto_line_slider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:stepSize="1.0"
+        android:valueFrom="1.0"
+        android:valueTo="2.0"
+        app:labelBehavior="floating" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/goto_line_chips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:singleLine="true">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/goto_line_first"
+            style="@style/Widget.Material3.Chip.Assist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/goto_line_first"
+            app:chipIcon="@drawable/ic_first_line" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/goto_line_current"
+            style="@style/Widget.Material3.Chip.Assist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:chipIcon="@drawable/ic_current_line" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/goto_line_last"
+            style="@style/Widget.Material3.Chip.Assist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/goto_line_last"
+            app:chipIcon="@drawable/ic_last_line" />
+
+    </com.google.android.material.chip.ChipGroup>
+
+</LinearLayout>

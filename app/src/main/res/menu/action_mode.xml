@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/action_search"
+        android:title="@string/content_search"
+        android:icon="@drawable/ic_search"
+        app:showAsAction="always"/>
+    
+    <item
+        android:id="@+id/action_copy"
+        android:title="@string/content_copy"
+        android:icon="@drawable/ic_content_copy"
+        app:showAsAction="always"/>
+        
+    <item
+        android:id="@+id/action_cut"
+        android:title="@string/content_cut"
+        android:icon="@drawable/ic_content_cut"
+        app:showAsAction="always"/>
+        
+    <item
+        android:id="@+id/action_paste"
+        android:title="@string/content_paste"
+        android:icon="@drawable/ic_content_paste"
+        app:showAsAction="ifRoom"/>
+        
+    <item
+        android:id="@+id/action_select_all"
+        android:icon="@drawable/ic_select_all"
+        android:title="@string/content_select_all"
+        app:showAsAction="ifRoom"/>
+
+</menu>

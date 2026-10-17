@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x.editor.app.view.ContentTranslatingDrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="?attr/colorSurfaceDim"
+    android:animateLayoutChanges="true"
+    tools:ignore="DuplicateIncludedIds">
+    
+    <!-- main content layout -->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout 
+        android:id="@+id/content_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    
+        <!-- app bar layout -->
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorSurface"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:elevation="10dp">
+
+                <!-- While a document is loaded or saved, or its text laid out again:
+                     a small spinner at the end of the toolbar, before the actions -->
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/progress_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_marginEnd="4dp"
+                    android:indeterminate="true"
+                    android:visibility="gone"
+                    app:indicatorSize="22dp"
+                    app:trackThickness="2.5dp"
+                    app:trackCornerRadius="2dp"/>
+
+            </com.google.android.material.appbar.MaterialToolbar>
+
+            <!-- the open documents, one tab each; hidden while there are none -->
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/editor_tabs"
+                style="@style/Widget.XEdit.EditorTabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
+        
+        </com.google.android.material.appbar.AppBarLayout>
+        
+        <!-- editor content layout -->
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+           
+            <!-- the editors, one per open document (see EditorActivity): only the one
+                 of the selected tab is shown -->
+            <FrameLayout
+                android:id="@+id/editor_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <!-- no document open -->
+            <LinearLayout
+                android:id="@+id/empty_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="32dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:alpha="0.5"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_code"
+                    android:tint="?attr/colorOnSurfaceVariant"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:gravity="center"
+                    android:text="@string/editor_empty"
+                    android:textAppearance="?attr/textAppearanceBodyLarge"
+                    android:textColor="?attr/colorOnSurfaceVariant"/>
+
+            </LinearLayout>
+    
+            <!-- recycler view for bottom extra keys -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/extra_keys_panel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:overScrollMode="always"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editor_container"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+                
+            <!-- download panel, under the toolbar -->
+            <include
+                android:id="@+id/download_panel"
+                layout="@layout/view_download_panel"/>
+
+            <!-- search and replace panel, along the bottom edge -->
+            <include
+                android:id="@+id/search_panel"
+                layout="@layout/view_search_panel"/>
+    
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>       
+    
+    <!-- navigation view start -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view_start"
+        android:layout_gravity="start"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        app:insetForeground="@android:color/transparent">
+        
+        <!-- file tree: external storage, the added folders and the opened files -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/file_tree_panel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:scrollbars="vertical|horizontal"/>
+                
+    </com.google.android.material.navigation.NavigationView>
+
+</x.editor.app.view.ContentTranslatingDrawerLayout>
+

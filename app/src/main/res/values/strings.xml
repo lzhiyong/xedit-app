@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">XEdit</string>
+    <string name="app_crash">Application Crashed</string>
+    
+    <string name="action_undo">undo</string>
+    <string name="action_redo">redo</string>
+    <string name="action_edit_mode">edit mode</string>
+    <string name="action_add_folder">add folder</string>
+    <string name="file_tree_new_directory">new folder</string>
+    <string name="file_tree_new_file">new file</string>
+    <string name="file_tree_copy_path">copy path</string>
+    <string name="file_tree_rename">rename</string>
+    <string name="file_tree_delete">delete</string>
+    <string name="file_tree_name_hint">name</string>
+    <string name="file_tree_name_invalid">Invalid name</string>
+    <string name="file_tree_path_copied">Path copied</string>
+    <string name="file_tree_failed">Operation failed</string>
+    <string name="file_tree_delete_file">Delete %1$s? This cannot be undone.</string>
+    <string name="file_tree_delete_directory">Delete %1$s and everything in it? This cannot be undone.</string>
+    <string name="download_title_running">Downloading syntax highlighting</string>
+    <string name="download_title_done">Download complete</string>
+    <string name="download_subtitle_done">Syntax highlighting is ready</string>
+    <string name="download_title_failed">Download failed</string>
+    <string name="download_retry">Retry</string>
+    <string name="download_step">%1$d / %2$d</string>
+    <string name="download_percent">%1$d%%</string>
+    <string name="permission_open_denied">Open failed, permission denied</string>
+    <string name="permission_action_denied">Operation failed, permission denied</string>
+    <string name="file_tree_refresh">refresh</string>
+    <string name="file_tree_delete_unsaved">It is open in the editor with unsaved changes, they will be lost.</string>
+    <string name="document_moved">%1$s was moved, open it again from the file tree</string>
+    <string name="file_tree_remove">remove</string>
+    <string name="file_tree_load_failed">Failed to load %1$s, tap again to retry</string>
+    <string name="action_open_file">open file</string>
+    <string name="action_save_file">save</string>
+    <string name="action_close">close</string>    
+    <string name="action_search">search</string>
+    <string name="action_settings">settings</string>
+    <string name="action_wordwrap">wrap lines</string>
+    
+    <string name="action_replace_all">replace all</string>
+    <string name="action_report">report</string>
+    <string name="action_copy">copy</string>
+    <string name="action_export">export</string>
+    <string name="action_restart">restart</string>
+    
+    <string name="content_search">search</string>
+    <string name="content_copy">copy</string>
+    <string name="content_cut">cut</string>
+    <string name="content_paste">paste</string>
+    <string name="content_select_all">select all</string>
+        
+    <!-- app preferences -->
+    <string name="pref_app_theme_title">App theme</string>
+    
+    <string name="pref_app_editor_title">Editor settings</string>
+    <string name="pref_app_editor_summary">Highlighting, font, code folding, gutter and more</string>
+    
+    <string name="pref_app_source_code_title">Source code</string>
+    <string name="pref_app_source_code_summary">View the source code on GitHub</string>
+    <string name="pref_app_report_issue_title">Report an issue</string>
+    <string name="pref_app_report_issue_summary">Report a bug or suggest a feature on GitHub, with the app version and device filled in</string>
+    <string name="pref_app_releases_title">Releases</string>
+    <string name="pref_app_releases_summary">What is new, and the latest version to download</string>
+    
+    <string name="pref_app_license_title">Licenses</string>
+    <string name="pref_app_license_summary">The licenses of this app and the open source projects it uses</string>
+    
+    <string name="pref_app_about_title">About application</string>
+    <string name="pref_app_about_summary">App package version and build sdk information</string>
+    <string name="pref_app_about_version">Version %1$s</string>
+    
+    <!-- editor preferences -->
+    <string name="pref_editor_textsize_title">Font size</string>
+    <string name="pref_editor_textsize_summary">Set editor text size</string>
+    <string name="pref_editor_textsize_value">%1$d sp</string>
+    
+    <string name="pref_editor_scheme_title">Highlight theme</string>
+    <string name="pref_editor_scheme_summary">Configure highlighting scheme</string>
+    
+    <string name="base_download_url">https://github.com/lzhiyong/xedit-app/releases/download</string>
+    <string name="dialog_button_neutral">reset</string>
+    <string name="no_opened_files">No Files</string>
+    
+    <string name="dialog_msg_file_changed">The file content has changed, do you want to reload it?</string>
+    <string name="dialog_msg_file_deleted">The file has been deleted, do you want to keep it in the editor?</string>
+    
+    <string name="search_box_prompt">search</string>
+    <string name="search_result_count">search result</string>    
+    <string name="button_prev">prev</string>
+    <string name="button_next">next</string>
+    <string name="button_replace">replace</string>
+    <string name="button_replace_all">all</string>
+    <string name="search_replace_prompt">replace with</string>
+    <string name="search_match_case">match case</string>
+    <string name="search_regex">regular expression</string>
+    <string name="search_history">history</string>
+    <string name="search_toggle_replace">show or hide replace</string>
+    <string name="search_invalid_regex">invalid regular expression</string>
+
+    <!-- settings screens -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_editor_title">Editor</string>
+
+    <string name="pref_category_appearance">Appearance</string>
+    <string name="pref_category_editor">Editor</string>
+    <string name="pref_category_about">About</string>
+
+    <string name="pref_dark_theme_title">Dark theme</string>
+    <string name="pref_dark_theme_default" translatable="false">-1</string>
+    <string-array name="pref_dark_theme_entries">
+        <item>Always off</item>
+        <item>Always on</item>
+        <item>Follow system</item>
+    </string-array>
+    <!-- AppCompatDelegate.MODE_NIGHT_NO, MODE_NIGHT_YES, MODE_NIGHT_FOLLOW_SYSTEM -->
+    <string-array name="pref_dark_theme_values" translatable="false">
+        <item>1</item>
+        <item>2</item>
+        <item>-1</item>
+    </string-array>
+
+    <string name="pref_pure_black_title">Pure black dark theme</string>
+    <string name="pref_pure_black_summary">Use a pure black theme while the dark theme is on</string>
+    <string name="pref_dynamic_color_title">Use system theme colors</string>
+    <string name="pref_dynamic_color_summary">Take the colors of the app from the wallpaper</string>
+
+    <!-- editor settings -->
+    <string name="pref_category_editor_display">Display</string>
+    <string name="pref_category_editor_layout">Layout</string>
+    <string name="pref_category_editor_folding">Code folding</string>
+    <string name="pref_category_editor_editing">Editing</string>
+
+    <string name="pref_highlight_theme_auto_value" translatable="false">auto</string>
+    <string name="pref_highlight_theme_auto">Follow app theme</string>
+    <string name="pref_highlight_theme_none">No themes downloaded yet</string>
+
+    <string name="pref_editor_tab_size_title">Tab width</string>
+    <string name="pref_editor_tab_size_default" translatable="false">4</string>
+    <string-array name="pref_editor_tab_size_entries">
+        <item>2 spaces</item>
+        <item>4 spaces</item>
+        <item>8 spaces</item>
+    </string-array>
+    <string-array name="pref_editor_tab_size_values" translatable="false">
+        <item>2</item>
+        <item>4</item>
+        <item>8</item>
+    </string-array>
+
+    <string name="pref_editor_wordwrap_title">Word wrap</string>
+    <string name="pref_editor_wordwrap_summary">Wrap long lines at the edge of the screen</string>
+    <string name="pref_editor_line_numbers_title">Line numbers</string>
+    <string name="pref_editor_line_numbers_summary">Show the number of each line</string>
+    <string name="pref_editor_gutter_title">Fixed gutter</string>
+    <string name="pref_editor_gutter_summary">The line numbers stay put while the text scrolls sideways</string>
+    <string name="pref_editor_indent_guides_title">Indent guides</string>
+    <string name="pref_editor_indent_guides_summary">Vertical lines that mark each indented block</string>
+    <string name="pref_editor_code_block_background_title">Code block background</string>
+    <string name="pref_editor_code_block_background_summary">Shade the lines of code blocks in Markdown across the whole width</string>
+    <string name="pref_editor_syntax_highlight_title">Syntax highlighting</string>
+    <string name="pref_editor_syntax_highlight_summary_on">On: the text is parsed with tree-sitter and colored by the highlight theme</string>
+    <string name="pref_editor_syntax_highlight_summary_off">Off: plain text, no parsing; folding and indent guides go by the indentation</string>
+    <string name="pref_editor_color_preview_title">Color preview</string>
+    <string name="pref_editor_color_preview_summary">Show hex colors such as #D4D4D4 in their own color</string>
+    <string name="pref_editor_folding_title">Code folding</string>
+    <string name="pref_editor_folding_summary_on">On: tap the markers next to the line numbers, or the ⋯ of folded lines, to fold and unfold blocks</string>
+    <string name="pref_editor_folding_summary_off">Off: no fold markers, nothing is folded</string>
+    <string name="pref_editor_auto_pairs_title">Auto-close pairs</string>
+    <string name="pref_editor_auto_pairs_summary">Type the closing bracket or quote along with the opening one</string>
+    <string name="pref_editor_auto_pair_chars_title">Pairs</string>
+    <string name="pref_editor_auto_pair_chars_default" translatable="false">() [] {} \"\" \'\' ``</string>
+    <string name="pref_editor_auto_pair_chars_hint">Pairs</string>
+    <string name="pref_editor_auto_pair_chars_helper">Two chars a pair, opening then closing, separated by spaces: () [] {} &lt;&gt; \"\"</string>
+    <string name="pref_editor_auto_pair_chars_invalid">Not a pair: %1$s. Each pair is two symbols (no letters, digits or spaces), and no opening char twice.</string>
+    <string name="pref_editor_auto_pair_chars_none">None</string>
+    <string name="pref_editor_auto_pair_chars_reset">Default</string>
+    <string name="pref_editor_bracket_matching_title">Matching brackets</string>
+    <string name="pref_editor_bracket_matching_summary">Highlight the bracket at the cursor and its partner</string>
+
+    <!-- font -->
+    <string name="pref_editor_font_title">Font</string>
+    <string name="pref_editor_font_default_value" translatable="false">default</string>
+    <string name="pref_editor_font_default">System default</string>
+    <string name="pref_editor_font_monospace">System monospace</string>
+    <string name="pref_editor_font_import">Import</string>
+    <string name="pref_editor_font_imported">%1$s imported</string>
+    <string name="pref_editor_font_import_failed">Not a font that can be used</string>
+    <string name="pref_highlight_theme_auto_summary">Light or dark, as the app theme is</string>
+    <string name="action_remove">remove</string>
+    <string name="link_copied_no_browser">No browser found, the link was copied</string>
+
+    <!-- about -->
+    <string name="about_package">Package</string>
+    <string name="about_version">Version</string>
+    <string name="about_sdk">SDK</string>
+    <string name="about_android">System</string>
+    <string name="about_device">Device</string>
+    <string name="about_abi">ABI</string>
+    <string name="about_installed">Installed</string>
+    <string name="about_updated">Updated</string>
+    <string name="about_copied">Copied</string>
+
+    <!-- licenses -->
+    <string name="license_category_app">This app</string>
+    <string name="license_category_libraries">Open source projects</string>
+    <string name="license_full_text">License</string>
+    <string name="license_project_page">Project</string>
+    <string name="license_apache_2">Apache License 2.0</string>
+    <string name="license_apache_2_notice">Licensed under the Apache License, Version 2.0. It may be used, changed and shared, also in other works, as long as the license and its notices go with it.</string>
+    <string name="license_mit">MIT License</string>
+    <string name="license_mit_notice">Licensed under the MIT License. It may be used, changed and shared freely, as long as the copyright notice and the license go with it.</string>
+    <string name="license_ofl">SIL Open Font License 1.1</string>
+    <string name="license_ofl_notice">Licensed under the SIL Open Font License, Version 1.1. The font may be used, bundled and shared freely; it may not be sold on its own.</string>
+    <string name="license_androidx_description">Activity, AppCompat, Fragment, Lifecycle, Preference, RecyclerView, Room, WorkManager and the other Jetpack libraries.</string>
+    <string name="license_tree_sitter_description">The parser behind the syntax highlighting, code folding and indent guides.</string>
+    <string name="license_vscode_description">The piece tree text buffer of the editor is ported from Visual Studio Code.</string>
+    <string name="license_jetbrains_mono_description">The font bundled with the app.</string>
+    <string name="license_source_code_pro_description">A font the editor can use, bundled with the app.</string>
+
+    <!-- tabs of the open documents -->
+    <string name="tab_close">close</string>
+    <string name="tab_close_others">close others</string>
+    <string name="tab_close_all">close all</string>
+    <string name="tab_modified">%1$s, unsaved changes</string>
+    <string name="editor_empty">No file open.\nOpen one from the side panel, or with \"open\" in the menu.</string>
+    <string name="tabs_unsaved_title">Save changes?</string>
+    <string name="tabs_unsaved_one">%1$s has changes that are not saved.</string>
+    <string name="tabs_unsaved_many">%1$d files have changes that are not saved.</string>
+    <string name="tabs_save">save</string>
+    <string name="tabs_discard">don\'t save</string>
+
+    <!-- the tree-sitter resources -->
+    <string name="treesitter_manifest_problem">The list of downloads is missing from the app (%1$s)</string>
+    <string name="treesitter_waiting_network">Syntax highlighting is downloaded once there is a connection</string>
+
+
+    <!-- the tree-sitter resources in the settings -->
+    <string name="pref_category_editor_resources">Highlighting resources</string>
+    <string name="pref_editor_resources_status_title">Status</string>
+    <string name="pref_editor_resources_status_summary">What is installed, and whether files can be highlighted</string>
+
+
+    <!-- the resources status screen -->
+    <string name="resources_status_loading">Checking…</string>
+    <string name="resources_status_ok">All in place</string>
+    <string name="resources_status_pending">Updates take effect at the next start</string>
+    <plurals name="resources_status_problems">
+        <item quantity="one">%1$d problem</item>
+        <item quantity="other">%1$d problems</item>
+    </plurals>
+    <string name="resources_stat_file_types">File types</string>
+    <string name="resources_stat_themes">Themes</string>
+    <string name="resources_stat_libraries">Grammars</string>
+    <string name="resources_stat_queries">Queries</string>
+    <string name="resources_category_packages">Packages</string>
+    <string name="resources_category_files">File check</string>
+    <string name="resources_category_details">In detail</string>
+    <string name="resources_category_actions">Actions</string>
+    <string name="resources_package_configs">File types and themes</string>
+    <string name="resources_package_languages">Grammars (%1$s)</string>
+    <string name="resources_package_queries">Queries</string>
+    <string name="resources_package_installed">Installed · %1$s</string>
+    <string name="resources_package_missing">Not installed</string>
+    <string name="resources_package_staged">Downloaded, takes effect at the next start</string>
+    <string name="resources_file_no_type">No file type for it in filetypes.json</string>
+    <string name="resources_file_no_library">No grammar library for %1$s</string>
+    <string name="resources_file_no_queries">No highlights.scm for %1$s</string>
+    <string name="resources_themes">Themes</string>
+    <string name="resources_libraries">Grammar libraries</string>
+    <string name="resources_queries">Query folders</string>
+    <string name="resources_none">None</string>
+    <string name="resources_more">and %1$d more</string>
+    <string name="resources_refresh">Check again</string>
+    <string name="resources_refresh_summary">Read the installed resources again</string>
+    <string name="resources_check_updates">Check for updates</string>
+    <string name="resources_check_updates_summary">Now, in the background</string>
+    <string name="resources_update_started">Checking for updates in the background</string>
+    <string name="resources_copy">Copy the report</string>
+    <string name="resources_copy_summary">As text, for a bug report</string>
+    <string name="resources_copied">Copied</string>
+
+    <string name="content_share">share</string>
+    <string name="selection_too_large_to_send">The selection is too large to send</string>
+    <string name="action_goto_line">go to line</string>
+    <string name="goto_line_title">Go to line</string>
+    <string name="goto_line_hint">Line[:column]</string>
+    <string name="goto_line_range">Lines 1 – %1$d</string>
+    <string name="goto_line_out_of_range">No such line here (1 – %1$d)</string>
+    <string name="goto_line_invalid">A line number, or line:column</string>
+    <string name="goto_line_go">Go</string>
+    <string name="goto_line_first">First</string>
+    <string name="goto_line_current">Current · %1$d</string>
+    <string name="goto_line_last">Last</string>
+    <string name="goto_line_empty">(empty line)</string>
+    <string name="lsp_server_failed">Language server %1$s: %2$s</string>
+    <string name="lsp_server_connected">Language server %1$s connected</string>
+    <string name="lsp_not_local">%1$s is not on local storage: no language server for it</string>
+    <string name="action_lsp_config">language servers</string>
+    <string name="lsp_config_reloaded">Language servers reloaded</string>
+    <string name="completion_source_words">text</string>
+    <string name="pref_editor_buffer_completion_title">Word completion</string>
+    <string name="pref_editor_buffer_completion_summary">Offer the words of the text, when there is no language server or it has nothing</string>
+    <string name="lsp_hover">Show info</string>
+    <string name="lsp_definition">Go to definition</string>
+    <string name="lsp_references">Find references</string>
+    <string name="lsp_references_title">%1$d references</string>
+    <string name="lsp_rename">Rename</string>
+    <string name="lsp_rename_title">Rename %1$s</string>
+    <string name="lsp_renamed">Renamed in %1$d files</string>
+    <string name="lsp_code_actions">Code actions</string>
+    <string name="lsp_no_actions">No code actions here</string>
+    <string name="lsp_format">Format document</string>
+    <string name="lsp_outline">Outline</string>
+    <string name="lsp_nothing_found">Nothing found</string>
+    <string name="lsp_not_available">No language server for this file</string>
+    <string name="lsp_severity_error">Error</string>
+    <string name="lsp_severity_warning">Warning</string>
+    <string name="lsp_severity_info">Info</string>
+    <string name="lsp_severity_hint">Hint</string>
+    <string name="action_console">console</string>
+    <string name="console_title">Console</string>
+    <string name="console_output">Output</string>
+    <string name="console_problems">Errors</string>
+    <string name="console_build">Build</string>
+    <string name="console_copy">Copy</string>
+    <string name="console_clear">Clear</string>
+    <string name="console_copied">Copied</string>
+    <string name="console_empty">Nothing here yet</string>
+    <string name="console_no_problems">No errors</string>
+    <string name="console_build_hint">Command, run in Termux</string>
+    <string name="console_run">Run</string>
+    <string name="console_no_termux">Termux is not installed: commands run in Termux</string>
+    <string name="console_termux_permission">Allow X Editor to run commands in Termux, then run it again</string>
+    <string name="action_run">compile and run</string>
+    <string name="action_read_only_mode">read-only mode</string>
+    <string name="run_settings_title">Compile and run</string>
+    <string name="run_command_hint">Command for %1$s files</string>
+    <string name="run_command_help">${file} name, ${name} without extension, ${path} absolute, ${dir} directory, ${tmp} Termux\'s tmp directory; runs in Termux, in the file\'s directory</string>
+    <string name="run_command_preview">Runs: %1$s</string>
+    <string name="run_command_save">Save</string>
+    <string name="run_command_default">Default</string>
+    <string name="run_not_local">The file is not on local storage: Termux cannot read it</string>
+    <string name="back_press_again">Press back again to exit</string>
+    <string name="clipboard_copied">Copied</string>
+    <string name="clipboard_cut">Cut</string>
+    <string name="clipboard_too_large">Too much to copy: %1$d characters, at most %2$d</string>
+    <string name="clipboard_failed">Could not copy: %1$s</string>
+</resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The name on a tab: in the primary color on the selected tab (the document
+     shown), muted on the others. TabLayout marks the custom view selected. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true" android:color="?attr/colorPrimary" />
+    <item android:color="?attr/colorOnSurfaceVariant" />
+</selector>

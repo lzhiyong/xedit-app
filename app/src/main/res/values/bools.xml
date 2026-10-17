@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    The defaults of the settings, used both by the preference screens and by the
+    code that reads the settings (AppSettings, EditorSettings), so the two agree.
+-->
+<resources>
+    <bool name="pref_default_pure_black">false</bool>
+    <bool name="pref_default_dynamic_color">true</bool>
+
+    <bool name="pref_default_editor_wordwrap">false</bool>
+    <bool name="pref_default_editor_gutter">false</bool>
+    <bool name="pref_default_editor_line_numbers">true</bool>
+    <bool name="pref_default_editor_indent_guides">true</bool>
+    <bool name="pref_default_editor_code_block_background">true</bool>
+    <bool name="pref_default_editor_color_preview">true</bool>
+    <bool name="pref_default_editor_syntax_highlight">true</bool>
+    <bool name="pref_default_editor_buffer_completion">true</bool>
+    <bool name="pref_default_editor_auto_pairs">true</bool>
+    <bool name="pref_default_editor_folding">true</bool>
+    <bool name="pref_default_editor_bracket_matching">true</bool>
+</resources>

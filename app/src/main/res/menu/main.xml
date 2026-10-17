@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/action_undo"
+        android:title="@string/action_undo"
+        android:icon="@drawable/ic_undo"
+        app:showAsAction="always"/>
+        
+    <item
+        android:id="@+id/action_redo"
+        android:title="@string/action_redo"
+        android:icon="@drawable/ic_redo"
+        app:showAsAction="always"/>
+    
+    <item
+        android:id="@+id/action_save_file"
+        android:title="@string/action_save_file"
+        android:icon="@drawable/ic_save"
+        app:showAsAction="always"/>
+    <!-- compile and run the file (a long press: the command, see RunSettingsDialog) -->
+    <item
+        android:id="@+id/action_run"
+        android:title="@string/action_run"
+        android:icon="@drawable/ic_run"
+        app:showAsAction="always"/>
+        
+    <item
+        android:id="@+id/action_add_folder"
+        android:title="@string/action_add_folder"
+        android:icon="@drawable/ic_folder"
+        app:showAsAction="never"/>
+        
+    <item
+        android:id="@+id/action_open_file"
+        android:title="@string/action_open_file"
+        android:icon="@drawable/ic_file"
+        app:showAsAction="never"/>
+
+    <!-- edit mode or read-only mode: its title says which it turns to -->
+            
+    <item
+        android:id="@+id/action_edit_mode"
+        android:title="@string/action_edit_mode"
+        android:icon="@drawable/ic_read_write"
+        app:showAsAction="never"/>
+        
+    <item
+        android:id="@+id/action_search"
+        android:title="@string/action_search"
+        android:icon="@drawable/ic_search"
+        app:showAsAction="never"/>
+
+    <!-- right under search: to a line (and column) of the file -->
+    <item
+        android:id="@+id/action_goto_line"
+        android:title="@string/action_goto_line"
+        android:icon="@drawable/ic_goto_line"
+        app:showAsAction="never"/>
+        
+    <!-- right under search: wraps long lines, or not (checked while on) -->
+    <item
+        android:id="@+id/action_wordwrap"
+        android:title="@string/action_wordwrap"
+        android:icon="@drawable/ic_wrap_text"
+        android:checkable="true"
+        app:showAsAction="never"/>
+        
+    <!-- what the language server of the document can do (shown when it can) -->
+    <item
+        android:id="@+id/action_format"
+        android:title="@string/lsp_format"
+        android:icon="@drawable/ic_lsp_format"
+        android:visible="false"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_outline"
+        android:title="@string/lsp_outline"
+        android:icon="@drawable/ic_lsp_outline"
+        android:visible="false"
+        app:showAsAction="never"/>
+
+    <!-- the configuration of the language servers, opened in the editor (LanguageServers) -->
+    <item
+        android:id="@+id/action_lsp_config"
+        android:title="@string/action_lsp_config"
+        android:icon="@drawable/ic_lsp_config"
+        app:showAsAction="never"/>
+
+    <!-- the console: output, problems, build (ConsoleSheet) -->
+    <item
+        android:id="@+id/action_console"
+        android:title="@string/action_console"
+        android:icon="@drawable/ic_console"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        android:icon="@drawable/ic_settings"
+        app:showAsAction="never"/>
+        
+</menu>

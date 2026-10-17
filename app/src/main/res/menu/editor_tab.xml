@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- the menu of a tab, on a long press -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/tab_menu_close" android:title="@string/tab_close" />
+    <item android:id="@+id/tab_menu_close_others" android:title="@string/tab_close_others" />
+    <item android:id="@+id/tab_menu_close_all" android:title="@string/tab_close_all" />
+    <item android:id="@+id/tab_menu_copy_path" android:title="@string/file_tree_copy_path" />
+</menu>

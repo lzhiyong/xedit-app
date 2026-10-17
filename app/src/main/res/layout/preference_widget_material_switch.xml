@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    The Material 3 switch of a SwitchPreferenceCompat. MaterialSwitch is a
+    SwitchCompat, and has the id SwitchPreferenceCompat looks for, so the
+    preference binds and toggles it like its own. The whole row takes the taps.
+-->
+<com.google.android.material.materialswitch.MaterialSwitch
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@id/switchWidget"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@null"
+    android:clickable="false"
+    android:focusable="false" />

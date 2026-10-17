@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- the overflow button of the floating bar over a selection (FloatingBar) -->
+    <string name="floating_bar_more_options">More options</string>
+    <string name="floating_bar_back">Back</string>
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- the overflow button of the floating bar over a selection (FloatingBar) -->
+    <string name="floating_bar_more_options">更多选项</string>
+    <string name="floating_bar_back">返回</string>
+</resources>

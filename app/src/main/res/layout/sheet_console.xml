@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The console (ConsoleSheet): output by channel, errors, build. The text is in the
+     app's own JetBrains Mono: the system's "monospace" is not monospace on every device
+     (a font theme may replace it), and the columns of the log would not line up. -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="8dp">
+
+    <!-- the header: the title, the tabs. Only a drag that starts here moves the sheet
+         (ConsoleSheet): one on the pages scrolls them and never closes it. No handle is
+         drawn: the whole header is what drags. -->
+    <LinearLayout
+        android:id="@+id/console_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="20dp"
+            android:paddingEnd="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/console_title"
+                android:textAppearance="?attr/textAppearanceTitleMedium" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/console_copy"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/console_copy" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/console_clear"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/console_clear" />
+
+        </LinearLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/console_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabMode="fixed" />
+
+    </LinearLayout>
+
+    <!-- output: the channels, the lines of the one chosen -->
+    <LinearLayout
+        android:id="@+id/console_output_page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:scrollbars="none">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/console_channels"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:singleLine="true" />
+
+        </HorizontalScrollView>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/console_output_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="320dp">
+
+            <!-- lines are not wrapped: the text scrolls across too -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fillViewport="true">
+
+                <TextView
+                    android:id="@+id/console_output_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/jetbrains_mono_regular"
+                    android:padding="12dp"
+                    android:textIsSelectable="true"
+                    android:textSize="14sp" />
+
+            </HorizontalScrollView>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+
+    <!-- errors: the diagnostics of the open documents, the errors of the last build -->
+    <FrameLayout
+        android:id="@+id/console_problems_page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <ListView
+            android:id="@+id/console_problems"
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
+            android:divider="@null" />
+
+        <TextView
+            android:id="@+id/console_problems_empty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="32dp"
+            android:text="@string/console_no_problems"
+            android:textAppearance="?attr/textAppearanceBodyMedium" />
+
+    </FrameLayout>
+
+    <!-- build: a command run in Termux, what it printed -->
+    <LinearLayout
+        android:id="@+id/console_build_page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="12dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="12dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="?attr/textInputOutlinedStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/console_build_hint">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/console_command"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/jetbrains_mono_regular"
+                    android:imeOptions="actionGo"
+                    android:inputType="text|textNoSuggestions"
+                    android:singleLine="true"
+                    android:textSize="13sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/console_run"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/console_run" />
+
+        </LinearLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/console_build_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="320dp">
+
+            <!-- lines are not wrapped: the text scrolls across too -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fillViewport="true">
+
+                <TextView
+                    android:id="@+id/console_build_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/jetbrains_mono_regular"
+                    android:padding="12dp"
+                    android:textIsSelectable="true"
+                    android:textSize="14sp" />
+
+            </HorizontalScrollView>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+
+</LinearLayout>
