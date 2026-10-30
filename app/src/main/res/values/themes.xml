@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- The theme of the app (its dark version is in values-night). -->
+    <style name="Theme.XEdit" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <!--
+        The pure black dark theme ("pure black dark theme" in the settings): laid
+        over the dark theme by BaseActivity. The background is black, and the
+        surfaces the cards and bars use step up from it a little, so they still
+        stand out.
+    -->
+    <style name="ThemeOverlay.XEdit.PureBlack" parent="">
+        <item name="android:colorBackground">@color/pure_black</item>
+        <item name="colorSurface">@color/pure_black</item>
+        <item name="colorSurfaceDim">@color/pure_black</item>
+        <item name="colorSurfaceBright">#FF262626</item>
+        <item name="colorSurfaceContainerLowest">@color/pure_black</item>
+        <item name="colorSurfaceContainerLow">#FF0C0C0C</item>
+        <item name="colorSurfaceContainer">#FF121212</item>
+        <item name="colorSurfaceContainerHigh">#FF1A1A1A</item>
+        <item name="colorSurfaceContainerHighest">#FF222222</item>
+    </style>
+</resources>

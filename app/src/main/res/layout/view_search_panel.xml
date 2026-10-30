@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The search and replace panel, along the bottom edge of the editor (see SearchPanelController).
+
+  The outer frame follows the keyboard: ImeAnimationInsetsHandler pads the content by the
+  height of the keyboard (or the navigation bar) and moves the frame along while the keyboard
+  slides. The card inside slides in and out when the panel is shown and hidden.
+  Every button is an icon button; what it does is its content description, also its tooltip.
+-->
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/search_panel"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:visibility="gone">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/search_card"
+        style="?attr/materialCardViewElevatedStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="?attr/colorSurfaceContainer"
+        app:cardElevation="6dp"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.XEdit.SearchPanel"
+        app:strokeWidth="0dp">
+
+        <LinearLayout
+            android:id="@+id/search_panel_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="8dp">
+
+            <!-- shows while a search takes a moment; fixed height, so it never resizes the panel -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="16dp">
+
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:id="@+id/search_progress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:indeterminate="true"
+                    android:visibility="invisible"
+                    app:hideAnimationBehavior="inward"
+                    app:minHideDelay="300"
+                    app:showAnimationBehavior="outward"
+                    app:showDelay="150"
+                    app:trackCornerRadius="2dp"
+                    app:trackThickness="3dp" />
+            </FrameLayout>
+
+            <!-- header: replace row toggle, result, options, close -->
+            <LinearLayout
+                android:id="@+id/search_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_toggle_replace"
+                    style="@style/Widget.XEdit.SearchPanel.ActionButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/search_toggle_replace"
+                    app:icon="@drawable/ic_chevron_right" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_search_result"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textAppearance="?attr/textAppearanceLabelLarge"
+                    android:textColor="?attr/colorOnSurfaceVariant" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_match_case"
+                    style="@style/Widget.XEdit.SearchPanel.OptionButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/search_match_case"
+                    app:icon="@drawable/ic_match_case" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_regex"
+                    style="@style/Widget.XEdit.SearchPanel.OptionButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/search_regex"
+                    app:icon="@drawable/ic_regex" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_close"
+                    style="@style/Widget.XEdit.SearchPanel.ActionButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/action_close"
+                    app:icon="@drawable/ic_close" />
+            </LinearLayout>
+
+            <!-- search row: box, previous, next -->
+            <LinearLayout
+                android:id="@+id/search_row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/search_input_layout"
+                    style="@style/Widget.XEdit.SearchPanel.TextInputLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    app:endIconContentDescription="@string/search_history"
+                    app:endIconDrawable="@drawable/ic_history"
+                    app:endIconMode="custom"
+                    app:startIconDrawable="@drawable/ic_search">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tv_search_box"
+                        style="@style/Widget.XEdit.SearchPanel.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/search_find_hint" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_prev"
+                    style="@style/Widget.XEdit.SearchPanel.ActionButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/search_previous"
+                    android:enabled="false"
+                    app:icon="@drawable/ic_arrow_up" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_next"
+                    style="@style/Widget.XEdit.SearchPanel.ActionButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/search_next"
+                    android:enabled="false"
+                    app:icon="@drawable/ic_arrow_down" />
+            </LinearLayout>
+
+            <!-- replace row: box, replace, replace all; expands below the search row -->
+            <LinearLayout
+                android:id="@+id/replace_row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/replace_input_layout"
+                    style="@style/Widget.XEdit.SearchPanel.TextInputLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    app:endIconContentDescription="@string/search_history"
+                    app:endIconDrawable="@drawable/ic_history"
+                    app:endIconMode="custom"
+                    app:startIconDrawable="@drawable/ic_find_replace">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tv_replace_box"
+                        style="@style/Widget.XEdit.SearchPanel.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/search_replace_hint" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_replace"
+                    style="@style/Widget.XEdit.SearchPanel.ActionButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/search_replace"
+                    android:enabled="false"
+                    app:icon="@drawable/ic_replace_one" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_replace_all"
+                    style="@style/Widget.XEdit.SearchPanel.ActionButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/search_replace_all"
+                    android:enabled="false"
+                    app:icon="@drawable/ic_replace_all" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</FrameLayout>

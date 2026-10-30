@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A symbol of the row of extra keys (see ExtraKeysController): a rounded tonal key,
+     as wide as its label needs and at least square. Colors set by the controller. -->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/extra_key_height"
+    android:layout_marginStart="@dimen/extra_key_gap"
+    android:layout_marginEnd="@dimen/extra_key_gap"
+    android:minWidth="@dimen/extra_key_min_width"
+    android:clickable="true"
+    android:focusable="false"
+    app:cardCornerRadius="@dimen/extra_key_corner"
+    app:cardElevation="0dp"
+    app:strokeWidth="0dp"
+    app:cardBackgroundColor="?attr/colorSurfaceContainerHighest">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:minWidth="@dimen/extra_key_min_width"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:gravity="center"
+        android:fontFamily="monospace"
+        android:includeFontPadding="false"
+        android:maxLines="1"
+        android:textSize="@dimen/extra_key_text_size"
+        android:textStyle="bold"
+        android:importantForAccessibility="no"/>
+
+</com.google.android.material.card.MaterialCardView>

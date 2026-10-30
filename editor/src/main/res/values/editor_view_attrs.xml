@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    The attributes EditorView understands in a layout file or a style.
+
+    Where TextView already has an attribute for the same thing, EditorView uses that
+    one (android:textSize, android:textColor, ...), so nothing new has to be learned.
+    The rest are the editor's own and go in the app: namespace.
+-->
+<resources>
+    <declare-styleable name="EditorView">
+        <!-- the size of the text, e.g. 15sp -->
+        <attr name="android:textSize" />
+        <!-- the color of plain text -->
+        <attr name="android:textColor" />
+        <!-- the background of selected text -->
+        <attr name="android:textColorHighlight" />
+        <!-- a font family name ("monospace") or a font resource (@font/...) -->
+        <attr name="android:fontFamily" />
+        <!-- normal | sans | serif | monospace; used when there is no fontFamily -->
+        <attr name="android:typeface" />
+        <!-- normal | bold | italic | bold|italic -->
+        <attr name="android:textStyle" />
+        <!-- the text to start with -->
+        <attr name="android:text" />
+
+        <!-- false makes the editor read-only -->
+        <attr name="editable" format="boolean" />
+        <!-- true wraps long lines instead of scrolling sideways -->
+        <attr name="wordwrap" format="boolean" />
+        <!-- the color of the line numbers -->
+        <attr name="lineNumberColor" format="color" />
+        <!-- the background of the line the cursor is on -->
+        <attr name="currentLineColor" format="color" />
+        <!-- the background of search matches -->
+        <attr name="searchMatchColor" format="color" />
+        <!-- the background of the search match the user is at -->
+        <attr name="currentMatchColor" format="color" />
+    </declare-styleable>
+</resources>

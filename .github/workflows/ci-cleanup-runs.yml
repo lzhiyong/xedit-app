@@ -1,0 +1,44 @@
+# Deletes finished workflow run records (and their logs/artifacts) once a month.
+# Runs that are still queued or in progress, including this one, are never touched.
+name: CI Cleanup Runs
+
+on:
+  schedule:
+    - cron: '0 3 1 * *'   # 03:00 UTC on the 1st of every month
+  workflow_dispatch:      # Allow manual runs from the Actions tab
+
+# Deleting runs needs actions:write; nothing else is required
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}   # Auth for the gh CLI
+    steps:
+      - name: Delete completed workflow runs
+        run: |
+          # Collect all ids first (paginated), then delete, so deleting
+          # does not shift the pages while they are being read.
+          gh api --paginate \
+            "repos/$GITHUB_REPOSITORY/actions/runs?status=completed&per_page=100" \
+            --jq '.workflow_runs[].id' > run_ids.txt
+
+          TOTAL=$(grep -c . run_ids.txt || true)
+          echo "Found $TOTAL completed runs to delete"
+
+          OK=0
+          FAIL=0
+          while read -r ID; do
+            [ -z "$ID" ] && continue
+            if gh api -X DELETE "repos/$GITHUB_REPOSITORY/actions/runs/$ID" >/dev/null 2>&1; then
+              OK=$((OK + 1))
+            else
+              FAIL=$((FAIL + 1))
+              echo "Failed to delete run $ID" >&2
+            fi
+          done < run_ids.txt
+
+          echo "Deleted: $OK, failed: $FAIL"

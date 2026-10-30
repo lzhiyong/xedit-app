@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2021 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<configuration description="Runs art_standalone_libdexfile_tests.">
+    <option name="config-descriptor:metadata" key="mainline-param" value="com.google.android.art.apex" />
+    <target_preparer class="com.android.compatibility.common.tradefed.targetprep.FilePusher">
+        <option name="cleanup" value="true" />
+        <option name="push" value="art_standalone_libdexfile_tests->/data/local/tmp/art_standalone_libdexfile_tests/art_standalone_libdexfile_tests" />
+        <option name="append-bitness" value="true" />
+    </target_preparer>
+
+    <target_preparer class="com.android.compatibility.common.tradefed.targetprep.FilePusher">
+        <option name="cleanup" value="true" />
+        <option name="push" value="art-gtest-jars-GetMethodSignature.jar->/data/local/tmp/art_standalone_libdexfile_tests/art-gtest-jars-GetMethodSignature.jar" />
+        <option name="push" value="art-gtest-jars-Lookup.jar->/data/local/tmp/art_standalone_libdexfile_tests/art-gtest-jars-Lookup.jar" />
+        <option name="push" value="art-gtest-jars-Main.jar->/data/local/tmp/art_standalone_libdexfile_tests/art-gtest-jars-Main.jar" />
+        <option name="push" value="art-gtest-jars-MainEmptyUncompressed.jar->/data/local/tmp/art_standalone_libdexfile_tests/art-gtest-jars-MainEmptyUncompressed.jar" />
+        <option name="push" value="art-gtest-jars-MultiDex.jar->/data/local/tmp/art_standalone_libdexfile_tests/art-gtest-jars-MultiDex.jar" />
+        <option name="push" value="art-gtest-jars-Nested.jar->/data/local/tmp/art_standalone_libdexfile_tests/art-gtest-jars-Nested.jar" />
+    </target_preparer>
+
+    <test class="com.android.tradefed.testtype.GTest" >
+        <option name="native-test-device-path" value="/data/local/tmp/art_standalone_libdexfile_tests" />
+        <option name="module-name" value="art_standalone_libdexfile_tests" />
+        <option name="ld-library-path-32" value="/apex/com.android.art/lib" />
+        <option name="ld-library-path-64" value="/apex/com.android.art/lib64" />
+    </test>
+
+    <!-- When this test is run in a Mainline context (e.g. with `mts-tradefed`), only enable it if
+         one of the Mainline modules below is present on the device used for testing. -->
+    <object type="module_controller" class="com.android.tradefed.testtype.suite.module.MainlineTestModuleController">
+        <!-- ART Mainline Module (internal version). -->
+        <option name="mainline-module-package-name" value="com.google.android.art" />
+        <!-- ART Mainline Module (external (AOSP) version). -->
+        <option name="mainline-module-package-name" value="com.android.art" />
+    </object>
+
+    <!-- Only run tests if the device under test is SDK version 31 (Android 12) or above. -->
+    <object type="module_controller" class="com.android.tradefed.testtype.suite.module.Sdk31ModuleController" />
+</configuration>

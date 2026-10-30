@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- the app -->
+    <string name="crash_title">应用发生了错误</string>
+
+    <!-- actions: the items of menu/editor_toolbar.xml and menu/crash_toolbar.xml (named after the id of the item), and common buttons -->
+    <string name="action_undo">撤销</string>
+    <string name="action_redo">重做</string>
+    <string name="action_edit_mode">编辑模式</string>
+    <string name="action_add_folder">添加目录</string>
+    <string name="action_open_file">打开文件</string>
+    <string name="action_save_file">保存</string>
+    <string name="action_close">关闭</string>
+    <string name="action_search">搜索</string>
+    <string name="action_settings">设置</string>
+    <string name="action_wordwrap">自动换行</string>
+    <string name="action_report">报告</string>
+    <string name="action_copy">复制</string>
+    <string name="action_export">导出</string>
+    <string name="action_restart">重启</string>
+    <string name="action_remove">移除</string>
+    <string name="action_goto_line">跳转到行</string>
+    <string name="action_lsp_config">语言服务器配置</string>
+    <string name="action_snippets">自定义代码片段</string>
+    <string name="action_dev_tools">开发工具</string>
+    <string name="action_shortcuts">快捷键</string>
+    <string name="shortcut_edit">编辑</string>
+    <string name="shortcut_sheet_subtitle">来自 keymap.json（覆盖默认值）。&lt;leader&gt; 为 %1$s；连续按键时等待下一个键 %2$d 毫秒。</string>
+    <string name="shortcut_group_edit">编辑</string>
+    <string name="shortcut_group_code">代码</string>
+    <string name="shortcut_group_file">文件与视图</string>
+    <string name="shortcut_group_insert">插入文字</string>
+    <string name="shortcut_insert_text">插入文字</string>
+    <string name="shortcut_not_set">未设置</string>
+    <string name="shortcut_problems">keymap.json 中被忽略的条目（%1$d）：</string>
+    <string name="shortcut_toggle_comment">注释 / 取消注释</string>
+    <string name="shortcut_read_only">切换只读模式</string>
+    <string name="keymap_reloaded">快捷键：已读取 %1$d 条映射</string>
+    <string name="keymap_reloaded_problems">快捷键：已读取 %1$d 条，%2$d 条被忽略。%3$s</string>
+    <string name="keymap_read_error">快捷键文件无法读取（第 %1$d 行）：%2$s。将继续使用默认快捷键。</string>
+    <string name="keymap_unbound">%1$s 未绑定</string>
+    <string name="action_format_rules">格式化规则</string>
+    <string name="action_console">控制台</string>
+    <string name="action_run">编译运行</string>
+    <string name="action_read_only_mode">只读模式</string>
+
+    <!-- the editor and the tabs of the open documents -->
+    <string name="tab_close">关闭</string>
+    <string name="tab_close_others">关闭其他</string>
+    <string name="tab_close_all">关闭全部</string>
+    <string name="tab_share">分享文件</string>
+    <string name="tab_share_chooser_title">分享 %1$s</string>
+    <string name="tab_share_failed">无法分享此文件</string>
+    <string name="tab_share_no_app">没有可以接收此文件的应用</string>
+    <string name="tab_modified_description">%1$s，有未保存的修改</string>
+    <string name="editor_empty">没有打开的文件\n可以从侧边栏，或菜单中的「打开」打开文件</string>
+    <string name="tab_unsaved_title">保存修改？</string>
+    <string name="tab_unsaved_message_one">「%1$s」有未保存的修改。</string>
+    <string name="tab_unsaved_message_many">%1$d 个文件有未保存的修改。</string>
+    <string name="tab_unsaved_save">保存</string>
+    <string name="tab_unsaved_discard">不保存</string>
+    <string name="editor_exit_confirm">再按一次退出应用</string>
+
+    <!-- the floating bar over the selection, and the clipboard -->
+    <string name="selection_search">搜索</string>
+    <string name="selection_copy">复制</string>
+    <string name="selection_cut">剪切</string>
+    <string name="selection_paste">粘贴</string>
+    <string name="selection_select_all">全选</string>
+    <string name="selection_comment">注释</string>
+    <string name="selection_uncomment">取消注释</string>
+    <string name="selection_share">分享</string>
+    <string name="selection_share_too_large">选中的文本太大，无法发送</string>
+    <string name="clipboard_copied">已复制</string>
+    <string name="clipboard_cut">已剪切</string>
+    <string name="clipboard_too_large">选中的文本太大，无法复制（%1$d 个字符，上限 %2$d）</string>
+    <string name="clipboard_failed">复制失败：%1$s</string>
+
+    <!-- the search panel -->
+    <string name="search_replace_all">全部替换</string>
+    <string name="search_find_hint">搜索</string>
+    <string name="search_result_label">搜索结果</string>
+    <string name="search_previous">上个</string>
+    <string name="search_next">下个</string>
+    <string name="search_replace">替换</string>
+    <string name="search_replace_hint">替换为</string>
+    <string name="search_match_case">区分大小写</string>
+    <string name="search_regex">正则表达式</string>
+    <string name="search_history">历史记录</string>
+    <string name="search_toggle_replace">显示或隐藏替换</string>
+    <string name="search_regex_invalid">正则表达式无效</string>
+
+    <!-- go to line -->
+    <string name="goto_line_title">跳转到行</string>
+    <string name="goto_line_hint">行号[:列号]</string>
+    <string name="goto_line_range">共 %1$d 行</string>
+    <string name="goto_line_out_of_range">没有这一行（1 – %1$d）</string>
+    <string name="goto_line_invalid">请输入行号，或 行号:列号</string>
+    <string name="goto_line_go">跳转</string>
+    <string name="goto_line_first">首行</string>
+    <string name="goto_line_current">当前 · %1$d</string>
+    <string name="goto_line_last">末行</string>
+    <string name="goto_line_empty">（空行）</string>
+
+    <!-- the file tree, and opening files -->
+    <string name="file_tree_new_folder">新建目录</string>
+    <string name="file_tree_new_file">新建文件</string>
+    <string name="file_tree_copy_path">复制路径</string>
+    <string name="file_tree_rename">重命名</string>
+    <string name="file_tree_delete">删除</string>
+    <string name="file_tree_name_hint">名称</string>
+    <string name="file_tree_name_invalid">名称无效</string>
+    <string name="file_tree_path_copied">已复制路径</string>
+    <string name="file_tree_operation_failed">操作失败</string>
+    <string name="file_tree_delete_file_message">确定删除 %1$s 吗？删除后无法恢复。</string>
+    <string name="file_tree_delete_folder_message">确定删除 %1$s 及其中的全部内容吗？删除后无法恢复。</string>
+    <string name="file_open_permission_denied">打开失败，权限不足</string>
+    <string name="file_open_not_in_tree">%1$s 不在已打开的文件夹中：将它所在的文件夹添加到文件树后即可打开</string>
+    <string name="file_tree_permission_denied">操作失败，权限不足</string>
+    <string name="file_tree_refresh">刷新</string>
+    <string name="file_tree_delete_unsaved_message">它正在编辑器中打开，且有未保存的修改，删除后这些修改将丢失。</string>
+    <string name="file_moved">%1$s 的位置已改变，请从文件树中重新打开</string>
+    <!-- 打开的文档的文件被其他应用修改或删除 -->
+    <string name="file_changed_title">文件已在外部修改</string>
+    <string name="file_changed_message">「%1$s」已被其他应用修改。重新加载该文件，还是保留编辑器中的内容？保留后保存将覆盖外部的修改。</string>
+    <string name="file_changed_message_modified">「%1$s」已被其他应用修改，且你有未保存的修改。重新加载将丢弃你的修改；继续编辑并保存将覆盖外部的修改。</string>
+    <string name="file_changed_reload">重新加载</string>
+    <string name="file_changed_keep">继续编辑</string>
+    <string name="file_deleted_title">文件已被删除</string>
+    <string name="file_deleted_message">「%1$s」已被其他应用删除。是否继续保留？保存时会重新创建该文件。</string>
+    <string name="file_deleted_keep">保留</string>
+    <string name="file_recreate_failed">文件已被删除，无法在原位置重新创建，请将内容复制到新文件中</string>
+    <string name="file_tree_remove">移除</string>
+    <string name="file_tree_load_failed">加载 %1$s 失败，再次点击可重试</string>
+
+    <!-- downloading the syntax highlighting (the tree-sitter resources) -->
+    <string name="download_title_downloading">正在下载语法高亮组件</string>
+    <string name="download_title_done">下载完成</string>
+    <string name="download_subtitle_done">语法高亮已就绪</string>
+    <string name="download_title_failed">下载失败</string>
+    <string name="download_retry">重试</string>
+    <string name="treesitter_manifest_missing">应用缺少下载清单（%1$s）</string>
+    <string name="treesitter_waiting_network">联网后将自动下载语法高亮资源</string>
+
+    <!-- language servers, completion, snippets and formatting -->
+    <string name="lsp_server_failed">语言服务器 %1$s：%2$s</string>
+    <string name="lsp_server_connected">语言服务器 %1$s 已连接</string>
+    <string name="lsp_file_not_local">%1$s 不在本地存储中，无法使用语言服务器</string>
+    <string name="lsp_config_reloaded">已重新加载语言服务器配置</string>
+    <string name="snippets_reloaded">%1$s：%2$d 个代码片段</string>
+    <string name="snippets_read_error">%1$s 读取失败：%2$s</string>
+    <string name="snippets_parse_error">%1$s 第 %2$d 行：%3$s</string>
+    <string name="completion_source_words">文本</string>
+    <string name="completion_source_folder">文件夹</string>
+    <string name="completion_source_file">文件</string>
+    <string name="completion_path_no_access">无法列出 %1$s 中的文件：请把它（或上层）文件夹添加到文件树</string>
+    <string name="lsp_action_hover">悬停信息</string>
+    <string name="lsp_action_definition">转到定义</string>
+    <string name="lsp_action_references">查找引用</string>
+    <string name="lsp_action_rename">重命名</string>
+    <string name="lsp_rename_title">重命名 %1$s</string>
+    <string name="lsp_rename_done">已在 %1$d 个文件中重命名</string>
+    <string name="lsp_action_code_actions">代码操作</string>
+    <string name="lsp_code_actions_none">此处没有可用的代码操作</string>
+    <string name="lsp_action_format">格式化文档</string>
+    <string name="lsp_action_format_selection">格式化选中内容</string>
+    <string name="format_rules_reloaded">格式化规则已更新：%1$d 种语言</string>
+    <string name="format_rules_read_error">%1$s 读取失败：%2$s</string>
+    <string name="lsp_action_outline">文档大纲</string>
+    <string name="lsp_references_title">引用</string>
+    <string name="lsp_code_action_group_quickfix">快速修复</string>
+    <string name="lsp_code_action_group_refactor">重构</string>
+    <string name="lsp_code_action_group_source">源代码操作</string>
+    <string name="lsp_code_action_group_other">其他</string>
+    <string name="lsp_code_action_kind_extract">提取</string>
+    <string name="lsp_code_action_kind_inline">内联</string>
+    <string name="lsp_code_action_kind_rewrite">改写</string>
+    <string name="lsp_code_action_kind_organize_imports">整理导入</string>
+    <string name="lsp_code_action_kind_fix_all">全部修复</string>
+    <string name="lsp_code_action_preferred">推荐</string>
+    <string name="picker_filter_hint">筛选</string>
+    <string name="picker_filter_empty">没有匹配项</string>
+    <string name="lsp_result_empty">没有找到</string>
+    <string name="lsp_server_unavailable">此文件没有可用的语言服务器</string>
+    <string name="lsp_severity_error">错误</string>
+    <string name="lsp_severity_warning">警告</string>
+    <string name="lsp_severity_info">信息</string>
+    <string name="lsp_severity_hint">提示</string>
+
+    <!-- the console, and compile and run -->
+    <string name="console_title">控制台</string>
+    <string name="console_tab_output">输出</string>
+    <string name="console_tab_problems">错误</string>
+    <string name="console_tab_build">构建</string>
+    <string name="console_action_copy">复制</string>
+    <string name="console_action_clear">清空</string>
+    <string name="console_copied">已复制</string>
+    <string name="console_empty">暂无内容</string>
+    <string name="console_problems_empty">没有错误</string>
+    <string name="console_command_hint">命令（在 Termux 中运行）</string>
+    <string name="console_action_run">运行</string>
+    <string name="console_termux_missing">未安装 Termux：命令需要在 Termux 中运行</string>
+    <string name="console_termux_permission">请允许 X Editor 在 Termux 中运行命令，然后再运行一次</string>
+    <string name="run_settings_title">编译运行</string>
+    <string name="run_settings_save">保存</string>
+    <string name="run_settings_default">恢复默认</string>
+    <string name="run_scope_file">用于所有 %1$s 文件</string>
+    <string name="run_scope_project">用于 %1$s 项目</string>
+    <string name="run_command_label">命令</string>
+    <string name="run_command_helper">在 shell 中执行，多条命令可用 &amp;&amp; 连接；下方的 ${…} 变量会在运行时替换为实际值</string>
+    <string name="run_preview_command">执行命令</string>
+    <string name="run_preview_none">（未设置命令：点击编译运行时会要求填写）</string>
+    <string name="run_preview_workdir">工作目录</string>
+    <string name="run_preview_runner">运行环境</string>
+    <string name="run_runner_termux">Termux（bash）</string>
+    <string name="run_runner_local">本应用内置工具链</string>
+    <string name="run_variables_title">可用变量（点击插入到光标处）</string>
+    <string name="run_value_empty">（空）</string>
+    <string name="run_var_file">当前文件（相对工作目录的路径）</string>
+    <string name="run_var_name">文件名（不含扩展名）</string>
+    <string name="run_var_dir">当前文件所在目录</string>
+    <string name="run_var_path">当前文件的绝对路径</string>
+    <string name="run_var_root">项目根目录</string>
+    <string name="run_var_tmp">编译产物的输出目录（可执行文件放这里才能运行）</string>
+    <string name="run_var_exec">启动编译产物的前缀（Termux 中为空）</string>
+    <string name="run_var_prefix">工具链前缀目录（usr）</string>
+    <string name="run_var_gradle">项目的 Gradle（有 gradlew 时用 gradlew）</string>
+    <string name="run_file_not_local">文件不在本地存储中，Termux 无法读取</string>
+    <string name="console_action_stop">停止</string>
+    <string name="console_action_give_up">放弃等待</string>
+    <string name="build_started">▶ %1$s  开始执行 · %2$s</string>
+    <string name="build_workdir">工作目录：%1$s</string>
+    <string name="build_finished">%1$s %2$s  执行结束 · 退出码 %3$s · 用时 %4$s</string>
+    <string name="build_problems">%1$d 个问题</string>
+    <string name="build_stop_requested">■ 正在停止…</string>
+    <string name="build_given_up">已不再等待 Termux 的结果：命令可能仍在 Termux 中运行</string>
+    <string name="build_busy">%1$s 正在编译（已运行 %2$s），结束或停止后才能再次运行</string>
+    <string name="build_done_success">%1$s 执行完成，用时 %2$s</string>
+    <string name="build_done_failed">%1$s 执行失败（退出码 %2$s），用时 %3$s</string>
+    <string name="duration_seconds">%1$.1f 秒</string>
+    <string name="duration_minutes">%1$d 分 %2$d 秒</string>
+    <string name="duration_hours">%1$d 小时 %2$d 分</string>
+
+    <!-- the toolchain: compilers, language servers and tools, the app's own and Termux's -->
+    <string name="toolchain_title">工具链</string>
+    <string name="toolchain_refresh">重新检测</string>
+    <string name="toolchain_runner_termux">Termux</string>
+    <string name="toolchain_runner_local">本应用</string>
+    <string name="toolchain_termux_missing">未安装。请先安装 Termux，再在其中安装软件包（pkg install clang …）。</string>
+    <string name="toolchain_termux_no_permission">尚未允许本应用在 Termux 中运行命令：请授予权限，并在 ~/.termux/termux.properties 中设置 allow-external-apps = true。</string>
+    <string name="toolchain_termux_checking">已就绪 · 正在检测列表中的工具…</string>
+    <string name="toolchain_termux_unknown">已就绪，但没有响应：请确认 ~/.termux/termux.properties 中已设置 allow-external-apps = true。</string>
+    <string name="toolchain_termux_found">已就绪 · 检测到列表中的 %1$d 个命令</string>
+    <string name="toolchain_termux_get">获取</string>
+    <string name="toolchain_termux_allow">授权</string>
+    <string name="toolchain_prefer">优先使用</string>
+    <string name="toolchain_mode_auto">自动</string>
+    <string name="toolchain_mode_local">本应用</string>
+    <string name="toolchain_mode_termux">Termux</string>
+    <string name="toolchain_mode_auto_hint">本应用有命令所需的程序时用本应用的，否则用 Termux 的。</string>
+    <string name="toolchain_mode_local_hint">始终用本应用的。</string>
+    <string name="toolchain_mode_termux_hint">始终用 Termux 的。</string>
+    <string name="toolchain_packages">工具链</string>
+    <string name="toolchain_catalog_edit">编辑列表</string>
+    <string name="toolchain_catalog_empty">packages.json 中没有工具链：请编辑列表添加。</string>
+    <string name="toolchain_footer">每个工具链的下载地址、版本和 SHA-256 都在 packages.json 中定义。Termux 的软件包请在 Termux 中自行安装，本应用会自动检测。</string>
+    <string name="toolchain_in_local">已安装到本应用</string>
+    <string name="toolchain_installable">可安装到本应用</string>
+    <string name="toolchain_in_termux">Termux 中可用</string>
+    <string name="toolchain_in_termux_some">Termux 中有：%1$s</string>
+    <string name="toolchain_not_in_termux">Termux 中没有</string>
+    <string name="toolchain_termux_install_command">Termux 中：%1$s</string>
+    <string name="toolchain_not_listed">已不在列表中</string>
+    <string name="toolchain_not_installed">未安装</string>
+    <string name="toolchain_install">安装</string>
+    <string name="toolchain_update">更新</string>
+    <string name="toolchain_installed">已安装</string>
+    <string name="toolchain_reinstall">重新安装</string>
+    <string name="toolchain_uninstall">卸载</string>
+    <string name="toolchain_uninstall_title">卸载 %1$s？</string>
+    <string name="toolchain_uninstall_message">将按其 .list 删除它的 %1$d 个文件以及 usr/bin 中的链接。</string>
+    <string name="toolchain_installing">正在安装…</string>
+    <string name="toolchain_step_download">正在下载</string>
+    <string name="toolchain_step_verify">正在校验 SHA-256</string>
+    <string name="toolchain_step_unpack">正在解压</string>
+    <string name="toolchain_step_copy">正在复制</string>
+    <string name="toolchain_install_done">已安装 %1$s</string>
+    <string name="toolchain_install_failed">安装失败：%1$s</string>
+
+    <!-- the row of extra keys over the keyboard -->
+    <string name="extra_key_ctrl">Ctrl：点按作用于下一个键，长按保持</string>
+    <string name="extra_key_alt">Alt：点按作用于下一个键，长按保持</string>
+    <string name="extra_key_tab">Tab 缩进</string>
+    <string name="extra_key_accept_completion">确认补全</string>
+    <string name="extra_key_left">光标左移</string>
+    <string name="extra_key_right">光标右移</string>
+    <string name="extra_key_up">上移（上一个补全项）</string>
+    <string name="extra_key_down">下移（下一个补全项）</string>
+    <string name="extra_key_arrows_expand">展开方向键</string>
+    <string name="extra_key_arrows_collapse">收起方向键</string>
+
+    <!-- settings: a preference's strings are named <its key>_<role> (title, summary, default, entries, values, ...) -->
+    <string name="settings_title">设置</string>
+    <string name="settings_editor_title">编辑器</string>
+    <string name="settings_link_copied_no_browser">未找到浏览器，链接已复制</string>
+
+    <!-- settings: the app (xml/pref_app.xml) -->
+    <string name="pref_category_appearance">界面外观</string>
+    <string name="pref_app_dark_theme_title">深色主题</string>
+    <string-array name="pref_app_dark_theme_entries">
+        <item>总是关闭</item>
+        <item>总是开启</item>
+        <item>跟随系统</item>
+    </string-array>
+    <string name="pref_app_pure_black_title">黑色夜间主题</string>
+    <string name="pref_app_pure_black_summary">当夜间模式启用时使用纯黑色主题</string>
+    <string name="pref_app_dynamic_color_title">使用系统主题颜色</string>
+    <string name="pref_app_dynamic_color_summary">从壁纸中提取应用的配色</string>
+    <string name="pref_category_editor">编辑器</string>
+    <string name="pref_app_editor_title">编辑器设置</string>
+    <string name="pref_app_editor_summary">语法高亮、字体、代码折叠、行号栏等</string>
+    <string name="pref_category_about">关于</string>
+    <string name="pref_app_source_code_title">源代码</string>
+    <string name="pref_app_source_code_summary">浏览本应用的开源代码，关注开发进展</string>
+    <string name="pref_app_report_issue_title">反馈问题</string>
+    <string name="pref_app_report_issue_summary">在 GitHub 上报告 bug 或提出建议，自动附带应用版本和设备信息</string>
+    <string name="pref_app_releases_title">版本发布</string>
+    <string name="pref_app_releases_summary">查看更新内容，下载最新版本</string>
+    <string name="pref_app_license_title">许可证</string>
+    <string name="pref_app_license_summary">本应用及所使用的开源项目的许可证</string>
+    <string name="pref_app_about_title">关于应用</string>
+    <string name="pref_app_about_summary">应用安装包信息，以及所支持的sdk架构等</string>
+    <string name="pref_app_about_version">版本 %1$s</string>
+
+    <!-- settings: the editor (xml/pref_editor.xml) -->
+    <string name="pref_category_editor_display">显示</string>
+    <string name="pref_editor_syntax_highlight_title">语法高亮</string>
+    <string name="pref_editor_syntax_highlight_summary_on">已开启：用 tree-sitter 解析文本，按高亮主题着色</string>
+    <string name="pref_editor_syntax_highlight_summary_off">已关闭：纯文本显示，不做解析；折叠和缩进线按缩进计算</string>
+    <string name="pref_editor_highlight_theme_title">高亮主题</string>
+    <string name="pref_editor_highlight_theme_auto">跟随应用主题</string>
+    <string name="pref_editor_highlight_theme_none">尚未下载任何主题</string>
+    <string name="pref_editor_highlight_theme_auto_summary">随应用主题切换浅色或深色</string>
+    <string name="pref_editor_font_title">字体</string>
+    <string name="pref_editor_font_system_default">系统默认</string>
+    <string name="pref_editor_font_system_monospace">系统等宽</string>
+    <string name="pref_editor_font_import">导入</string>
+    <string name="pref_editor_font_imported">已导入 %1$s</string>
+    <string name="pref_editor_font_import_failed">该文件不是可用的字体</string>
+    <string name="pref_editor_textsize_title">字体大小</string>
+    <string name="pref_editor_textsize_value">%1$d sp</string>
+    <string name="pref_editor_textsize_reset">重置</string>
+    <string name="pref_editor_tab_size_title">Tab 宽度</string>
+    <string-array name="pref_editor_tab_size_entries">
+        <item>2 个空格</item>
+        <item>4 个空格</item>
+        <item>8 个空格</item>
+    </string-array>
+    <string name="pref_category_editor_layout">布局</string>
+    <string name="pref_editor_wordwrap_title">自动折行</string>
+    <string name="pref_editor_wordwrap_summary">长行在屏幕边缘自动换行显示</string>
+    <string name="pref_editor_line_numbers_title">显示行号</string>
+    <string name="pref_editor_line_numbers_summary">在每一行前显示行号</string>
+    <string name="pref_editor_gutter_title">固定行号栏</string>
+    <string name="pref_editor_gutter_summary">文本横向滚动时，行号栏保持不动</string>
+    <string name="pref_editor_indent_guides_title">显示缩进线</string>
+    <string name="pref_editor_indent_guides_summary">用竖线标出每一个缩进代码块</string>
+    <string name="pref_editor_code_block_background_title">代码块背景</string>
+    <string name="pref_editor_code_block_background_summary">为 Markdown 中的代码块整行绘制背景色</string>
+    <string name="pref_editor_color_preview_title">颜色预览</string>
+    <string name="pref_editor_color_preview_summary">用颜色本身显示 #D4D4D4 这样的十六进制颜色</string>
+    <string name="pref_category_editor_folding">代码折叠</string>
+    <string name="pref_editor_folding_title">代码折叠</string>
+    <string name="pref_editor_folding_summary_on">已开启：点击行号旁的折叠标记或折叠后的 ⋯，折叠或展开代码块</string>
+    <string name="pref_editor_folding_summary_off">已关闭：不显示折叠标记，代码全部展开</string>
+    <string name="pref_category_editor_editing">编辑</string>
+    <string name="pref_editor_auto_pairs_title">自动配对</string>
+    <string name="pref_editor_auto_pairs_summary">输入左括号或引号时，自动补全右半部分</string>
+    <string name="pref_editor_buffer_completion_title">文本补全</string>
+    <string name="pref_editor_buffer_completion_summary">没有语言服务器或服务器无结果时，根据文本中的单词提供补全</string>
+    <string name="pref_editor_snippet_completion_title">代码片段补全</string>
+    <string name="pref_editor_snippet_completion_summary">补全自定义代码片段和 friendly-snippets 中的代码片段，按 Tab 跳到下一个占位符</string>
+    <string name="pref_editor_format_on_paste_title">粘贴时格式化</string>
+    <string name="pref_editor_format_on_paste_summary">语言服务器支持区间格式化时，自动格式化粘贴的内容</string>
+    <string name="pref_editor_auto_pair_chars_title">配对符号</string>
+    <string name="pref_editor_auto_pair_chars_hint">配对符号</string>
+    <string name="pref_editor_auto_pair_chars_helper">每一对两个字符，左边在前，用空格分隔：() [] {} &lt;&gt; \"\"</string>
+    <string name="pref_editor_auto_pair_chars_invalid">不是有效的配对：%1$s。每一对是两个符号（不能是字母、数字或空格），左边的符号不能重复。</string>
+    <string name="pref_editor_auto_pair_chars_none">无</string>
+    <string name="pref_editor_auto_pair_chars_reset">恢复默认</string>
+    <string name="pref_editor_bracket_matching_title">括号匹配</string>
+    <string name="pref_editor_bracket_matching_summary">高亮光标处的括号及与之配对的括号</string>
+    <string name="pref_editor_disk_check_interval_title">检测文件外部修改</string>
+    <string-array name="pref_editor_disk_check_interval_entries">
+        <item>每 1 秒</item>
+        <item>每 2 秒</item>
+        <item>每 5 秒</item>
+        <item>每 10 秒</item>
+        <item>每 30 秒</item>
+        <item>仅在回到编辑器或切换标签页时</item>
+    </string-array>
+    <string name="pref_category_editor_extra_keys">快捷键栏</string>
+    <string name="pref_editor_extra_keys_title">符号快捷键</string>
+    <string name="pref_editor_extra_keys_none">无，仅保留 Tab 和方向键</string>
+    <string name="pref_editor_extra_keys_hint">添加符号</string>
+    <string name="pref_editor_extra_keys_helper">可一次添加多个，用空格分隔：=&gt; :: -&gt;</string>
+    <string name="pref_editor_extra_keys_add">添加</string>
+    <string name="pref_editor_extra_keys_remove">移除 %1$s</string>
+    <string name="pref_editor_extra_keys_count">%1$d / %2$d · 长按拖动排序</string>
+    <string name="pref_editor_extra_keys_empty">没有符号，快捷键栏只保留 Tab 和方向键</string>
+    <string name="pref_editor_extra_keys_duplicate">已存在：%1$s</string>
+    <string name="pref_editor_extra_keys_too_long">每个按键最多 %1$d 个字符：%2$s</string>
+    <string name="pref_editor_extra_keys_full">最多 %1$d 个按键</string>
+    <string name="pref_editor_extra_keys_reset">恢复默认</string>
+    <string name="pref_editor_extra_keys_tip">显示补全列表时，↑ ↓ 选择补全项，Tab 确认。</string>
+    <string name="pref_category_editor_resources">语法高亮资源</string>
+    <string name="pref_editor_resources_status_title">资源状态</string>
+    <string name="pref_editor_resources_status_summary">查看已安装的资源，以及文件能否被高亮</string>
+
+    <!-- the status of the highlighting resources (settings) -->
+    <string name="resources_status_loading">正在检查…</string>
+    <string name="resources_status_ok">一切就绪</string>
+    <string name="resources_status_pending">更新将在下次启动后生效</string>
+    <plurals name="resources_status_problems">
+        <item quantity="other">发现 %1$d 个问题</item>
+    </plurals>
+    <string name="resources_stat_file_types">文件类型</string>
+    <string name="resources_stat_themes">主题</string>
+    <string name="resources_stat_libraries">语法库</string>
+    <string name="resources_stat_queries">查询</string>
+    <string name="resources_category_packages">资源包</string>
+    <string name="resources_category_files">文件检查</string>
+    <string name="resources_category_details">详细信息</string>
+    <string name="resources_category_actions">操作</string>
+    <string name="resources_package_configs">文件类型与主题</string>
+    <string name="resources_package_languages">语法库（%1$s）</string>
+    <string name="resources_package_queries">查询文件</string>
+    <string name="resources_package_installed">已安装 · %1$s</string>
+    <string name="resources_package_missing">未安装</string>
+    <string name="resources_package_staged">已下载，下次启动后生效</string>
+    <string name="resources_file_no_type">filetypes.json 中没有对应的文件类型</string>
+    <string name="resources_file_no_library">缺少语法库：%1$s</string>
+    <string name="resources_file_no_queries">缺少查询文件：%1$s</string>
+    <string name="resources_detail_themes">主题</string>
+    <string name="resources_detail_libraries">语法库文件</string>
+    <string name="resources_detail_queries">查询目录</string>
+    <string name="resources_detail_none">无</string>
+    <string name="resources_detail_more">等 %1$d 个</string>
+    <string name="resources_action_refresh">重新检查</string>
+    <string name="resources_action_refresh_summary">重新读取已安装的资源</string>
+    <string name="resources_action_check_updates">检查更新</string>
+    <string name="resources_action_check_updates_summary">立即在后台检查</string>
+    <string name="resources_update_started">已开始在后台检查更新</string>
+    <string name="resources_action_copy_report">复制报告</string>
+    <string name="resources_action_copy_report_summary">以文本形式复制，用于反馈问题</string>
+    <string name="resources_report_copied">已复制</string>
+    <string name="resources_update_waiting">正在等待网络连接…</string>
+    <string name="resources_update_checking">正在检查…</string>
+    <string name="resources_update_downloading">正在下载 %1$s：%2$d%%</string>
+    <string name="resources_update_none">已是最新</string>
+    <string name="resources_update_done">已下载 %1$d 个资源包</string>
+    <string name="resources_update_failed">更新失败：%1$s</string>
+    <string name="resources_update_unknown_error">未知错误</string>
+    <string name="resources_package_snippets">代码片段（friendly-snippets）</string>
+
+    <!-- about -->
+    <string name="about_package">包名</string>
+    <string name="about_version">版本</string>
+    <string name="about_sdk">SDK</string>
+    <string name="about_android">系统</string>
+    <string name="about_device">设备</string>
+    <string name="about_abi">架构</string>
+    <string name="about_installed">安装时间</string>
+    <string name="about_updated">更新时间</string>
+    <string name="about_copied">已复制</string>
+
+    <!-- licenses -->
+    <string name="license_category_app">本应用</string>
+    <string name="license_category_libraries">开源项目</string>
+    <string name="license_full_text">许可证全文</string>
+    <string name="license_project_page">项目主页</string>
+    <string name="license_apache_2">Apache License 2.0</string>
+    <string name="license_apache_2_notice">依据 Apache License 2.0 授权。可以使用、修改和分发，也可以用于其他作品，但须附带该许可证及其声明。</string>
+    <string name="license_mit">MIT License</string>
+    <string name="license_mit_notice">依据 MIT License 授权。可以自由使用、修改和分发，但须附带版权声明和许可证。</string>
+    <string name="license_epl_2">Eclipse Public License 2.0 或 Eclipse Distribution License 1.0</string>
+    <string name="license_epl_2_notice">依据 Eclipse Public License 2.0 授权，也可选择依据 Eclipse Distribution License 1.0（一种 BSD 许可证）授权。可以使用、修改和分发，但须附带该许可证及其声明。</string>
+    <string name="license_ofl">SIL Open Font License 1.1</string>
+    <string name="license_ofl_notice">依据 SIL Open Font License 1.1 授权。字体可以自由使用、打包和分发，但不得单独出售。</string>
+    <string name="license_androidx_description">Activity、AppCompat、Fragment、Lifecycle、Preference、RecyclerView、Room、WorkManager 等 Jetpack 库。</string>
+    <string name="license_tree_sitter_description">语法高亮、代码折叠和缩进线背后的解析器。</string>
+    <string name="license_nvim_treesitter_description">语法高亮、代码折叠和缩进所用的查询文件来自 nvim-treesitter，包含在下载的高亮资源中。</string>
+    <string name="license_friendly_snippets_description">代码补全中提供的代码片段，包含在下载的资源中。</string>
+    <string name="license_lsp4j_description">代码补全、诊断等语言服务器功能所用的 Language Server Protocol 客户端基于 LSP4J 构建。</string>
+    <string name="license_vscode_description">编辑器的 piece tree 文本缓冲区移植自 Visual Studio Code。</string>
+    <string name="license_jetbrains_mono_description">应用内置的字体。</string>
+    <string name="license_source_code_pro_description">应用内置的编辑器可选字体。</string>
+</resources>

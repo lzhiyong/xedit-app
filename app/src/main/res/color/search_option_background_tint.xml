@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Background of an option of the search panel (match case, regex): tonal while it is on. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="?attr/colorSecondaryContainer" android:state_checked="true" />
+    <item android:color="@android:color/transparent" />
+</selector>

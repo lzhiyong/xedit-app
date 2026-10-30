@@ -1,0 +1,30 @@
+{
+  "comment": "Where the tree-sitter resources come from and where they go. {arch} is the architecture of the device: aarch64, arm, x86_64 or x86. {home} is the app's home, /data/data/<package>/files/home (AppDirs). The root is where the resources go; a target is a directory below the root (\".\" is the root itself), or a path of its own that starts with {home} (the friendly-snippets of the completion, in {home}/lsp/friendly-snippets). A package owns the entries at the top of its zip (configs: config/ and themes/), and only those are replaced when it is updated.",
+  "root": "{home}/treesitter",
+  "packages": [
+    {
+      "id": "configs",
+      "url": "https://github.com/lzhiyong/tree-sitter-parser/releases/download/android-tree-sitter/tree-sitter-configs.zip",
+      "target": "."
+    },
+    {
+      "id": "languages",
+      "url": "https://github.com/lzhiyong/tree-sitter-parser/releases/download/android-tree-sitter/tree-sitter-languages-{arch}.zip",
+      "target": "{arch}"
+    },
+    {
+      "id": "queries",
+      "url": "https://github.com/lzhiyong/tree-sitter-parser/releases/download/android-tree-sitter/tree-sitter-queries.zip",
+      "target": "queries"
+    },
+    {
+      "id": "snippets",
+      "url": "https://github.com/lzhiyong/tree-sitter-parser/releases/download/android-tree-sitter/tree-sitter-snippets.zip",
+      "target": "{home}/lsp/friendly-snippets"
+    }
+  ],
+  "update": {
+    "checkIntervalHours": 12,
+    "meteredMaxBytes": 2097152
+  }
+}

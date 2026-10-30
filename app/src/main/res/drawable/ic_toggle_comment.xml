@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- comment out / back in: the slashes of a line comment over lines of text -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24"
+    android:tint="?attr/colorControlNormal">
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M7.4,4L9.2,4L4.6,20L2.8,20ZM12.4,4L14.2,4L9.6,20L7.8,20ZM15,9h6v2h-6zM13,13h8v2h-8zM12,17h9v2h-9z" />
+</vector>

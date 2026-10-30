@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- the side padding of a screen's content -->
+    <dimen name="screen_padding_horizontal">16dp</dimen>
+
+    <!-- settings: the preferences are grouped into cards -->
+    <dimen name="pref_card_margin_horizontal">16dp</dimen>
+    <dimen name="pref_card_gap">2dp</dimen>
+    <dimen name="pref_card_corner_outer">24dp</dimen>
+    <dimen name="pref_card_corner_inner">4dp</dimen>
+    <dimen name="pref_item_min_height">72dp</dimen>
+    <dimen name="pref_item_padding_horizontal">16dp</dimen>
+    <dimen name="pref_item_padding_vertical">14dp</dimen>
+    <dimen name="pref_icon_container_size">40dp</dimen>
+    <dimen name="pref_icon_size">22dp</dimen>
+    <!-- card margin + padding: the header starts where the text of a card does -->
+    <dimen name="pref_category_padding_start">32dp</dimen>
+    <dimen name="pref_category_padding_top">24dp</dimen>
+    <dimen name="pref_category_padding_bottom">10dp</dimen>
+    <dimen name="pref_list_padding_top">4dp</dimen>
+    <dimen name="pref_list_padding_bottom">24dp</dimen>
+
+    <!-- settings: the drop-down menu of SimpleMenuPreference -->
+    <dimen name="pref_simple_menu_item_height">52dp</dimen>
+    <dimen name="pref_simple_menu_item_padding_horizontal">20dp</dimen>
+    <dimen name="pref_simple_menu_padding_vertical">8dp</dimen>
+    <dimen name="pref_simple_menu_corner">16dp</dimen>
+    <dimen name="pref_simple_menu_elevation">6dp</dimen>
+    <dimen name="pref_simple_menu_min_width">128dp</dimen>
+    <dimen name="pref_simple_menu_max_width">296dp</dimen>
+    <dimen name="pref_simple_menu_screen_margin">8dp</dimen>
+
+    <!-- the row of extra keys over the keyboard (see ExtraKeysController) -->
+    <dimen name="extra_keys_row_height">50dp</dimen>
+    <dimen name="extra_keys_padding_horizontal">6dp</dimen>
+    <dimen name="extra_key_height">38dp</dimen>
+    <dimen name="extra_key_min_width">36dp</dimen>
+    <dimen name="extra_key_wide_width">46dp</dimen>
+    <dimen name="extra_key_arrow_width">38dp</dimen>
+    <dimen name="extra_key_toggle_width">34dp</dimen>
+    <dimen name="extra_key_gap">3dp</dimen>
+    <dimen name="extra_key_corner">12dp</dimen>
+    <dimen name="extra_key_inner_corner">9dp</dimen>
+    <dimen name="extra_key_icon_size">22dp</dimen>
+    <dimen name="extra_key_text_size">16sp</dimen>
+
+    <!-- the settings dialog of the extra keys: a grid of tiles -->
+    <dimen name="extra_key_tile_height">44dp</dimen>
+    <dimen name="extra_key_tile_gap">3dp</dimen>
+</resources>

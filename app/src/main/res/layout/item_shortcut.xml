@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A mapping in ShortcutsSheet, styled as a row of the settings (pref_card_*): its
+     background (bg_pref_card_top/middle/bottom/single) is set by its place in its group,
+     so a group reads as one card. What it does (icon in a round tonal container, name, a
+     line under it: the action as keymap.json names it) and its keys (KeyCaps). -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_pref_card_single"
+    android:focusable="true"
+    android:gravity="center_vertical"
+    android:minHeight="64dp"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/pref_item_padding_horizontal"
+    android:paddingTop="10dp"
+    android:paddingEnd="@dimen/pref_item_padding_horizontal"
+    android:paddingBottom="10dp">
+
+    <FrameLayout
+        android:layout_width="@dimen/pref_icon_container_size"
+        android:layout_height="@dimen/pref_icon_container_size"
+        android:background="@drawable/bg_pref_icon"
+        android:backgroundTint="@color/pref_icon_background">
+
+        <ImageView
+            android:id="@+id/shortcut_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:importantForAccessibility="no"
+            android:scaleType="fitCenter" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/pref_item_padding_horizontal"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/shortcut_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="?attr/textAppearanceBodyLarge" />
+
+        <TextView
+            android:id="@+id/shortcut_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/jetbrains_mono_regular"
+            android:maxLines="1"
+            android:textAppearance="?attr/textAppearanceBodySmall"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/shortcut_keys"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:gravity="center_vertical|end"
+        android:orientation="horizontal" />
+
+</LinearLayout>

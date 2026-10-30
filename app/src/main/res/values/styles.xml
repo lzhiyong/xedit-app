@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The styles of the app's own widgets; the themes are in themes.xml. -->
+<resources>
+    <!--
+        The tabs of the open documents: scrolling, starting at the start, as tall
+        as a dense tab row, the indicator as wide as the name.
+    -->
+    <style name="Widget.XEdit.EditorTabs" parent="Widget.Material3.TabLayout">
+        <item name="tabMode">scrollable</item>
+        <item name="tabGravity">start</item>
+        <item name="tabContentStart">0dp</item>
+        <item name="tabMinWidth">72dp</item>
+        <item name="tabMaxWidth">240dp</item>
+        <item name="tabPaddingStart">12dp</item>
+        <item name="tabPaddingEnd">4dp</item>
+        <item name="tabIndicatorFullWidth">false</item>
+        <item name="tabInlineLabel">true</item>
+        <item name="android:background">?attr/colorSurface</item>
+    </style>
+
+    <!-- search panel: a card along the bottom edge, its top corners rounded -->
+    <style name="ShapeAppearanceOverlay.XEdit.SearchPanel" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">24dp</item>
+        <item name="cornerSizeTopRight">24dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
+    <!-- an action of the search panel: a standard icon button -->
+    <style name="Widget.XEdit.SearchPanel.ActionButton" parent="Widget.Material3.Button.IconButton">
+        <item name="iconTint">@color/search_action_icon_tint</item>
+    </style>
+
+    <!-- an option of the search panel: a toggle icon button, tonal while on -->
+    <style name="Widget.XEdit.SearchPanel.OptionButton" parent="Widget.Material3.Button.IconButton">
+        <item name="android:checkable">true</item>
+        <item name="backgroundTint">@color/search_option_background_tint</item>
+        <item name="iconTint">@color/search_option_icon_tint</item>
+    </style>
+
+    <!-- the search and replace boxes: outlined, without a floating label -->
+    <style name="Widget.XEdit.SearchPanel.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox.Dense">
+        <item name="hintEnabled">false</item>
+        <item name="boxCornerRadiusTopStart">16dp</item>
+        <item name="boxCornerRadiusTopEnd">16dp</item>
+        <item name="boxCornerRadiusBottomStart">16dp</item>
+        <item name="boxCornerRadiusBottomEnd">16dp</item>
+        <item name="startIconTint">?attr/colorOnSurfaceVariant</item>
+        <item name="endIconTint">?attr/colorOnSurfaceVariant</item>
+    </style>
+
+    <style name="Widget.XEdit.SearchPanel.EditText" parent="">
+        <item name="android:inputType">textMultiLine|textNoSuggestions</item>
+        <item name="android:maxLines">3</item>
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textAppearance">?attr/textAppearanceBodyMedium</item>
+    </style>
+
+    <!--
+        A key of the row of extra keys: a tonal icon button, square-ish with rounded
+        corners, no insets, so that it is as large as laid out. Its colors are set by
+        ExtraKeysController (the colors of the editor's theme, or the app theme's).
+    -->
+    <style name="Widget.XEdit.ExtraKey" parent="Widget.Material3.Button.IconButton.Filled.Tonal">
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconPadding">0dp</item>
+        <item name="iconSize">@dimen/extra_key_icon_size</item>
+        <item name="cornerRadius">@dimen/extra_key_corner</item>
+        <item name="android:elevation">0dp</item>
+    </style>
+
+    <!-- the key that shows or folds away the arrow keys: no fill, a quieter icon -->
+    <style name="Widget.XEdit.ExtraKey.Toggle">
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="iconSize">20dp</item>
+    </style>
+
+    <!-- Ctrl or Alt of the row: a key with a word on it, latched by a tap (see
+         ExtraKeysController); colors set by the controller -->
+    <style name="Widget.XEdit.ExtraKey.Modifier">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <!-- an arrow key: a segment of the group of arrow keys, filled only while it moves
+         through the completion list -->
+    <style name="Widget.XEdit.ExtraKey.Arrow">
+        <item name="android:insetTop">3dp</item>
+        <item name="android:insetBottom">3dp</item>
+        <item name="android:insetLeft">1dp</item>
+        <item name="android:insetRight">1dp</item>
+        <item name="cornerRadius">@dimen/extra_key_inner_corner</item>
+        <item name="backgroundTint">@android:color/transparent</item>
+    </style>
+</resources>

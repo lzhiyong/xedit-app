@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    The editor settings, a screen of their own. Read by EditorSettings and
+    applied to the editor by EditorActivity when it comes back to the front.
+-->
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:key="pref_category_editor_display"
+        app:title="@string/pref_category_editor_display">
+
+        <!-- tree-sitter on or off: off, nothing is parsed (see EditorActivity.prepareHighlighting) -->
+        <SwitchPreferenceCompat
+            app:key="pref_editor_syntax_highlight"
+            app:title="@string/pref_editor_syntax_highlight_title"
+            app:summaryOn="@string/pref_editor_syntax_highlight_summary_on"
+            app:summaryOff="@string/pref_editor_syntax_highlight_summary_off"
+            app:icon="@drawable/ic_highlight"
+            app:defaultValue="@bool/pref_editor_syntax_highlight_default" />
+
+        <!-- a list in a dialog, with the colors of each theme: there can be many.
+             The entries are the theme files that were downloaded, see EditorSettingsFragment -->
+        <x.editor.app.preference.RadioListPreference
+            app:key="pref_editor_highlight_theme"
+            app:title="@string/pref_editor_highlight_theme_title"
+            app:icon="@drawable/ic_format_paint"
+            app:defaultValue="@string/pref_editor_highlight_theme_default"
+            app:useSimpleSummaryProvider="true" />
+
+        <!-- the fonts of res/font and the ones imported from the storage, see EditorFonts -->
+        <x.editor.app.preference.RadioListPreference
+            app:key="pref_editor_font"
+            app:title="@string/pref_editor_font_title"
+            app:icon="@drawable/ic_font_download"
+            app:defaultValue="@string/pref_editor_font_default"
+            app:useSimpleSummaryProvider="true" />
+
+        <Preference
+            app:key="pref_editor_textsize"
+            app:title="@string/pref_editor_textsize_title"
+            app:icon="@drawable/ic_text_fields" />
+
+        <x.editor.app.preference.SimpleMenuPreference
+            app:key="pref_editor_tab_size"
+            app:title="@string/pref_editor_tab_size_title"
+            app:icon="@drawable/ic_keyboard_tab"
+            app:defaultValue="@string/pref_editor_tab_size_default"
+            app:entries="@array/pref_editor_tab_size_entries"
+            app:entryValues="@array/pref_editor_tab_size_values"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="pref_category_editor_layout"
+        app:title="@string/pref_category_editor_layout">
+
+        <SwitchPreferenceCompat
+            app:key="pref_editor_wordwrap"
+            app:title="@string/pref_editor_wordwrap_title"
+            app:summary="@string/pref_editor_wordwrap_summary"
+            app:icon="@drawable/ic_wrap_text"
+            app:defaultValue="@bool/pref_editor_wordwrap_default" />
+
+        <SwitchPreferenceCompat
+            app:key="pref_editor_line_numbers"
+            app:title="@string/pref_editor_line_numbers_title"
+            app:summary="@string/pref_editor_line_numbers_summary"
+            app:icon="@drawable/ic_format_list_numbered"
+            app:defaultValue="@bool/pref_editor_line_numbers_default" />
+
+        <SwitchPreferenceCompat
+            app:key="pref_editor_gutter"
+            app:title="@string/pref_editor_gutter_title"
+            app:summary="@string/pref_editor_gutter_summary"
+            app:icon="@drawable/ic_gutter"
+            app:defaultValue="@bool/pref_editor_gutter_default" />
+
+        <SwitchPreferenceCompat
+            app:key="pref_editor_indent_guides"
+            app:title="@string/pref_editor_indent_guides_title"
+            app:summary="@string/pref_editor_indent_guides_summary"
+            app:icon="@drawable/ic_format_indent_increase"
+            app:defaultValue="@bool/pref_editor_indent_guides_default" />
+
+        <!-- the lines of Markdown's code blocks, shaded across the whole width; the
+             color from the theme (color_column), see EditorColorScheme.codeBlockColor -->
+        <SwitchPreferenceCompat
+            app:key="pref_editor_code_block_background"
+            app:title="@string/pref_editor_code_block_background_title"
+            app:summary="@string/pref_editor_code_block_background_summary"
+            app:icon="@drawable/ic_code"
+            app:defaultValue="@bool/pref_editor_code_block_background_default" />
+
+        <!-- #RGB, #RRGGBB and #AARRGGBB on a background of their color, see HexColors -->
+        <SwitchPreferenceCompat
+            app:key="pref_editor_color_preview"
+            app:title="@string/pref_editor_color_preview_title"
+            app:summary="@string/pref_editor_color_preview_summary"
+            app:icon="@drawable/ic_color_lens"
+            app:defaultValue="@bool/pref_editor_color_preview_default" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="pref_category_editor_folding"
+        app:title="@string/pref_category_editor_folding">
+
+        <!-- on: fold markers next to the line numbers, and they and the ⋯ of folded
+             lines can be tapped; off: no markers, and everything folded is unfolded -->
+        <SwitchPreferenceCompat
+            app:key="pref_editor_folding"
+            app:title="@string/pref_editor_folding_title"
+            app:summaryOn="@string/pref_editor_folding_summary_on"
+            app:summaryOff="@string/pref_editor_folding_summary_off"
+            app:icon="@drawable/ic_unfold_less"
+            app:defaultValue="@bool/pref_editor_folding_default" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="pref_category_editor_editing"
+        app:title="@string/pref_category_editor_editing">
+
+        <!-- pairs typed together, as nvim-autopairs does it (see AutoPairs of the editor) -->
+        <SwitchPreferenceCompat
+            app:key="pref_editor_auto_pairs"
+            app:title="@string/pref_editor_auto_pairs_title"
+            app:summary="@string/pref_editor_auto_pairs_summary"
+            app:icon="@drawable/ic_data_array"
+            app:defaultValue="@bool/pref_editor_auto_pairs_default" />
+
+        <!-- completion from the words of the text, without a language server (LspController) -->
+        <SwitchPreferenceCompat
+            app:key="pref_editor_buffer_completion"
+            app:title="@string/pref_editor_buffer_completion_title"
+            app:summary="@string/pref_editor_buffer_completion_summary"
+            app:icon="@drawable/ic_short_text"
+            app:defaultValue="@bool/pref_editor_buffer_completion_default" />
+
+        <!-- the snippets of friendly-snippets in the completion (LspController, FriendlySnippets) -->
+        <SwitchPreferenceCompat
+            app:key="pref_editor_snippet_completion"
+            app:title="@string/pref_editor_snippet_completion_title"
+            app:summary="@string/pref_editor_snippet_completion_summary"
+            app:icon="@drawable/ic_data_object"
+            app:defaultValue="@bool/pref_editor_snippet_completion_default" />
+
+        <!-- what is pasted, formatted by the language server if it formats ranges (LspController) -->
+        <SwitchPreferenceCompat
+            app:key="pref_editor_format_on_paste"
+            app:title="@string/pref_editor_format_on_paste_title"
+            app:summary="@string/pref_editor_format_on_paste_summary"
+            app:icon="@drawable/ic_lsp_format"
+            app:defaultValue="@bool/pref_editor_format_on_paste_default" />
+
+        <!-- which pairs: a dialog with a text field, see EditorSettingsFragment -->
+        <Preference
+            app:key="pref_editor_auto_pair_chars"
+            app:dependency="pref_editor_auto_pairs"
+            app:title="@string/pref_editor_auto_pair_chars_title"
+            app:icon="@drawable/ic_rename" />
+
+        <SwitchPreferenceCompat
+            app:key="pref_editor_bracket_matching"
+            app:title="@string/pref_editor_bracket_matching_title"
+            app:summary="@string/pref_editor_bracket_matching_summary"
+            app:icon="@drawable/ic_data_object"
+            app:defaultValue="@bool/pref_editor_bracket_matching_default" />
+
+        <!-- how often the file shown is checked for changes by other apps while the
+             editor is in front; "0" checks only when the editor comes back to the front
+             and when a tab is selected (see EditorActivity.checkDisk) -->
+        <x.editor.app.preference.SimpleMenuPreference
+            app:key="pref_editor_disk_check_interval"
+            app:title="@string/pref_editor_disk_check_interval_title"
+            app:icon="@drawable/ic_schedule"
+            app:defaultValue="@string/pref_editor_disk_check_interval_default"
+            app:entries="@array/pref_editor_disk_check_interval_entries"
+            app:entryValues="@array/pref_editor_disk_check_interval_values"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="pref_category_editor_extra_keys"
+        app:title="@string/pref_category_editor_extra_keys">
+
+        <!-- the symbols of the row of extra keys over the keyboard: a dialog with a grid of
+             them to reorder and remove, and a field to add more, see ExtraKeysDialog -->
+        <Preference
+            app:key="pref_editor_extra_keys"
+            app:title="@string/pref_editor_extra_keys_title"
+            app:icon="@drawable/ic_keyboard" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="pref_category_editor_resources"
+        app:title="@string/pref_category_editor_resources">
+
+        <!-- what is installed of the tree-sitter resources, and how a few files fare -->
+        <Preference
+            app:key="pref_editor_resources_status"
+            app:title="@string/pref_editor_resources_status_title"
+            app:summary="@string/pref_editor_resources_status_summary"
+            app:icon="@drawable/ic_about" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

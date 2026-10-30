@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- the background of the pure black dark theme (ThemeOverlay.XEdit.PureBlack) -->
+    <color name="pure_black">#FF000000</color>
+</resources>

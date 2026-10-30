@@ -1,0 +1,6 @@
+First release.
+
+- Piece-tree text buffer, smooth on very large files
+- Tree-sitter syntax highlighting, code folding, bracket matching
+- Language Server Protocol client (completion, diagnostics, hover, go to definition, rename)
+- Tabs, file tree, search and replace with regex, themes and fonts

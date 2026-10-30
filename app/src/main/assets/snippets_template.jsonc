@@ -1,0 +1,22 @@
+// Your own {{language}} snippets, in the format of VS Code (and of friendly-snippets).
+// They are read again when this file is saved. friendly-snippets is replaced when it is
+// updated; this file is yours and is never touched.
+//
+// A snippet with the same prefix as one of friendly-snippets takes its place.
+//
+//   "prefix":      what you type (a string, or a list of them)
+//   "body":        what it becomes (a string, or a list of lines). Tab moves through
+//                  $1, $2 or ${1:default}; $0 is where the cursor ends. Variables:
+//                  $TM_FILENAME, $CURRENT_YEAR, $CURRENT_DATE, $UUID, $CLIPBOARD, ...
+//   "description": shown in the completion list (optional)
+//
+// Other files in this directory: <language>.json (c.json, python.json),
+// <extension>.json for files no language is known for, all.json for every file.
+// Comments like these, and a comma after the last item, are allowed.
+{
+  // "todo": {
+  //   "prefix": "todo",
+  //   "body": "$LINE_COMMENT TODO($CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE): $0",
+  //   "description": "A dated TODO comment"
+  // },
+}

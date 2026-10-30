@@ -1,0 +1,41 @@
+// Your keyboard shortcuts, written as in Neovim. They are read again when this file is
+// saved. A hardware keyboard, a soft keyboard with Ctrl/Alt keys of its own, and the
+// Ctrl and Alt keys of the row of extra keys (tap: the next key; hold: until tapped
+// again) all press the same keys.
+//
+// Keys:   <C-s> Ctrl+S   <A-z> Alt+Z (also <M-z>)   <D-k> Meta (Super, Windows)+K
+//         <C-S-f> Ctrl+Shift+F   <C-/> Ctrl+/   <F5>   <C-Space>   <S-Tab>
+//         Named keys: F1–F12, Up, Down, Left, Right, Home, End, PageUp, PageDown,
+//         Insert, Del, BS, Tab, CR, Esc, Space, and <lt> < , <Bslash> \ , <Bar> |
+//         A char Shift makes is written as it is: <C-?>, not <C-S-/>.
+//         Several keys one after the other: "<C-k>c", "<leader>f" (the first must have
+//         Ctrl, Alt or Meta, or be F1–F12; the ones after it may be plain).
+//
+// Each mapping: "keys", and either
+//   "action": one of the actions below ("nop" takes a default away), or
+//   "insert": text put in at the cursor, in place of the selection: snippet syntax,
+//             Tab moves through $1, ${1:default}; $0 is where the cursor ends;
+//             ${TM_SELECTED_TEXT} is the selected text, ${CLIPBOARD} the clipboard.
+//   "desc" is for you: what it is for (optional).
+// A mapping of the same keys as a default replaces it.
+//
+// Actions:
+{{actions}}
+//
+// The defaults:
+{{defaults}}
+//
+// Comments like these, and a comma after the last item, are allowed.
+{
+  // what <leader> stands for in "keys"
+  "leader": "<C-k>",
+  // how long (ms) the next key of a sequence is waited for
+  "timeoutlen": 1000,
+
+  "keymaps": [
+    // { "keys": "<leader>f", "action": "format", "desc": "Format the document" },
+    // { "keys": "<C-b>", "insert": "**${TM_SELECTED_TEXT}$0**", "desc": "Bold (Markdown)" },
+    // { "keys": "<C-S-l>", "insert": "console.log($0);" },
+    // { "keys": "<C-y>", "action": "nop" },
+  ],
+}
