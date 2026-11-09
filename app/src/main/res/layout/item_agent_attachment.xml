@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A file attached to a message of the AI assistant (AgentSheet.bindAttachment): a card
+     (attachment_card) agent_attachment_card wide, and as high (higher only with a large font).
+     An image fills it (its thumbnail); anything else, and an image until its thumbnail is
+     read, shows its name at the top, how many lines it has (a text) or how large it is
+     under it, and its type (the extension: PY, ZIP, ...) in a small outlined label at the
+     bottom. A tap on the card opens it. While the message is still being written, ✕ on the
+     card's top right corner, a little out of it, takes it off (the card set in from the top
+     and the end then to make room for it: bindAttachment). -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="6dp"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <!-- as wide as agent_attachment_card, and as high at least: higher only if a large font
+         needs it, so that the type never runs into what is above it -->
+    <FrameLayout
+        android:id="@+id/attachment_card"
+        android:layout_width="@dimen/agent_attachment_card"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_agent_attachment"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:minHeight="@dimen/agent_attachment_card">
+
+        <!-- the name and what is under it from the top, the type at the bottom (the room
+             left between them, if any) -->
+        <LinearLayout
+            android:id="@+id/attachment_texts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/agent_attachment_card"
+            android:orientation="vertical"
+            android:paddingStart="10dp"
+            android:paddingTop="9dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="9dp">
+
+            <TextView
+                android:id="@+id/attachment_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
+                android:maxLines="2"
+                android:textAppearance="?attr/textAppearanceBodySmall"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="13sp"
+                app:lineHeight="17sp" />
+
+            <TextView
+                android:id="@+id/attachment_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textAppearance="?attr/textAppearanceBodySmall"
+                android:textColor="?attr/colorOnSurfaceVariant" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:minHeight="6dp" />
+
+            <TextView
+                android:id="@+id/attachment_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_agent_attachment_type"
+                android:ellipsize="end"
+                android:maxWidth="72dp"
+                android:paddingStart="6dp"
+                android:paddingTop="1dp"
+                android:paddingEnd="6dp"
+                android:paddingBottom="1dp"
+                android:singleLine="true"
+                android:textAppearance="?attr/textAppearanceLabelSmall"
+                android:textColor="?attr/colorOnSurfaceVariant" />
+
+        </LinearLayout>
+
+        <!-- an image: its thumbnail over all of the card, once it is read -->
+        <ImageView
+            android:id="@+id/attachment_thumb"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:importantForAccessibility="no"
+            android:scaleType="centerCrop"
+            android:visibility="gone" />
+
+        <!-- a file still being made ready -->
+        <ProgressBar
+            android:id="@+id/attachment_progress"
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+    <!-- ✕: a round button, its circle (22dp) in the middle of a larger target (30dp), the
+         circle's centre a few dp inside the card's corner -->
+    <ImageButton
+        android:id="@+id/attachment_remove"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="top|end"
+        android:background="@drawable/bg_agent_attachment_remove"
+        android:contentDescription="@string/agent_attachment_remove"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_close"
+        android:tooltipText="@string/agent_attachment_remove"
+        android:visibility="gone"
+        app:tint="?attr/colorOnSurface" />
+
+</FrameLayout>

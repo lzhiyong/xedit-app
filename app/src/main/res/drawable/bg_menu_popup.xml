@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    The menus of the editor screen (the toolbar's overflow menu and its sub-menus, the menus
+    of the tabs, the file tree and full screen, the drop-down lists): the highest surface of
+    the theme, with an outline. The bars around the editor take the editor's background
+    (EditorActivity.applyChromeColors), which in most dark themes is about Material's
+    colorSurfaceContainer, the default of menus: they were hard to tell from the text below.
+    The padding is the room above the first item and below the last.
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="@dimen/menu_popup_corner" />
+    <solid android:color="?attr/colorSurfaceContainerHighest" />
+    <stroke
+        android:width="1dp"
+        android:color="@color/menu_popup_stroke" />
+    <padding
+        android:top="@dimen/menu_popup_padding_vertical"
+        android:bottom="@dimen/menu_popup_padding_vertical" />
+</shape>

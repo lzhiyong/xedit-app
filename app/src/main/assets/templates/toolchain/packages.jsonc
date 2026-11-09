@@ -1,0 +1,93 @@
+{
+  // The toolchains of X Editor (Menu → Toolchain), installed into X Editor's own usr.
+  // Termux is not used here: what you want of Termux, install it there yourself.
+  // Of each:
+  //   "provides": its commands (the language servers that run them come from it);
+  //   "source", "version", "sha256": where it is installed from
+  //     (https://, file://, content://; a .tar.gz, .zip, .deb or a single binary),
+  //     or by ABI: "abi": { "arm64-v8a": { "source": "…", "sha256": "…" } };
+  //     left empty, it is listed but has nothing to install yet;
+  //   "strip", "into", "bin", "env": only if its layout is not worked out right.
+  //   "version_command": what says its version, run on a tap on its row
+  //     (else each command with its flag: java -version, clang --version).
+  // A new "version" here is an update of what is installed.
+  "packages": [
+    {
+      "id": "clang",
+      "name": "clang, clangd",
+      "kind": "compiler",
+      "version": "",
+      "provides": ["clang", "clangd"],
+      "abi": {
+        "arm64-v8a": { "source": "", "sha256": "" },
+        "x86_64": { "source": "", "sha256": "" }
+      }
+    },
+    {
+      "id": "cmake",
+      "name": "CMake, Ninja, make",
+      "kind": "tool",
+      "version": "",
+      "provides": ["cmake", "ninja", "make"],
+      "abi": {
+        "arm64-v8a": { "source": "", "sha256": "" },
+        "x86_64": { "source": "", "sha256": "" }
+      }
+    },
+    {
+      "id": "jdk",
+      "name": "OpenJDK 21, Gradle",
+      "kind": "compiler",
+      "version": "",
+      "provides": ["java", "gradle"],
+      "abi": {
+        "arm64-v8a": { "source": "", "sha256": "" },
+        "x86_64": { "source": "", "sha256": "" }
+      }
+    },
+    {
+      "id": "python",
+      "name": "Python",
+      "kind": "compiler",
+      "version": "",
+      "provides": ["python"],
+      "abi": {
+        "arm64-v8a": { "source": "", "sha256": "" },
+        "x86_64": { "source": "", "sha256": "" }
+      }
+    },
+    {
+      "id": "lua-language-server",
+      "name": "lua-language-server",
+      "kind": "server",
+      "version": "",
+      "provides": ["lua-language-server"],
+      "abi": {
+        "arm64-v8a": { "source": "", "sha256": "" },
+        "x86_64": { "source": "", "sha256": "" }
+      }
+    },
+    {
+      "id": "pyright",
+      "name": "pyright",
+      "kind": "server",
+      "version": "",
+      "provides": ["pyright-langserver"],
+      "abi": {
+        "arm64-v8a": { "source": "", "sha256": "" },
+        "x86_64": { "source": "", "sha256": "" }
+      }
+    },
+    {
+      "id": "clangd-android",
+      "name": "clangd for Android (an example: switch it on with a real address)",
+      "kind": "server",
+      "enabled": false,
+      "version": "18.1.8",
+      "provides": ["clangd"],
+      "abi": {
+        "arm64-v8a": { "source": "https://example.org/clangd-18.1.8-android-aarch64.tar.gz", "sha256": "" }
+      }
+    }
+  ]
+}

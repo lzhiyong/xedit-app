@@ -1,0 +1,19 @@
+// The formatting rules of {{language}}, as formatting/{{language}}.json (Formatting rules → New,
+// and Restore template there), and the rules {{language}} is formatted with while it has no file of its
+// own. The general rules are in assets/templates/formatting/language.jsonc; these are its own:
+// A Makefile's recipes must start with a tab, whatever the editor does.
+// Comments and trailing commas are allowed. The placeholder, in quotes, is filled in from
+// the editor when the file is made:
+//   {{tabSize}}  the size of an indent in the editor (with spaces), or of a tab (with tabs)
+{
+  // the width of a tab: a whole number from 1 to 16
+  "tabSize": "{{tabSize}}",
+
+  // tabs, not spaces
+  "insertSpaces": false,
+
+  // The white space rules: true or false; null (or left out): left to the server.
+  "trimTrailingWhitespace": true,
+  "insertFinalNewline": true,
+  "trimFinalNewlines": true
+}

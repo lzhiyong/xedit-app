@@ -1,0 +1,247 @@
+// Language servers that format, by the languages they are for: what the formatting sheet
+// (Formatting rules) suggests installing when no server formats a language (a tap on its
+// row, "✗"). Comments and trailing commas are allowed.
+//
+//   "directory"  where to look for a server of a language not listed here
+//   "servers"    each: "name", "url" (its project, on GitHub), "languages" (LSP language
+//                ids: as in formatting/<language>.json), "install" (in Termux), "command"
+//                (what to run: the command of a server in Language servers → New), "note"
+//                (in English, and "zh"), all but "name", "url" and "languages" optional
+//
+// The install commands are the usual ones in Termux; the project's page has the others.
+{
+  "directory": "https://microsoft.github.io/language-server-protocol/implementors/servers/",
+  "servers": [
+    {
+      "name": "clangd",
+      "url": "https://github.com/clangd/clangd",
+      "languages": ["c", "cpp", "objective-c", "objective-cpp"],
+      "install": "pkg install clang",
+      "command": "clangd",
+      "note": {
+        "en": "Formats with the project's .clang-format (LLVM style without one)",
+        "zh": "按项目的 .clang-format 格式化（没有时用 LLVM 风格）"
+      }
+    },
+    {
+      "name": "ruff",
+      "url": "https://github.com/astral-sh/ruff",
+      "languages": ["python"],
+      "install": "pip install ruff",
+      "command": "ruff server",
+      "note": {
+        "en": "A fast formatter and linter, in the style of Black",
+        "zh": "快速的格式化与检查工具，风格同 Black"
+      }
+    },
+    {
+      "name": "python-lsp-server (pylsp)",
+      "url": "https://github.com/python-lsp/python-lsp-server",
+      "languages": ["python"],
+      "install": "pip install \"python-lsp-server[all]\"",
+      "command": "pylsp",
+      "note": {
+        "en": "Formats with autopep8 or yapf (installed with [all]); completion and more too",
+        "zh": "用 autopep8 或 yapf 格式化（[all] 会一并安装），也提供补全等功能"
+      }
+    },
+    {
+      "name": "rust-analyzer",
+      "url": "https://github.com/rust-lang/rust-analyzer",
+      "languages": ["rust"],
+      "install": "pkg install rust rust-analyzer",
+      "command": "rust-analyzer",
+      "note": {
+        "en": "Formats with rustfmt",
+        "zh": "用 rustfmt 格式化"
+      }
+    },
+    {
+      "name": "gopls",
+      "url": "https://github.com/golang/tools/tree/master/gopls",
+      "languages": ["go"],
+      "install": "pkg install golang && go install golang.org/x/tools/gopls@latest",
+      "command": "gopls",
+      "note": {
+        "en": "Formats as gofmt does; installed in ~/go/bin",
+        "zh": "按 gofmt 格式化；安装在 ~/go/bin 下"
+      }
+    },
+    {
+      "name": "typescript-language-server",
+      "url": "https://github.com/typescript-language-server/typescript-language-server",
+      "languages": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+      "install": "pkg install nodejs && npm install -g typescript-language-server typescript",
+      "command": "typescript-language-server --stdio",
+      "note": {
+        "en": "Formats with the formatter of TypeScript itself",
+        "zh": "用 TypeScript 自带的格式化器"
+      }
+    },
+    {
+      "name": "lua-language-server",
+      "url": "https://github.com/LuaLS/lua-language-server",
+      "languages": ["lua"],
+      "install": "pkg install lua-language-server",
+      "command": "lua-language-server",
+      "note": {
+        "en": "Formats with its built-in EmmyLuaCodeStyle (.editorconfig)",
+        "zh": "用内置的 EmmyLuaCodeStyle 格式化（读取 .editorconfig）"
+      }
+    },
+    {
+      "name": "bash-language-server",
+      "url": "https://github.com/bash-lsp/bash-language-server",
+      "languages": ["shellscript"],
+      "install": "pkg install nodejs shfmt && npm install -g bash-language-server",
+      "command": "bash-language-server start",
+      "note": {
+        "en": "Formats with shfmt, which has to be installed too",
+        "zh": "用 shfmt 格式化，需要同时安装 shfmt"
+      }
+    },
+    {
+      "name": "vscode-json-language-server",
+      "url": "https://github.com/hrsh7th/vscode-langservers-extracted",
+      "languages": ["json", "jsonc"],
+      "install": "pkg install nodejs && npm install -g vscode-langservers-extracted",
+      "command": "vscode-json-language-server --stdio",
+      "note": {
+        "en": "The JSON server of VS Code",
+        "zh": "VS Code 的 JSON 语言服务器"
+      }
+    },
+    {
+      "name": "vscode-html-language-server",
+      "url": "https://github.com/hrsh7th/vscode-langservers-extracted",
+      "languages": ["html"],
+      "install": "pkg install nodejs && npm install -g vscode-langservers-extracted",
+      "command": "vscode-html-language-server --stdio",
+      "note": {
+        "en": "The HTML server of VS Code",
+        "zh": "VS Code 的 HTML 语言服务器"
+      }
+    },
+    {
+      "name": "vscode-css-language-server",
+      "url": "https://github.com/hrsh7th/vscode-langservers-extracted",
+      "languages": ["css", "scss", "less"],
+      "install": "pkg install nodejs && npm install -g vscode-langservers-extracted",
+      "command": "vscode-css-language-server --stdio",
+      "note": {
+        "en": "The CSS, SCSS and Less server of VS Code",
+        "zh": "VS Code 的 CSS、SCSS、Less 语言服务器"
+      }
+    },
+    {
+      "name": "yaml-language-server",
+      "url": "https://github.com/redhat-developer/yaml-language-server",
+      "languages": ["yaml"],
+      "install": "pkg install nodejs && npm install -g yaml-language-server",
+      "command": "yaml-language-server --stdio",
+      "note": {
+        "en": "Formats with the Prettier it comes with",
+        "zh": "用自带的 Prettier 格式化"
+      }
+    },
+    {
+      "name": "taplo",
+      "url": "https://github.com/tamasfe/taplo",
+      "languages": ["toml"],
+      "install": "pkg install rust && cargo install taplo-cli --locked --features lsp",
+      "command": "taplo lsp stdio",
+      "note": {
+        "en": "A TOML toolkit; its server formats as taplo fmt does",
+        "zh": "TOML 工具集，语言服务器按 taplo fmt 的方式格式化"
+      }
+    },
+    {
+      "name": "zls",
+      "url": "https://github.com/zigtools/zls",
+      "languages": ["zig"],
+      "install": "pkg install zig",
+      "command": "zls",
+      "note": {
+        "en": "Formats as zig fmt does; take the release of zls made for your version of zig",
+        "zh": "按 zig fmt 格式化；zls 需下载与 zig 版本对应的发布版"
+      }
+    },
+    {
+      "name": "Dart analysis server",
+      "url": "https://github.com/dart-lang/sdk",
+      "languages": ["dart"],
+      "install": "pkg install dart",
+      "command": "dart language-server --protocol=lsp",
+      "note": {
+        "en": "Part of the Dart SDK; formats as dart format does",
+        "zh": "Dart SDK 自带；按 dart format 格式化"
+      }
+    },
+    {
+      "name": "sourcekit-lsp",
+      "url": "https://github.com/swiftlang/sourcekit-lsp",
+      "languages": ["swift"],
+      "install": "pkg install swift",
+      "command": "sourcekit-lsp",
+      "note": {
+        "en": "Part of the Swift toolchain; formats with swift-format",
+        "zh": "Swift 工具链自带；用 swift-format 格式化"
+      }
+    },
+    {
+      "name": "kotlin-language-server",
+      "url": "https://github.com/fwcd/kotlin-language-server",
+      "languages": ["kotlin"],
+      "install": "pkg install openjdk-17",
+      "command": "kotlin-language-server",
+      "note": {
+        "en": "Formats with ktfmt; the server itself is a release download (it needs a JDK)",
+        "zh": "用 ktfmt 格式化；服务器本身需从发布页下载（需要 JDK）"
+      }
+    },
+    {
+      "name": "Eclipse JDT Language Server (jdtls)",
+      "url": "https://github.com/eclipse-jdtls/eclipse.jdt.ls",
+      "languages": ["java"],
+      "install": "pkg install openjdk-17",
+      "command": "jdtls",
+      "note": {
+        "en": "Formats with the Eclipse formatter; the server itself is a download (it needs a JDK)",
+        "zh": "用 Eclipse 格式化器；服务器本身需另行下载（需要 JDK）"
+      }
+    },
+    {
+      "name": "ruby-lsp",
+      "url": "https://github.com/Shopify/ruby-lsp",
+      "languages": ["ruby"],
+      "install": "pkg install ruby && gem install ruby-lsp rubocop",
+      "command": "ruby-lsp",
+      "note": {
+        "en": "Formats with RuboCop (or Syntax Tree)",
+        "zh": "用 RuboCop（或 Syntax Tree）格式化"
+      }
+    },
+    {
+      "name": "intelephense",
+      "url": "https://github.com/bmewburn/vscode-intelephense",
+      "languages": ["php"],
+      "install": "pkg install nodejs && npm install -g intelephense",
+      "command": "intelephense --stdio",
+      "note": {
+        "en": "A PHP server with a formatter of its own",
+        "zh": "PHP 语言服务器，自带格式化"
+      }
+    },
+    {
+      "name": "csharp-ls",
+      "url": "https://github.com/razzmatazz/csharp-language-server",
+      "languages": ["csharp"],
+      "install": "dotnet tool install --global csharp-ls",
+      "command": "csharp-ls",
+      "note": {
+        "en": "Needs the .NET SDK, which Termux does not ship",
+        "zh": "需要 .NET SDK，Termux 默认没有提供"
+      }
+    }
+  ]
+}

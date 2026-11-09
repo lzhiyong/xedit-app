@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- the question asked again, in "Ask again?" (dialog_agent_retry): a card a step above the
+     dialog, with a bar in the accent colour along its start, as a quote -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="12dp" />
+            <solid android:color="?attr/colorSurfaceContainerHighest" />
+        </shape>
+    </item>
+    <item
+        android:width="3dp"
+        android:gravity="start|fill_vertical"
+        android:start="0dp"
+        android:top="12dp"
+        android:bottom="12dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="2dp" />
+            <solid android:color="?attr/colorPrimary" />
+        </shape>
+    </item>
+</layer-list>

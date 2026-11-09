@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Over an editor of a panel of the developer tools, while something goes on that it must not
+     change under (EditorLockView): a tint over its text, a padlock and why in its corner. Neither
+     takes touches: a drag scrolls the text under them. Put last in the frame of the editor. -->
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <View
+        android:id="@+id/editor_lock_scrim"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/colorOnSurface"
+        android:clickable="false"
+        android:focusable="false"
+        android:importantForAccessibility="no"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/editor_lock_badge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_margin="6dp"
+        android:accessibilityLiveRegion="polite"
+        android:background="@drawable/bg_editor_lock_badge"
+        android:clickable="false"
+        android:focusable="false"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="3dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:src="@drawable/ic_lock"
+            app:tint="?attr/colorOnSecondaryContainer"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/editor_lock_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:ellipsize="middle"
+            android:maxWidth="240dp"
+            android:singleLine="true"
+            android:textColor="?attr/colorOnSecondaryContainer"
+            android:textSize="11sp" />
+
+    </LinearLayout>
+
+</merge>

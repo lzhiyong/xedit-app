@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- the type of a file attached (item_agent_attachment): an outlined pill -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="100dp" />
+    <stroke
+        android:width="1dp"
+        android:color="?attr/colorOutline" />
+</shape>

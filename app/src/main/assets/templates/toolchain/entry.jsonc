@@ -1,0 +1,10 @@
+{
+  "id": "{{name}}",
+  "name": "{{name}}",
+  "kind": "tool",
+  "description": "",
+  "version": "",
+  "provides": ["{{name}}"],
+  "source": "",
+  "sha256": ""
+}

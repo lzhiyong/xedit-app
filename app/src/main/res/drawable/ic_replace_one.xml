@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Replace the current match: the match, an arrow, the replacement -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24"
+    android:tint="?attr/colorControlNormal">
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="@android:color/white"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M5,3H9A2,2 0,0 1,11,5V9A2,2 0,0 1,9,11H5A2,2 0,0 1,3,9V5A2,2 0,0 1,5,3Z"/>
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="@android:color/white"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M7,14V15.5A3,3 0,0 0,10,18.5H13M11,16.5L13,18.5L11,20.5"/>
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M17,13H19A2,2 0,0 1,21,15V19A2,2 0,0 1,19,21H17A2,2 0,0 1,15,19V15A2,2 0,0 1,17,13Z"/>
+</vector>

@@ -1,0 +1,72 @@
+// The theme a new one starts from (ThemeSheet → New). Comments and trailing commas are
+// allowed in a theme. The placeholder {{name}} in quotes, below, is where the name given to
+// the new theme goes (as a JSON string); it is the only one.
+{
+  // "colorscheme": the name of the theme; "background": dark or light
+  "meta": { "colorscheme": "{{name}}", "background": "dark" },
+
+  // The colors of the editor itself, each with "fg" (text) and/or "bg" (background).
+  // Left out: the editor's own.
+  "editor": {
+    // the text and the background of the editor
+    "background": { "fg": "#c8ccd4", "bg": "#1e2127" },
+    // the cursor and the handles
+    "cursor": { "bg": "#61afef" },
+    // the line of the cursor
+    "cursor_line": { "bg": "#262a31" },
+    // the selected text
+    "selection": { "bg": "#3a4250" },
+    // the line numbers
+    "line_number": { "fg": "#5c6370" },
+    // the number of the line of the cursor
+    "line_number_current": { "fg": "#c8ccd4" },
+    // what search found
+    "search_match": { "bg": "#4b4a32" },
+    // the match search is at
+    "search_match_current": { "bg": "#6b5b2a" },
+    // the bracket at the cursor and its partner
+    "bracket_match": { "fg": "#61afef" },
+    // the indent guides
+    "whitespace": { "fg": "#3b4048" }
+  },
+
+  // The captures of the grammars' queries: a style ("fg", "bg", "bold", "italic",
+  // "underline", "strikethrough") or a link to another capture ("@keyword"). A name with
+  // more parts falls back to fewer: "function.method.call" → "function.method" → "function".
+  "captures": {
+    "comment": { "fg": "#7f848e", "italic": true },
+    "keyword": { "fg": "#c678dd" },
+    "keyword.return": "@keyword",
+    "keyword.function": "@keyword",
+    "conditional": "@keyword",
+    "repeat": "@keyword",
+    "operator": { "fg": "#56b6c2" },
+    "string": { "fg": "#98c379" },
+    "string.escape": { "fg": "#56b6c2" },
+    "character": "@string",
+    "number": { "fg": "#d19a66" },
+    "boolean": "@number",
+    "constant": { "fg": "#d19a66" },
+    "constant.builtin": "@constant",
+    "function": { "fg": "#61afef" },
+    "function.call": "@function",
+    "function.method": "@function",
+    "function.builtin": { "fg": "#56b6c2" },
+    "constructor": { "fg": "#e5c07b" },
+    "type": { "fg": "#e5c07b" },
+    "type.builtin": { "fg": "#e5c07b", "italic": true },
+    "variable": { "fg": "#e06c75" },
+    "variable.parameter": { "fg": "#d19a66" },
+    "variable.builtin": { "fg": "#e5c07b" },
+    "property": { "fg": "#e06c75" },
+    "attribute": { "fg": "#e5c07b" },
+    "namespace": { "fg": "#e5c07b" },
+    "punctuation": { "fg": "#abb2bf" },
+    "punctuation.bracket": "@punctuation",
+    "punctuation.delimiter": "@punctuation",
+    "tag": { "fg": "#e06c75" },
+    "label": { "fg": "#c678dd" },
+    "markup.heading": { "fg": "#e06c75", "bold": true },
+    "markup.link": { "fg": "#61afef", "underline": true }
+  }
+}

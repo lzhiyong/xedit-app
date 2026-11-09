@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- what the model thought in a turn, unfolded under its status (item_agent_progress): a
+     thin rule down its start side, under the status's icon -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:width="2dp"
+        android:gravity="start|fill_vertical">
+        <shape android:shape="rectangle">
+            <solid android:color="?attr/colorOutlineVariant" />
+            <corners android:radius="1dp" />
+        </shape>
+    </item>
+</layer-list>
