@@ -1,0 +1,25 @@
+// pyright: Python (npm install -g pyright, in Termux). Off until "enabled" is true.
+//
+// Started with node and the path of its entry file: socat started by Termux in the
+// background may not have the shebang of pyright-langserver (#!/usr/bin/env node)
+// rewritten, and fails.
+{
+  "enabled": false,
+  "extensions": ["py", "pyi"],
+  // a Node.js server takes a while to start: seconds it may take to answer initialize
+  "initializeTimeout": 120,
+  "connection": {
+    "type": "socket",
+    "host": "127.0.0.1",
+    "port": 5002,
+    // what Termux runs when nothing listens on the port
+    "termux": {
+      "command": "socat",
+      "arguments": [
+        "-d", "-d", "-lf", "/data/data/com.termux/files/usr/tmp/socat-pyright.log",
+        "TCP-LISTEN:5002,bind=127.0.0.1,reuseaddr,fork",
+        "EXEC:/data/data/com.termux/files/usr/bin/node /data/data/com.termux/files/usr/lib/node_modules/pyright/langserver.index.js --stdio"
+      ]
+    }
+  }
+}

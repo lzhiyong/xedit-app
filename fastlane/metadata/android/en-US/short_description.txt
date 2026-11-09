@@ -1,0 +1,1 @@
+Fast code editor for Android: tree-sitter highlighting, LSP, huge files

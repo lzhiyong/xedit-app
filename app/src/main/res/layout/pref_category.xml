@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The header over a group of preferences, aligned with the text in the cards. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/pref_category_padding_start"
+    android:paddingTop="@dimen/pref_category_padding_top"
+    android:paddingEnd="@dimen/pref_category_padding_start"
+    android:paddingBottom="@dimen/pref_category_padding_bottom">
+
+    <TextView
+        android:id="@android:id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="viewStart"
+        android:textAppearance="?attr/textAppearanceLabelLarge"
+        android:textColor="?attr/colorPrimary" />
+
+</FrameLayout>

@@ -1,0 +1,38 @@
+/*
+ * Copyright © 2023 Github Lzhiyong
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/*
+ * Derived from kotlin-tree-sitter (https://github.com/tree-sitter/kotlin-tree-sitter),
+ * Copyright (c) 2024 tree-sitter contributors, under the MIT License: see
+ * LICENSE-kotlin-tree-sitter at the root of this module. Reworked from it, and changed since.
+ */
+ 
+@file:JvmName("RefCleaner")
+
+package x.github.module.treesitter
+
+import android.os.Build.VERSION.SDK_INT
+import android.os.Build.VERSION_CODES.TIRAMISU
+import java.lang.ref.Cleaner
+
+internal object RefCleaner {
+    val INSTANCE = if (SDK_INT >= TIRAMISU) Cleaner.create() else null
+
+    @JvmName("register")
+    operator fun invoke(obj: Any, action: Runnable): Cleaner.Cleanable? {
+        return INSTANCE?.register(obj, action) ?: null
+    }
+}

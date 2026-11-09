@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A code block of the AI assistant (AgentCodeBlock): a code block of an answer, or what a
+     tool came to. Its head: the language (or what it is), Copy (all of it), Expand (all of
+     it in CodeViewer, to select and copy). Under it the code in an editor of the app that
+     cannot be edited, highlighted, as high as the code up to some lines (CodeBlockFrame):
+     a drag across it scrolls it sideways, up or down the conversation; a long press selects
+     (copy, select all), a tap beside the selection drops it.
+     Longer: its foot fading out, Show more under it (unfolded where it is, Show less; very
+     long, CodeViewer). The ground and the rounded corners: AgentCodeBlock. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="6dp"
+    android:layout_marginBottom="6dp"
+    android:background="@drawable/bg_agent_code"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/code_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:minHeight="40dp"
+        android:orientation="horizontal"
+        android:paddingStart="14dp"
+        android:paddingEnd="4dp">
+
+        <TextView
+            android:id="@+id/code_language"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="middle"
+            android:maxLines="1"
+            android:textAppearance="?attr/textAppearanceLabelLarge" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/code_copy"
+            style="@style/Widget.XEdit.SmallIconButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/agent_code_copy"
+            android:tooltipText="@string/agent_code_copy"
+            app:icon="@drawable/ic_content_copy" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/code_expand"
+            style="@style/Widget.XEdit.SmallIconButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/agent_code_expand"
+            android:tooltipText="@string/agent_code_expand"
+            app:icon="@drawable/ic_fullscreen" />
+
+    </LinearLayout>
+
+    <x.editor.app.view.CodeBlockFrame
+        android:id="@+id/code_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp">
+
+        <x.editor.app.view.CodeEditorView
+            android:id="@+id/code_editor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </x.editor.app.view.CodeBlockFrame>
+
+    <TextView
+        android:id="@+id/code_more"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center"
+        android:paddingTop="8dp"
+        android:paddingBottom="10dp"
+        android:textAppearance="?attr/textAppearanceLabelMedium"
+        android:visibility="gone" />
+
+</LinearLayout>

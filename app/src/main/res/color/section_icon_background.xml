@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- behind the icon of a section title (Widget.XEdit.SectionIcon): a faint wash of the
+     primary color, quiet on a dark sheet as on a light one -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="?attr/colorPrimary" android:alpha="0.12" />
+</selector>

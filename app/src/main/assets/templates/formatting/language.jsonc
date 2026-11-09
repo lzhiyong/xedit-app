@@ -1,0 +1,32 @@
+// The formatting rules of {{language}}, as formatting/{{language}}.json (Formatting rules → New,
+// and Restore template there): what a document of the language is formatted with by its language
+// server (the options of textDocument/formatting). Comments and trailing commas are allowed.
+//
+// This file is also the rules a language without a file of its own is formatted with: the
+// app ships one for every language (this one), and one of their own for a few
+// (assets/templates/formatting/presets/<language>.jsonc).
+//
+// The placeholders, in quotes, are filled in from the editor when the file is made; in the
+// rules a language without a file goes by, they are the editor's own as it is then:
+//   {{tabSize}}       the size of an indent in the editor (with spaces), or of a tab (with tabs)
+//   {{insertSpaces}}  whether the editor indents with spaces (true) or tabs (false)
+//
+// A project's .editorconfig goes over these rules; clangd goes by .clang-format.
+{
+  // the size of an indent: a whole number from 1 to 16
+  "tabSize": "{{tabSize}}",
+
+  // true: indent with spaces; false: with tabs
+  "insertSpaces": "{{insertSpaces}}",
+
+  // The white space rules: true or false; null (or left out): left to the server.
+  // the white space at the end of each line taken off
+  "trimTrailingWhitespace": true,
+  // a newline at the end of the file, if there is none
+  "insertFinalNewline": true,
+  // the empty lines at the end of the file taken off (but the last newline)
+  "trimFinalNewlines": true
+
+  // A server's own options go here too, as they are (strings, numbers, booleans), for
+  // example "quote_style": "single" for a Lua server
+}

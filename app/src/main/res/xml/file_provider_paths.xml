@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <external-path name="storage" path="." />
+    <!-- this app's own files (the home of its toolchain), and other volumes (an SD card):
+         a file is only ever readable through it for a share (EditorActivity.shareDocument) -->
+    <files-path name="files" path="." />
+    <root-path name="root" path="." />
+</paths>
+

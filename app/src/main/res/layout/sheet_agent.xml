@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The AI assistant (AgentSheet): the header (title with new chat and settings, the model), where the
+     agent works, the conversation, what to ask. Only a drag that starts on the header moves
+     the sheet: the conversation scrolls on its own. With a conversation in it, at the most
+     AgentSheet allows however short it is (minHeight = maxHeight), the list taking what the
+     header and the field leave, its newest message at the bottom, by the field (the list
+     laid out from there); empty, at the least, the empty text in it. With the keyboard up,
+     the field above it. A touch beside the field takes the focus from it, not the
+     keyboard: that stays until the user puts it away. -->
+<x.editor.app.view.MaxHeightLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="8dp">
+
+    <LinearLayout
+        android:id="@+id/agent_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="8dp">
+
+        <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="16dp" />
+
+        <!-- the title, the chats kept (🕘), New chat and ⚙ by it: the buttons where ⓘ is on
+             every panel of the developer tools (a title row, 20dp in, the last button 20dp
+             from the edge) -->
+        <LinearLayout
+            android:id="@+id/agent_title_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="20dp"
+            android:paddingEnd="12dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/agent_title"
+                android:textAppearance="?attr/textAppearanceTitleMedium" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/agent_history"
+                style="@style/Widget.XEdit.SmallIconButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/agent_history"
+                android:tooltipText="@string/agent_history"
+                app:icon="@drawable/ic_history" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/agent_new_chat"
+                style="@style/Widget.XEdit.SmallIconButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/agent_new_chat"
+                android:tooltipText="@string/agent_new_chat"
+                app:icon="@drawable/ic_add" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/agent_settings"
+                style="@style/Widget.XEdit.SmallIconButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@string/agent_settings"
+                android:tooltipText="@string/agent_settings"
+                app:icon="@drawable/ic_settings" />
+
+        </LinearLayout>
+
+        <!-- the model in use, and ▾ at the end of the row: only ▾ opens the list of models
+             (ModelPicker, a drop-down under this row). ▾ is as wide as the buttons of the
+             title row, its icon as far in, and ends where they end (this row 20dp from the
+             edge, that one 12dp and the last button 8dp more), so it stands right in the
+             middle under ⚙. The name takes all the rest, up to ▾: it reaches 8dp into the
+             button, over the empty part left of the triangle (the button is drawn over it),
+             so its end comes a few dp short of the triangle, and is cut short (…) there
+             rather than push ▾ off the row. -->
+        <LinearLayout
+            android:id="@+id/agent_model_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp">
+
+            <TextView
+                android:id="@+id/agent_model"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="-8dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textAppearance="?attr/textAppearanceBodySmall"
+                android:textColor="?attr/colorOnSurfaceVariant" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/agent_model_dropdown"
+                style="@style/Widget.XEdit.SmallIconButton.Dense"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/agent_model_picker_title"
+                android:tooltipText="@string/agent_model_picker_title"
+                app:icon="@drawable/ic_arrow_drop_down" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/agent_workspace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:ellipsize="start"
+            android:fontFamily="@font/jetbrains_mono_regular"
+            android:maxLines="1"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="8dp"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:textSize="11sp" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/agent_conversation"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/agent_messages"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingStart="12dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="8dp" />
+
+        <TextView
+            android:id="@+id/agent_empty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:lineSpacingMultiplier="1.15"
+            android:paddingStart="32dp"
+            android:paddingTop="40dp"
+            android:paddingEnd="32dp"
+            android:paddingBottom="40dp"
+            android:text="@string/agent_empty"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            android:textColor="?attr/colorOnSurfaceVariant" />
+
+    </FrameLayout>
+
+    <!-- the files attached to what is being written (AgentSheet): shown while there are any,
+         each with ✕ on its top right corner -->
+    <HorizontalScrollView
+        android:id="@+id/agent_attachments_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingStart="12dp"
+        android:paddingTop="2dp"
+        android:paddingEnd="12dp"
+        android:scrollbars="none"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/agent_attachments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" />
+
+    </HorizontalScrollView>
+
+    <!-- not baseline aligned: the send button would line up with the first line of the
+         field, near its top. AgentSheet centres it on the field's box (below its label). -->
+    <LinearLayout
+        android:id="@+id/agent_input_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="12dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="12dp">
+
+        <!-- 📎 inside the field, at its end (its trailing icon): files to attach, the
+             system's picker (AgentSheet) -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/agent_input_layout"
+            style="?attr/textInputOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/agent_input_hint"
+            app:endIconContentDescription="@string/agent_attach"
+            app:endIconDrawable="@drawable/ic_attach_file"
+            app:endIconMode="custom"
+            app:endIconTint="?attr/colorOnSurfaceVariant">
+
+            <!-- its lines fling; the keyboard not for a long press (NestedScrollEditText) -->
+            <x.editor.app.view.NestedScrollEditText
+                android:id="@+id/agent_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine|textCapSentences"
+                android:maxLines="6"
+                android:scrollbars="vertical" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/agent_send"
+            style="@style/Widget.Material3.Button.IconButton.Filled"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@string/agent_send"
+            android:tooltipText="@string/agent_send"
+            app:icon="@drawable/ic_send" />
+
+    </LinearLayout>
+
+</x.editor.app.view.MaxHeightLinearLayout>

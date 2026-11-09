@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- "close others" in the menu of a tab: the tabs behind, and a cross on the one in front -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24"
+    android:tint="?attr/colorControlNormal">
+    <path
+        android:fillColor="@android:color/darker_gray"
+        android:pathData="M3,5H1v16c0,1.1 0.9,2 2,2h16v-2H3V5zM21,1H7C5.9,1 5,1.9 5,3v14c0,1.1 0.9,2 2,2h14c1.1,0 2,-0.9 2,-2V3C23,1.9 22.1,1 21,1zM21,17H7V3h14V17z" />
+    <path
+        android:fillColor="@android:color/darker_gray"
+        android:pathData="M18.2,6.65L17.35,5.8L14,9.15L10.65,5.8L9.8,6.65L13.15,10L9.8,13.35L10.65,14.2L14,10.85L17.35,14.2L18.2,13.35L14.85,10Z" />
+</vector>

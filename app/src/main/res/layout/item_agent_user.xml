@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- what the user said, at the end of the line, in a bubble (AgentSheet); under it when it was
+     sent, and what can be done with it: ask it again, change it and ask that, copy it.
+     Changed where it is: the bubble and the line under it give way to a box with its text
+     (agent_user_editor) and ⓘ, Cancel, Save under it; Save asks what it now says at once, as a
+     new question at the end of the chat (nothing of the chat goes, the message stays as it was). -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="end"
+    android:orientation="vertical"
+    android:paddingStart="48dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="4dp">
+
+    <!-- the files attached to it, above it (AgentSheet.UserHolder); a tap opens one -->
+    <HorizontalScrollView
+        android:id="@+id/agent_user_attachments_scroll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:scrollbars="none"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/agent_user_attachments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" />
+
+    </HorizontalScrollView>
+
+    <!-- The bubble: as wide as its text. The frame is what wraps it; the text itself is
+         match_parent in it (measured at most as wide as the frame may be, so no wider than
+         its lines), so that a selection changing in it is not taken for its width changing:
+         TextView lays the whole list out again at every change of the selection when it is
+         wrap_content. A long press selects without taking the focus (SelectableTextView). -->
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <x.editor.app.view.SelectableTextView
+            android:id="@+id/agent_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_agent_bubble"
+            android:paddingStart="14dp"
+            android:paddingTop="9dp"
+            android:paddingEnd="14dp"
+            android:paddingBottom="9dp"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            android:textIsSelectable="true" />
+
+    </FrameLayout>
+
+    <!-- under a bubble of more than its first lines (AgentSheet.UserHolder): Show all, the
+         rest of it unfolded in the bubble; then Show less -->
+    <TextView
+        android:id="@+id/agent_user_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:paddingStart="10dp"
+        android:paddingTop="6dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="2dp"
+        android:textAppearance="?attr/textAppearanceLabelMedium"
+        android:textColor="?attr/colorPrimary"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/agent_user_actions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/agent_user_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp"
+            android:textAppearance="?attr/textAppearanceBodySmall"
+            android:textColor="?attr/colorOnSurfaceVariant" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/agent_user_retry"
+            style="@style/Widget.XEdit.SmallIconButton.MessageAction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/agent_message_retry"
+            android:tooltipText="@string/agent_message_retry"
+            app:icon="@drawable/ic_refresh" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/agent_user_edit"
+            style="@style/Widget.XEdit.SmallIconButton.MessageAction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/agent_message_edit"
+            android:tooltipText="@string/agent_message_edit"
+            app:icon="@drawable/ic_edit" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/agent_user_copy"
+            style="@style/Widget.XEdit.SmallIconButton.MessageAction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/agent_message_copy"
+            android:tooltipText="@string/agent_message_copy"
+            app:icon="@drawable/ic_content_copy" />
+
+    </LinearLayout>
+
+    <!-- the message being edited (AgentSheet.UserHolder): only one of the chat at a time -->
+    <LinearLayout
+        android:id="@+id/agent_user_editor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <!-- its lines scroll nested in the chat, and fling (NestedScrollEditText) -->
+        <x.editor.app.view.NestedScrollEditText
+            android:id="@+id/agent_user_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_agent_edit_box"
+            android:gravity="top|start"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine|textCapSentences"
+            android:maxLines="10"
+            android:minHeight="48dp"
+            android:paddingStart="18dp"
+            android:paddingTop="14dp"
+            android:paddingEnd="18dp"
+            android:paddingBottom="14dp"
+            android:overScrollMode="never"
+            android:scrollbars="vertical"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            android:textColor="?attr/colorOnSurface"
+            tools:ignore="LabelFor" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:gravity="end|center_vertical"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/agent_user_edit_info"
+                style="@style/Widget.XEdit.SmallIconButton.MessageAction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:contentDescription="@string/agent_message_edit_about"
+                android:tooltipText="@string/agent_message_edit_about"
+                app:icon="@drawable/ic_info" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/agent_user_edit_cancel"
+                style="@style/Widget.XEdit.MessageEditButton.Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:text="@android:string/cancel" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/agent_user_edit_save"
+                style="@style/Widget.XEdit.MessageEditButton.Tonal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/agent_save" />
+
+        </LinearLayout>
+
+        <!-- what saving does (ⓘ): shown and hidden by it -->
+        <TextView
+            android:id="@+id/agent_user_edit_note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:gravity="end"
+            android:text="@string/agent_message_edit_info"
+            android:textAppearance="?attr/textAppearanceBodySmall"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+</LinearLayout>

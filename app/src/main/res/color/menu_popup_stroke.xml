@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The outline of the menus of the editor screen (bg_menu_popup): the theme's outline,
+     faint, so that a menu is set off from an editor of about its color. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:alpha="0.5" android:color="?attr/colorOutline" />
+</selector>

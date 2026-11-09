@@ -1,0 +1,14 @@
+LIBDEXFILE_1 {
+  global:
+    ADexFile_Error_toString; # apex
+    ADexFile_Method_getClassDescriptor; # apex
+    ADexFile_Method_getCodeOffset; # apex
+    ADexFile_Method_getName; # apex
+    ADexFile_Method_getQualifiedName; # apex
+    ADexFile_create; # apex
+    ADexFile_destroy; # apex
+    ADexFile_findMethodAtOffset; # apex
+    ADexFile_forEachMethod; # apex
+  local:
+    *;
+};

@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The styles of the app's own widgets; the themes are in themes.xml. -->
+<resources>
+    <!--
+        The tabs of the open documents: scrolling, starting at the start, as tall
+        as a dense tab row, the indicator as wide as the name.
+    -->
+    <style name="Widget.XEdit.EditorTabs" parent="Widget.Material3.TabLayout">
+        <item name="tabMode">scrollable</item>
+        <item name="tabGravity">start</item>
+        <item name="tabContentStart">0dp</item>
+        <item name="tabMinWidth">72dp</item>
+        <item name="tabMaxWidth">240dp</item>
+        <item name="tabPaddingStart">12dp</item>
+        <item name="tabPaddingEnd">4dp</item>
+        <item name="tabIndicatorFullWidth">false</item>
+        <item name="tabInlineLabel">true</item>
+        <item name="android:background">?attr/colorSurface</item>
+    </style>
+
+    <!-- search panel: a card along the bottom edge, its top corners rounded -->
+    <style name="ShapeAppearanceOverlay.XEdit.SearchPanel" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">24dp</item>
+        <item name="cornerSizeTopRight">24dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
+    <!-- an action of the search panel: a standard icon button -->
+    <style name="Widget.XEdit.SearchPanel.ActionButton" parent="Widget.Material3.Button.IconButton">
+        <item name="iconTint">@color/search_action_icon_tint</item>
+    </style>
+
+    <!-- an option of the search panel: a toggle icon button, tonal while on -->
+    <style name="Widget.XEdit.SearchPanel.OptionButton" parent="Widget.Material3.Button.IconButton">
+        <item name="android:checkable">true</item>
+        <item name="backgroundTint">@color/search_option_background_tint</item>
+        <item name="iconTint">@color/search_option_icon_tint</item>
+    </style>
+
+    <!-- the search and replace boxes: outlined, without a floating label -->
+    <style name="Widget.XEdit.SearchPanel.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox.Dense">
+        <item name="hintEnabled">false</item>
+        <item name="boxCornerRadiusTopStart">16dp</item>
+        <item name="boxCornerRadiusTopEnd">16dp</item>
+        <item name="boxCornerRadiusBottomStart">16dp</item>
+        <item name="boxCornerRadiusBottomEnd">16dp</item>
+        <item name="startIconTint">?attr/colorOnSurfaceVariant</item>
+        <item name="endIconTint">?attr/colorOnSurfaceVariant</item>
+    </style>
+
+    <style name="Widget.XEdit.SearchPanel.EditText" parent="">
+        <item name="android:inputType">textMultiLine|textNoSuggestions</item>
+        <item name="android:maxLines">3</item>
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textAppearance">?attr/textAppearanceBodyMedium</item>
+    </style>
+
+    <!--
+        A key of the row of extra keys: a tonal icon button, square-ish with rounded
+        corners, no insets, so that it is as large as laid out. Its colors are set by
+        ExtraKeysController (the colors of the editor's theme, or the app theme's).
+    -->
+    <style name="Widget.XEdit.ExtraKey" parent="Widget.Material3.Button.IconButton.Filled.Tonal">
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconPadding">0dp</item>
+        <item name="iconSize">@dimen/extra_key_icon_size</item>
+        <item name="cornerRadius">@dimen/extra_key_corner</item>
+        <item name="android:elevation">0dp</item>
+    </style>
+
+    <!-- the key that shows or folds away the arrow keys: no fill, a quieter icon -->
+    <style name="Widget.XEdit.ExtraKey.Toggle">
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="iconSize">20dp</item>
+    </style>
+
+    <!-- Ctrl, Alt or Shift of the row: a key with a word on it, latched by a tap (see
+         ExtraKeysController); colors set by the controller -->
+    <style name="Widget.XEdit.ExtraKey.Modifier">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <!-- an arrow key: a segment of the group of arrow keys, filled only while it moves
+         through the completion list -->
+    <style name="Widget.XEdit.ExtraKey.Arrow">
+        <item name="android:insetTop">3dp</item>
+        <item name="android:insetBottom">3dp</item>
+        <item name="android:insetLeft">1dp</item>
+        <item name="android:insetRight">1dp</item>
+        <item name="cornerRadius">@dimen/extra_key_inner_corner</item>
+        <item name="backgroundTint">@android:color/transparent</item>
+    </style>
+
+    <!-- The title of a section of the formatting sheet: an icon in a rounded tonal square
+         (Widget.XEdit.SectionIcon, its image Widget.XEdit.SectionIcon.Image), then the
+         title (TextAppearance.XEdit.SectionTitle). -->
+    <style name="Widget.XEdit.SectionIcon" parent="">
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">24dp</item>
+        <item name="android:background">@drawable/bg_section_icon</item>
+        <item name="android:backgroundTint">@color/section_icon_background</item>
+    </style>
+
+    <style name="Widget.XEdit.SectionIcon.Image" parent="">
+        <item name="android:layout_width">15dp</item>
+        <item name="android:layout_height">15dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:importantForAccessibility">no</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="tint">@color/section_icon_tint</item>
+    </style>
+
+    <style name="TextAppearance.XEdit.SectionTitle" parent="TextAppearance.Material3.TitleSmall" />
+
+    <!-- The buttons of the formatting rules (Default, Preview, Save, Original): smaller
+         than Material's, in height, text and icon, to leave the room to the rules and the
+         preview. -->
+    <style name="Widget.XEdit.SmallButton.Outlined" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:minHeight">34dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="iconSize">15dp</item>
+        <item name="iconPadding">6dp</item>
+    </style>
+
+    <style name="Widget.XEdit.SmallButton.Tonal" parent="Widget.Material3.Button.TonalButton">
+        <item name="android:minHeight">34dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="iconSize">15dp</item>
+        <item name="iconPadding">6dp</item>
+    </style>
+
+    <style name="Widget.XEdit.SmallButton.Filled" parent="Widget.Material3.Button">
+        <item name="android:minHeight">34dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="iconSize">15dp</item>
+        <item name="iconPadding">6dp</item>
+    </style>
+
+    <!-- a small icon button by the title of an editor of a sheet (undo, redo); dimmed while off -->
+    <style name="Widget.XEdit.SmallIconButton" parent="Widget.Material3.Button.IconButton">
+        <item name="android:minWidth">36dp</item>
+        <item name="android:minHeight">36dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:padding">6dp</item>
+        <item name="iconSize">20dp</item>
+    </style>
+
+    <!-- an icon under a message of the user in the AI assistant (ask again, edit, copy; ⓘ
+         while it is edited): a bare glyph in the colour of the time beside it, nothing
+         behind it but a very light grey while it is pressed -->
+    <style name="Widget.XEdit.SmallIconButton.MessageAction">
+        <item name="iconTint">@color/agent_message_action_tint</item>
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="rippleColor">@color/agent_message_action_ripple</item>
+    </style>
+
+    <!-- Cancel and Save under a message of the user being edited: as high as the icon ⓘ
+         beside them (36dp), no taller box nor extra room on the sides around their words -->
+    <style name="Widget.XEdit.MessageEditButton.Text" parent="Widget.Material3.Button.TextButton">
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">34dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="Widget.XEdit.MessageEditButton.Tonal" parent="Widget.Material3.Button.TonalButton">
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">34dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:paddingStart">14dp</item>
+        <item name="android:paddingEnd">14dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+    </style>
+
+    <!-- the same button on a line of small text (▾ by the model of the AI assistant): as wide
+         as Widget.XEdit.SmallIconButton, so its icon lines up with the ones in the title row
+         above it, but only as high as that line needs. Not derived from it: its
+         android:padding would override the paddings of either side here. The icon of an
+         IconButton is drawn at paddingStart (iconGravity start), so the padding on the sides
+         must be the same 6dp as there, or the icon stands off the middle of ⚙ above it; only
+         the padding above and below is smaller. -->
+    <style name="Widget.XEdit.SmallIconButton.Dense" parent="Widget.Material3.Button.IconButton">
+        <item name="android:minWidth">36dp</item>
+        <item name="android:minHeight">28dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:paddingLeft">6dp</item>
+        <item name="android:paddingRight">6dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="iconSize">20dp</item>
+    </style>
+
+    <style name="Widget.XEdit.SmallButton.Text" parent="Widget.Material3.Button.TextButton">
+        <item name="android:minHeight">30dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <!-- an icon button of the slim bar of full screen (undo, redo, save, menu, exit): as high
+         as the bar, its icon tinted by FullscreenController -->
+    <style name="Widget.XEdit.FullscreenBar.Button" parent="">
+        <item name="android:layout_width">36dp</item>
+        <item name="android:layout_height">36dp</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+    </style>
+
+    <!--
+        The menus of the editor screen (Theme.XEdit.Editor): the background stands off from
+        the editor (bg_menu_popup), and a clearer shadow. One style for each kind of popup
+        AppCompat makes: PopupMenu, the toolbar's overflow menu (and its sub-menus), a
+        ListPopupWindow.
+    -->
+    <style name="Widget.XEdit.MenuPopup" parent="Widget.Material3.PopupMenu">
+        <item name="android:popupBackground">@drawable/bg_menu_popup</item>
+        <item name="android:popupElevation">@dimen/menu_popup_elevation</item>
+    </style>
+
+    <style name="Widget.XEdit.MenuPopup.Overflow" parent="Widget.Material3.PopupMenu.Overflow">
+        <item name="android:popupBackground">@drawable/bg_menu_popup</item>
+        <item name="android:popupElevation">@dimen/menu_popup_elevation</item>
+    </style>
+
+    <style name="Widget.XEdit.MenuPopup.ListPopupWindow" parent="Widget.Material3.PopupMenu.ListPopupWindow">
+        <item name="android:popupBackground">@drawable/bg_menu_popup</item>
+        <item name="android:popupElevation">@dimen/menu_popup_elevation</item>
+    </style>
+
+    <!-- The checkbox of a menu item (ThemeOverlay.XEdit.EditorMenu): as wide as the arrow of
+         a sub-menu (AppCompat's, 24dp), its box centered, so that the two line up. The item
+         is the touch target, not the box. -->
+    <style name="Widget.XEdit.MenuCheckBox" parent="Widget.Material3.CompoundButton.CheckBox">
+        <item name="android:minWidth">@dimen/menu_trailing_size</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:padding">0dp</item>
+        <item name="centerIfNoTextEnabled">true</item>
+    </style>
+
+</resources>

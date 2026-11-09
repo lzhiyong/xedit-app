@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The status of a turn (AgentSheet): the busy dots and what the agent is doing while it
+     goes on (✓, ■ or ⚠ and how it ended once over), how long it has taken right after that,
+     and › when the model said what it thought, which a tap unfolds below
+     (agent_progress_thought). The head is as wide as what it says: the time follows the
+     text; a text too long for the row is cut short (…) so that the time and › still fit
+     (as wide as it is, with weight: it gives up what does not fit, takes nothing more). -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="8dp"
+    android:paddingBottom="2dp">
+
+    <LinearLayout
+        android:id="@+id/agent_progress_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:minHeight="32dp"
+        android:orientation="horizontal"
+        android:paddingStart="4dp"
+        android:paddingEnd="2dp">
+
+        <ImageView
+            android:id="@+id/agent_progress_icon"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:importantForAccessibility="no" />
+
+        <TextView
+            android:id="@+id/agent_progress_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            android:textColor="?attr/colorOnSurfaceVariant" />
+
+        <TextView
+            android:id="@+id/agent_progress_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFeatureSettings="tnum"
+            android:maxLines="1"
+            android:textAppearance="?attr/textAppearanceLabelMedium"
+            android:textColor="?attr/colorOnSurfaceVariant" />
+
+        <ImageView
+            android:id="@+id/agent_progress_chevron"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="2dp"
+            android:src="@drawable/ic_chevron_right" />
+
+    </LinearLayout>
+
+    <x.editor.app.view.SelectableTextView
+        android:id="@+id/agent_progress_thought"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:background="@drawable/bg_agent_thought"
+        android:lineSpacingMultiplier="1.1"
+        android:paddingStart="12dp"
+        android:paddingTop="2dp"
+        android:paddingEnd="4dp"
+        android:paddingBottom="6dp"
+        android:textAppearance="?attr/textAppearanceBodySmall"
+        android:textColor="?attr/colorOnSurfaceVariant"
+        android:textIsSelectable="true"
+        android:visibility="gone" />
+
+</LinearLayout>
