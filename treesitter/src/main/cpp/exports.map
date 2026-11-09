@@ -1,0 +1,8 @@
+/* What libandroid_tree_sitter.so exports (see CMakeLists.txt). */
+{
+  global:
+    JNI_OnLoad;
+    JNI_OnUnload;
+  local:
+    *;
+};

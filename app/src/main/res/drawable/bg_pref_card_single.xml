@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- One row of a group of preferences: the group reads as one card, its rows
+     split by thin gaps, the outer corners large and the inner ones small. -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="?attr/colorControlHighlight">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="?attr/colorSurfaceContainer" />
+            <corners
+                android:topLeftRadius="@dimen/pref_card_corner_outer"
+                android:topRightRadius="@dimen/pref_card_corner_outer"
+                android:bottomLeftRadius="@dimen/pref_card_corner_outer"
+                android:bottomRightRadius="@dimen/pref_card_corner_outer" />
+        </shape>
+    </item>
+</ripple>

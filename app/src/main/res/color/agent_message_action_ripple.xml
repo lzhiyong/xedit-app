@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- What is behind an icon under a message of the user (MessageAction) while it is pressed:
+     a very light grey, nothing otherwise. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:alpha="0.10" android:color="?attr/colorOnSurface" android:state_pressed="true" />
+    <item android:alpha="0.08" android:color="?attr/colorOnSurface" android:state_focused="true" />
+    <item android:alpha="0.06" android:color="?attr/colorOnSurface" android:state_hovered="true" />
+    <item android:alpha="0.00" android:color="?attr/colorOnSurface" />
+</selector>

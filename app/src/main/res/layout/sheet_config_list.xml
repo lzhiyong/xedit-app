@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The skeleton of a panel of the developer tools (ConfigListSheet): the language servers,
+     the formatting rules, the snippets, the themes. Always in this order, a part a panel has
+     not left out:
+       ① the drag handle (the only thing that drags or closes the sheet)
+       ② the title, and ⓘ (what the panel is for, how it is used, where its files are)
+       ③ the status card: how things stand in a sentence, and at most one next step
+       ④ what the panel has of its own, and its editor (hidden at first)
+       ⑥ the title of the list, and New
+       ⑦ the list (a height of its own, it scrolls), or why it is empty and what to do
+       ⑧ where the files are (a tap copies it)
+
+     The drag handle is above what scrolls, not in it: it stays at the top of the sheet
+     however far the content is scrolled (HandleDragSheetDialog). The scroll view stays put
+     when an editor inside it takes the focus: see FocusStableScrollView. -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+        android:id="@+id/config_drag_handle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <x.editor.app.view.FocusStableScrollView
+        android:id="@+id/config_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="20dp">
+
+            <LinearLayout
+                android:id="@+id/config_title_row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/config_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAppearance="?attr/textAppearanceTitleLarge" />
+
+                <!-- ⓘ: what the panel is for, how it is used, where its files are; Export all -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/config_help"
+                    style="@style/Widget.XEdit.SmallIconButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="@string/help_title"
+                    android:tooltipText="@string/help_title"
+                    app:icon="@drawable/ic_about" />
+
+            </LinearLayout>
+
+            <!-- how it stands: a dot, a title, a line; at most one next step -->
+            <com.google.android.material.card.MaterialCardView
+                style="?attr/materialCardViewFilledStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:minHeight="64dp"
+                    android:orientation="horizontal"
+                    android:paddingStart="16dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="12dp"
+                    android:paddingBottom="10dp">
+
+                    <View
+                        android:id="@+id/config_status_dot"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/config_status_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?attr/textAppearanceTitleSmall" />
+
+                        <TextView
+                            android:id="@+id/config_status_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:textAppearance="?attr/textAppearanceBodySmall"
+                            android:textColor="?attr/colorOnSurfaceVariant" />
+
+                    </LinearLayout>
+
+                    <!-- the next step most likely wanted (setStatus); gone when there is none -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/config_status_action"
+                        style="@style/Widget.XEdit.SmallButton.Tonal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:maxWidth="160dp"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- what a panel shows of its own, and its editor (setExtra); hidden at first -->
+            <FrameLayout
+                android:id="@+id/config_extra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:visibility="gone" />
+
+            <!-- the title of the list, with its icon, and New -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:id="@+id/config_list_icon_frame"
+                    style="@style/Widget.XEdit.SectionIcon"
+                    android:layout_marginEnd="10dp"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/config_list_icon"
+                        style="@style/Widget.XEdit.SectionIcon.Image"
+                        tools:ignore="ContentDescription" />
+
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/config_list_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAppearance="?attr/textAppearanceTitleSmall" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/config_list_new"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/config_new"
+                    android:visibility="gone"
+                    app:icon="@drawable/ic_add" />
+
+            </LinearLayout>
+
+            <!-- the entries: all of them, or as many as fit setListMaxHeight (then it scrolls) -->
+            <x.editor.app.view.MaxHeightRecyclerView
+                android:id="@+id/config_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never"
+                android:scrollbars="vertical" />
+
+            <!-- no entries: an icon, a sentence in large letters, and the button that makes one -->
+            <LinearLayout
+                android:id="@+id/config_empty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingTop="20dp"
+                android:paddingBottom="16dp"
+                android:visibility="gone">
+
+                <FrameLayout
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:background="@drawable/bg_section_icon">
+
+                    <ImageView
+                        android:id="@+id/config_empty_icon"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_gravity="center"
+                        android:importantForAccessibility="no"
+                        app:tint="?attr/colorPrimary" />
+
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/config_empty_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:gravity="center"
+                    android:maxWidth="280dp"
+                    android:textAppearance="?attr/textAppearanceTitleMedium"
+                    android:textColor="?attr/colorOnSurface" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/config_empty_action"
+                    style="@style/Widget.XEdit.SmallButton.Filled"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:visibility="gone"
+                    app:icon="@drawable/ic_add" />
+
+            </LinearLayout>
+
+            <!-- where the files are; a tap copies it -->
+            <TextView
+                android:id="@+id/config_footer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="8dp"
+                android:background="?attr/selectableItemBackground"
+                android:drawablePadding="6dp"
+                android:ellipsize="middle"
+                android:gravity="center_vertical"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:singleLine="true"
+                android:textAppearance="?attr/textAppearanceBodySmall"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                app:drawableEndCompat="@drawable/ic_content_copy"
+                app:drawableTint="?attr/colorOnSurfaceVariant" />
+
+        </LinearLayout>
+
+    </x.editor.app.view.FocusStableScrollView>
+
+</LinearLayout>

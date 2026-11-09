@@ -1,0 +1,17 @@
+// clangd: C, C++ (https://clangd.llvm.org). Off until "enabled" is true.
+{
+  "enabled": false,
+  "extensions": ["c", "h", "cc", "cpp", "cxx", "hpp"],
+  "connection": {
+    // the app's clangd if the toolchain has it, else Termux's (pkg install clang)
+    "type": "auto",
+    "command": [
+      "clangd",
+      // an index of the whole project, built in the background
+      "--background-index",
+      // a completion does not add the #include of what it completes
+      "--header-insertion=never"
+    ],
+    "port": 5001
+  }
+}

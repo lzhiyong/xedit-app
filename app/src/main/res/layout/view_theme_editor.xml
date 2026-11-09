@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A highlight theme of the user's and a preview of it (ThemeSheet), between the card and
+     the list of the theme sheet, as the formatting sheet has its rules and preview:
+
+     - the theme (home/local/themes/<name>.json: a new one, or one picked in the list
+       below), edited in place in an editor of the app with its highlighting, without line
+       numbers or indent guides, its lines not wrapped (theme_editor); a line under the
+       title saying whether it is saved yet (theme_file); what is wrong with it or that it
+       is right (theme_status), and Default / Preview / Save (off while the text is as the
+       file is); Undo / Redo by the title (Paste: in the floating bar);
+     - a sample of code in an editor of the app that cannot be edited, highlighted with the
+       theme of the editor above, saved or not, in its colors (preview_editor).
+
+     Both editors keep their touches (EditorView.setKeepsTouches): a drag on them scrolls
+     their text, not the sheet. Each section has a title with an icon. -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!-- the theme: its title (the file), and whether it is saved yet -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <FrameLayout style="@style/Widget.XEdit.SectionIcon">
+
+            <ImageView
+                android:id="@+id/theme_title_icon"
+                style="@style/Widget.XEdit.SectionIcon.Image"
+                android:src="@drawable/ic_palette"
+                tools:ignore="ContentDescription" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/theme_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:ellipsize="middle"
+            android:singleLine="true"
+            android:textAppearance="@style/TextAppearance.XEdit.SectionTitle" />
+
+        <!-- Undo / Redo: back through the edits of the text, and forth; off when there is none -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/theme_undo"
+            style="@style/Widget.XEdit.SmallIconButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:contentDescription="@string/action_undo"
+            android:tooltipText="@string/action_undo"
+            app:icon="@drawable/ic_undo" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/theme_redo"
+            style="@style/Widget.XEdit.SmallIconButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/action_redo"
+            android:tooltipText="@string/action_redo"
+            app:icon="@drawable/ic_redo" />
+
+        <!-- Hide: the theme and the preview folded away, what is typed kept -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/theme_collapse"
+            style="@style/Widget.XEdit.SmallIconButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/config_hide"
+            android:tooltipText="@string/config_hide"
+            app:icon="@drawable/ic_unfold_less" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/theme_file"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="2dp"
+        android:textColor="?attr/colorOnSurfaceVariant"
+        android:textSize="11sp"
+        android:visibility="gone" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/theme_card"
+        style="?attr/materialCardViewOutlinedStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="260dp">
+
+            <!-- the theme as it is written, highlighted as JSON -->
+            <x.editor.app.view.CodeEditorView
+                android:id="@+id/theme_editor"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/theme_empty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="24dp"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                android:visibility="gone" />
+
+            <include layout="@layout/view_editor_lock" />
+
+        </FrameLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- right, or what is wrong (a line each) -->
+    <TextView
+        android:id="@+id/theme_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:fontFamily="@font/jetbrains_mono_regular"
+        android:textSize="11sp" />
+
+    <TextView
+        android:id="@+id/theme_help"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:lineSpacingMultiplier="1.1"
+        android:text="@string/theme_help"
+        android:textColor="?attr/colorOnSurfaceVariant"
+        android:textSize="11sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/theme_default"
+            style="@style/Widget.XEdit.SmallButton.Outlined"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/format_rules_default"
+            app:icon="@drawable/ic_restart" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/theme_preview"
+            style="@style/Widget.XEdit.SmallButton.Tonal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:text="@string/format_rules_preview"
+            app:icon="@drawable/ic_visibility" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/theme_save"
+            style="@style/Widget.XEdit.SmallButton.Filled"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:text="@string/format_rules_save"
+            app:icon="@drawable/ic_save" />
+
+    </LinearLayout>
+
+    <!-- the preview: its title (the sample) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:gravity="center_vertical"
+        android:minHeight="30dp"
+        android:orientation="horizontal">
+
+        <FrameLayout style="@style/Widget.XEdit.SectionIcon">
+
+            <ImageView
+                style="@style/Widget.XEdit.SectionIcon.Image"
+                android:src="@drawable/ic_visibility"
+                tools:ignore="ContentDescription" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/theme_preview_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:ellipsize="middle"
+            android:singleLine="true"
+            android:textAppearance="@style/TextAppearance.XEdit.SectionTitle" />
+
+    </LinearLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        style="?attr/materialCardViewOutlinedStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="280dp">
+
+            <!-- a sample of code, not editable, highlighted with the theme above: see the comment at the top -->
+            <x.editor.app.view.CodeEditorView
+                android:id="@+id/theme_preview_editor"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/theme_preview_empty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="24dp"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                android:visibility="gone" />
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/theme_preview_progress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:indeterminate="true"
+                android:visibility="gone" />
+
+        </FrameLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/theme_preview_note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:lineSpacingMultiplier="1.1"
+        android:textColor="?attr/colorOnSurfaceVariant"
+        android:textSize="11sp" />
+
+</LinearLayout>

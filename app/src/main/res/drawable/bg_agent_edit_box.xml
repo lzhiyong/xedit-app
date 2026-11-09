@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A message of the user edited where it is (item_agent_user): the bubble's place, rounded
+     all round, a step lighter than the sheet behind it (not darker: the lowest container is
+     next to black in the dark theme), outlined in the theme's colour with a soft halo
+     outside the line. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="20dp" />
+            <stroke
+                android:width="3dp"
+                android:color="@color/agent_edit_glow" />
+        </shape>
+    </item>
+    <item
+        android:bottom="2dp"
+        android:left="2dp"
+        android:right="2dp"
+        android:top="2dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="18dp" />
+            <solid android:color="?attr/colorSurfaceContainerHigh" />
+            <stroke
+                android:width="1.5dp"
+                android:color="?attr/colorPrimary" />
+        </shape>
+    </item>
+</layer-list>

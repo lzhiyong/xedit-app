@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Full screen (FullscreenController): the toolbar and the tabs give way to this slim bar,
+    one row as high as the tabs are on their own, so the editor gets the room while the
+    keyboard is up. The file chip says which document is shown, where it is among the open
+    ones and whether it has unsaved changes; a tap lists them all. Then undo, redo, save,
+    out of full screen, and last the menu of the toolbar (⋮). A hairline under it parts it from the text.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:visibility="gone">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fullscreen_bar_height"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="6dp"
+        android:paddingEnd="2dp">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/fullscreen_file"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_gravity="start|center_vertical"
+                android:background="@drawable/bg_fullscreen_chip"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="10dp"
+                android:paddingEnd="6dp">
+
+                <!-- loading, saving, parsing or laying out: the spinner of the toolbar -->
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/fullscreen_progress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:importantForAccessibility="no"
+                    android:indeterminate="true"
+                    android:visibility="gone"
+                    app:indicatorInset="0dp"
+                    app:indicatorSize="12dp"
+                    app:trackColor="@android:color/transparent"
+                    app:trackCornerRadius="1dp"
+                    app:trackThickness="2dp" />
+
+                <!-- unsaved changes -->
+                <ImageView
+                    android:id="@+id/fullscreen_modified"
+                    android:layout_width="7dp"
+                    android:layout_height="7dp"
+                    android:layout_marginEnd="8dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_dot"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/fullscreen_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="middle"
+                    android:maxWidth="@dimen/fullscreen_name_max_width"
+                    android:maxLines="1"
+                    android:textAppearance="?attr/textAppearanceTitleSmall" />
+
+                <!-- where it is among the open files: 3/12 -->
+                <TextView
+                    android:id="@+id/fullscreen_position"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:maxLines="1"
+                    android:textAppearance="?attr/textAppearanceLabelSmall"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/fullscreen_expand"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="2dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_arrow_down" />
+
+            </LinearLayout>
+        </FrameLayout>
+
+        <ImageButton
+            android:id="@+id/fullscreen_undo"
+            style="@style/Widget.XEdit.FullscreenBar.Button"
+            android:contentDescription="@string/action_undo"
+            android:src="@drawable/ic_undo" />
+
+        <ImageButton
+            android:id="@+id/fullscreen_redo"
+            style="@style/Widget.XEdit.FullscreenBar.Button"
+            android:contentDescription="@string/action_redo"
+            android:src="@drawable/ic_redo" />
+
+        <ImageButton
+            android:id="@+id/fullscreen_save"
+            style="@style/Widget.XEdit.FullscreenBar.Button"
+            android:contentDescription="@string/action_save_file"
+            android:src="@drawable/ic_save" />
+
+        <ImageButton
+            android:id="@+id/fullscreen_exit"
+            style="@style/Widget.XEdit.FullscreenBar.Button"
+            android:contentDescription="@string/action_fullscreen_exit"
+            android:src="@drawable/ic_fullscreen_exit" />
+
+        <!-- the menu of the toolbar, last (as ⋮ is on the toolbar) -->
+        <ImageButton
+            android:id="@+id/fullscreen_more"
+            style="@style/Widget.XEdit.FullscreenBar.Button"
+            android:contentDescription="@string/fullscreen_more"
+            android:src="@drawable/ic_more_vert" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/fullscreen_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+</LinearLayout>

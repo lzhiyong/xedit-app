@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    The first screen of the settings. The look (cards, icons in tonal circles,
+    Material 3 switches) is applied in code, see CardPreferenceStyler.
+-->
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:key="pref_category_appearance"
+        app:title="@string/pref_category_appearance">
+
+        <!-- a drop-down over the row, like the one of Shizuku -->
+        <x.editor.app.preference.SimpleMenuPreference
+            app:key="pref_app_dark_theme"
+            app:title="@string/pref_app_dark_theme_title"
+            app:icon="@drawable/ic_dark_mode"
+            app:defaultValue="@string/pref_app_dark_theme_default"
+            app:entries="@array/pref_app_dark_theme_entries"
+            app:entryValues="@array/pref_app_dark_theme_values"
+            app:useSimpleSummaryProvider="true" />
+
+        <SwitchPreferenceCompat
+            app:key="pref_app_pure_black"
+            app:title="@string/pref_app_pure_black_title"
+            app:summary="@string/pref_app_pure_black_summary"
+            app:icon="@drawable/ic_contrast"
+            app:defaultValue="@bool/pref_app_pure_black_default" />
+
+        <SwitchPreferenceCompat
+            app:key="pref_app_dynamic_color"
+            app:title="@string/pref_app_dynamic_color_title"
+            app:summary="@string/pref_app_dynamic_color_summary"
+            app:icon="@drawable/ic_palette"
+            app:defaultValue="@bool/pref_app_dynamic_color_default" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="pref_category_editor"
+        app:title="@string/pref_category_editor">
+
+        <Preference
+            app:key="pref_app_editor"
+            app:title="@string/pref_app_editor_title"
+            app:summary="@string/pref_app_editor_summary"
+            app:icon="@drawable/ic_code"
+            app:widgetLayout="@layout/pref_widget_chevron" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="pref_category_about"
+        app:title="@string/pref_category_about">
+
+        <!-- the repository, an issue with the device filled in, the releases:
+             see AppSettingsFragment -->
+        <Preference
+            app:key="pref_app_source_code"
+            app:title="@string/pref_app_source_code_title"
+            app:summary="@string/pref_app_source_code_summary"
+            app:icon="@drawable/ic_github" />
+
+        <Preference
+            app:key="pref_app_report_issue"
+            app:title="@string/pref_app_report_issue_title"
+            app:summary="@string/pref_app_report_issue_summary"
+            app:icon="@drawable/ic_bug_report" />
+
+        <Preference
+            app:key="pref_app_releases"
+            app:title="@string/pref_app_releases_title"
+            app:summary="@string/pref_app_releases_summary"
+            app:icon="@drawable/ic_new_releases" />
+
+        <Preference
+            app:key="pref_app_license"
+            app:title="@string/pref_app_license_title"
+            app:summary="@string/pref_app_license_summary"
+            app:icon="@drawable/ic_license"
+            app:widgetLayout="@layout/pref_widget_chevron" />
+
+        <Preference
+            app:key="pref_app_about"
+            app:title="@string/pref_app_about_title"
+            app:summary="@string/pref_app_about_summary"
+            app:icon="@drawable/ic_about" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

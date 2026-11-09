@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The chats kept of the AI assistant (AgentSheet.showHistory): one row each
+     (item_agent_history), the pinned ones at the top and then the one written to last; a tap
+     takes a chat up again, a long press opens its menu (pin, rename, delete). As tall as its
+     rows up to what AgentSheet allows (half the screen), scrolling beyond that. The word
+     below it is for when none are kept yet. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <x.editor.app.view.MaxHeightRecyclerView
+        android:id="@+id/agent_history_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingStart="10dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="4dp"
+        android:scrollbars="vertical" />
+
+    <TextView
+        android:id="@+id/agent_history_empty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="24dp"
+        android:text="@string/agent_history_empty"
+        android:textAppearance="?attr/textAppearanceBodyMedium"
+        android:textColor="?attr/colorOnSurfaceVariant"
+        android:visibility="gone" />
+
+</LinearLayout>

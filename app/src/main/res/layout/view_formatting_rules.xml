@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The rules of the document's language and a preview of the document formatted with
+     them (FormattingSheet), between the card and the list of the formatting sheet:
+
+     Hidden at first (FormattingSheet: Edit of a language's dialog shows it, Hide after
+     Redo folds it away again, with the preview).
+
+     - a rules file (formatting/<language>.json: the one of Edit of a language's dialog,
+       in the list below), edited in place in an editor of the app with its
+       highlighting, without line numbers or indent guides, its lines not wrapped (rules_editor), what is wrong
+       with it or that it is right (rules_status), and Default / Preview / Save (off while
+       the text is as the file is); Undo / Redo by the title (Paste: in the floating bar);
+     - the document shown, in an editor of the app that cannot be edited, highlighted as
+       the document is (preview_editor): so that a large file is shown as the editor shows
+       it (laid out in the background, only what is on screen drawn), not as one TextView.
+       Over it, when there is nothing to show: why (preview_empty).
+
+     Both editors keep their touches (EditorView.setKeepsTouches): a drag on them scrolls
+     their text, not the sheet. Each section has a title with an icon. -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!-- the rules: their title (the file), and whether they are saved yet -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <FrameLayout style="@style/Widget.XEdit.SectionIcon">
+
+            <ImageView
+                android:id="@+id/rules_title_icon"
+                style="@style/Widget.XEdit.SectionIcon.Image"
+                android:src="@drawable/ic_edit"
+                tools:ignore="ContentDescription" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/rules_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:ellipsize="middle"
+            android:singleLine="true"
+            android:textAppearance="@style/TextAppearance.XEdit.SectionTitle" />
+
+        <!-- Undo / Redo: back through the edits of the text, and forth; off when there is none -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/rules_undo"
+            style="@style/Widget.XEdit.SmallIconButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:contentDescription="@string/action_undo"
+            android:tooltipText="@string/action_undo"
+            app:icon="@drawable/ic_undo" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/rules_redo"
+            style="@style/Widget.XEdit.SmallIconButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/action_redo"
+            android:tooltipText="@string/action_redo"
+            app:icon="@drawable/ic_redo" />
+
+        <!-- Hide: the rules and the preview folded away (closing upwards, fading), what is
+             typed kept; Edit of a language's dialog shows them again -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/rules_collapse"
+            style="@style/Widget.XEdit.SmallIconButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/config_hide"
+            android:tooltipText="@string/config_hide"
+            app:icon="@drawable/ic_unfold_less" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/rules_file"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="2dp"
+        android:textColor="?attr/colorOnSurfaceVariant"
+        android:textSize="11sp"
+        android:visibility="gone" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/rules_card"
+        style="?attr/materialCardViewOutlinedStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="220dp">
+
+            <!-- the rules file as it is written (comments are kept), highlighted as JSON -->
+            <x.editor.app.view.CodeEditorView
+                android:id="@+id/rules_editor"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/rules_empty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="24dp"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                android:visibility="gone" />
+
+            <include layout="@layout/view_editor_lock" />
+
+        </FrameLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- right, or what is wrong (a line each) -->
+    <TextView
+        android:id="@+id/rules_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:fontFamily="@font/jetbrains_mono_regular"
+        android:textSize="11sp" />
+
+    <TextView
+        android:id="@+id/rules_help"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:lineSpacingMultiplier="1.1"
+        android:text="@string/format_rules_help"
+        android:textColor="?attr/colorOnSurfaceVariant"
+        android:textSize="11sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/rules_default"
+            style="@style/Widget.XEdit.SmallButton.Outlined"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/format_rules_default"
+            app:icon="@drawable/ic_restart" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/rules_preview"
+            style="@style/Widget.XEdit.SmallButton.Tonal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:text="@string/format_rules_preview"
+            app:icon="@drawable/ic_format_paint" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/rules_save"
+            style="@style/Widget.XEdit.SmallButton.Filled"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:text="@string/format_rules_save"
+            app:icon="@drawable/ic_save" />
+
+    </LinearLayout>
+
+    <!-- the preview: its title, and back to the text as it is once it shows it formatted -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:gravity="center_vertical"
+        android:minHeight="30dp"
+        android:orientation="horizontal">
+
+        <FrameLayout style="@style/Widget.XEdit.SectionIcon">
+
+            <ImageView
+                style="@style/Widget.XEdit.SectionIcon.Image"
+                android:src="@drawable/ic_visibility"
+                tools:ignore="ContentDescription" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/preview_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:ellipsize="middle"
+            android:singleLine="true"
+            android:textAppearance="@style/TextAppearance.XEdit.SectionTitle" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/preview_original"
+            style="@style/Widget.XEdit.SmallButton.Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/format_preview_original"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        style="?attr/materialCardViewOutlinedStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="360dp">
+
+            <!-- the editor of the app, not editable, with its highlighting: see the comment at the top -->
+            <x.editor.app.view.CodeEditorView
+                android:id="@+id/preview_editor"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/preview_empty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="24dp"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                android:visibility="gone" />
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/preview_progress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:indeterminate="true"
+                android:visibility="gone" />
+
+        </FrameLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/preview_note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:lineSpacingMultiplier="1.1"
+        android:textColor="?attr/colorOnSurfaceVariant"
+        android:textSize="11sp" />
+
+</LinearLayout>

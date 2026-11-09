@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Resources the resource shrinker of release builds (isShrinkResources) must not take
+    out although no code refers to them directly: the fonts of res/font are listed by
+    reflection over R.font and found again by name (EditorFonts).
+-->
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="@font/*" />
