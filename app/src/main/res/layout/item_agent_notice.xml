@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- a word of the assistant itself: stopped, a request failed, not set up (AgentSheet) -->
+<x.editor.app.view.SelectableTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/agent_text"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:paddingStart="16dp"
+    android:paddingTop="8dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="8dp"
+    android:textAppearance="?attr/textAppearanceBodySmall"
+    android:textIsSelectable="true" />

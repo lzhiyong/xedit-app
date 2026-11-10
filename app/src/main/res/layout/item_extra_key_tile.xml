@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A symbol in the settings of the row of extra keys (see ExtraKeysDialog): tap to
+     remove it (the small cross says so), hold and drag to move it. No fill and no
+     outline, only the symbol on the grid's background; it gets a fill while it is
+     dragged (see ExtraKeysDialog), so that it can be seen where it goes. -->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/extra_key_tile_height"
+    android:layout_margin="@dimen/extra_key_tile_gap"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardBackgroundColor="@android:color/transparent"
+    app:cardCornerRadius="@dimen/extra_key_corner"
+    app:cardElevation="0dp"
+    app:strokeWidth="0dp">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tile_label"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:gravity="center"
+        android:fontFamily="monospace"
+        android:includeFontPadding="false"
+        android:maxLines="1"
+        android:textColor="?attr/colorOnSurface"
+        android:textStyle="bold"
+        android:importantForAccessibility="no"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="9sp"
+        app:autoSizeMaxTextSize="16sp"
+        app:autoSizeStepGranularity="1sp"/>
+
+    <ImageView
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="3dp"
+        android:alpha="0.45"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_close"
+        android:tint="?attr/colorOnSurfaceVariant"/>
+
+</com.google.android.material.card.MaterialCardView>

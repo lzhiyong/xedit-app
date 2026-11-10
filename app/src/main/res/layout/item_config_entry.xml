@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- An entry of a panel of the developer tools (ConfigListSheet), every panel's rows alike:
+
+       [badge]  name  〔current file〕        ● state    ⋮
+                a line on it (grey)
+                what is wrong with it (red, only then)
+
+     A tap: how it is doing, in a window by the row (EntryProblemPopup). ⋮, or a long press:
+     what can be done with it (EntryActionsDialog). While something goes on (starting), a
+     small ring in place of the dot. Tinted (ConfigListSheet sets its background): it is the
+     one in the editor. The ripple is in the foreground. -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="?attr/selectableItemBackground"
+    android:gravity="center_vertical"
+    android:minHeight="64dp"
+    android:orientation="horizontal"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
+
+    <TextView
+        android:id="@+id/entry_badge"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:fontFamily="@font/jetbrains_mono_regular"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!-- the name, and the tag right after it (the name shrinks first when long) -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/entry_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textAppearance="?attr/textAppearanceBodyLarge" />
+
+                    <!-- 〔current file〕: it is about the file in the editor (listed first) -->
+                    <TextView
+                        android:id="@+id/entry_current"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:maxLines="1"
+                        android:paddingStart="6dp"
+                        android:paddingTop="1dp"
+                        android:paddingEnd="6dp"
+                        android:paddingBottom="1dp"
+                        android:text="@string/config_current_file"
+                        android:textAppearance="?attr/textAppearanceLabelSmall"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp">
+
+                <View
+                    android:id="@+id/entry_dot"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_gravity="center" />
+
+                <!-- going on (starting, installing): a ring in place of the dot -->
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/entry_progress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:indeterminate="true"
+                    android:visibility="gone"
+                    app:indicatorInset="0dp"
+                    app:indicatorSize="12dp"
+                    app:trackThickness="2dp"
+                    app:trackColor="@android:color/transparent" />
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/entry_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:maxLines="1"
+                android:textAppearance="?attr/textAppearanceLabelMedium" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/entry_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/jetbrains_mono_regular"
+            android:maxLines="3"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:textSize="12sp" />
+
+        <!-- what is wrong with it, in red (a server that failed to start: why) -->
+        <TextView
+            android:id="@+id/entry_problem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/jetbrains_mono_regular"
+            android:maxLines="2"
+            android:textSize="12sp"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    <!-- ⋮: what can be done with it (a long press on the row does the same) -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/entry_more"
+        style="@style/Widget.XEdit.SmallIconButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:contentDescription="@string/config_more"
+        android:tooltipText="@string/config_more"
+        app:icon="@drawable/ic_more_vert" />
+
+</LinearLayout>

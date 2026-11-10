@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The content of RadioListPreferenceDialog: the choices. Its actions (import,
+     export...) are the dialog's own buttons, under it, which stay in view however long
+     the list is. -->
+<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/choices"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipToPadding="false"
+    android:overScrollMode="ifContentScrolls"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp" />

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A toolchain of packages.json (ToolchainSheet): its kind, its name and version, where it
+     is (installed into X Editor or not), and an icon of how it stands (to install, to update, installed; a
+     ring in its place while an install or update goes on), then ⋮. A tap on it (a ripple, in
+     the foreground) shows all of it by the row (EntryProblemPopup), with what to do next; ⋮
+     or a long press, every action on it (EntryActionsDialog: Edit, Install, Update,
+     Uninstall, Remove). -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    android:gravity="center_vertical"
+    android:minHeight="64dp"
+    android:orientation="horizontal"
+    android:paddingTop="6dp"
+    android:paddingBottom="6dp">
+
+    <TextView
+        android:id="@+id/package_kind"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:fontFamily="@font/jetbrains_mono_regular"
+        android:gravity="center"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/package_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textAppearance="?attr/textAppearanceBodyLarge" />
+
+            <TextView
+                android:id="@+id/package_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/jetbrains_mono_regular"
+                android:maxLines="1"
+                android:textAppearance="?attr/textAppearanceLabelSmall"
+                android:textColor="?attr/colorOnSurfaceVariant" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/package_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textAppearance="?attr/textAppearanceBodySmall"
+            android:textColor="?attr/colorOnSurfaceVariant" />
+
+    </LinearLayout>
+
+    <!-- the action, and in its place while an install or update goes on, how far it is (a
+         ring: how far, when it is known; turning, when not) -->
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/package_action"
+            style="@style/Widget.Material3.Button.IconButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/ic_download" />
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/package_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:indicatorSize="22dp"
+            app:trackThickness="2.5dp"
+            app:trackCornerRadius="2dp"
+            app:trackColor="?attr/colorSurfaceContainerHighest" />
+
+    </FrameLayout>
+
+    <!-- ⋮: every action on it (EntryActionsDialog); a long press on the row does the same -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/package_more"
+        style="@style/Widget.XEdit.SmallIconButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/config_more"
+        android:tooltipText="@string/config_more"
+        app:icon="@drawable/ic_more_vert" />
+
+</LinearLayout>

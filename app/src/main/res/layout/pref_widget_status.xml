@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- the state at the end of a row of the resources status: ok, waiting, a problem -->
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/status_icon"
+    android:layout_width="24dp"
+    android:layout_height="24dp"
+    android:importantForAccessibility="no" />

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- the badge of an editor that is locked (view_editor_lock) -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="?attr/colorSecondaryContainer" />
+    <corners android:radius="100dp" />
+</shape>

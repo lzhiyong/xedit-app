@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- What went wrong with an entry, whole, in a small window by its row (LanguageServersSheet:
+     a tap on a server that failed to start, or whose file is not right; FormattingSheet: a
+     language that cannot be formatted, Preview with the rules of another language;
+     ToolchainSheet: a toolchain tapped (its version), an install or update that failed, the
+     footer and why the list is empty): a title with its dot (the entry and what is wrong),
+     Copy and Close (top right), and the text, which scrolls within a height of its own
+     (problem_scroll, set in code to what the screen has room for) and can be selected; its
+     scrollbar stays shown while there is more to scroll to. While what it says is being found
+     out, a small ring (problem_progress) is before the text, on its first line; while an
+     install goes on, a bar (problem_bar) is over it instead; at its foot,
+     the one thing to do next (problem_action). Shown by EntryProblemPopup, for every panel of
+     the developer tools (EntryInfo: its four parts). -->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardBackgroundColor="?attr/colorSurfaceContainerHigh"
+    app:cardCornerRadius="14dp"
+    app:cardElevation="6dp"
+    app:strokeColor="?attr/colorOutlineVariant"
+    app:strokeWidth="1dp">
+
+    <LinearLayout
+        android:id="@+id/problem_body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="14dp"
+        android:paddingTop="6dp"
+        android:paddingEnd="6dp"
+        android:paddingBottom="12dp">
+
+        <!-- its head; the window held by it is dragged (EntryProblemPopup: draggable, the
+             editor's window of the toolchain), the grip then shown before the dot -->
+        <LinearLayout
+            android:id="@+id/problem_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/problem_grip"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginEnd="4dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_drag_indicator"
+                android:visibility="gone"
+                app:tint="?attr/colorOnSurfaceVariant" />
+
+            <!-- the dot, in the colour of what it says -->
+            <View
+                android:id="@+id/problem_dot"
+                android:layout_width="8dp"
+                android:layout_height="8dp" />
+
+            <TextView
+                android:id="@+id/problem_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:ellipsize="middle"
+                android:singleLine="true"
+                android:textAppearance="?attr/textAppearanceTitleSmall"
+                android:textColor="?attr/colorOnSurface" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/problem_copy"
+                style="@style/Widget.XEdit.SmallIconButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/action_copy"
+                android:tooltipText="@string/action_copy"
+                app:icon="@drawable/ic_content_copy" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/problem_close"
+                style="@style/Widget.XEdit.SmallIconButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/action_close"
+                android:tooltipText="@string/action_close"
+                app:icon="@drawable/ic_close" />
+
+        </LinearLayout>
+
+        <!-- how far an install or update is (ToolchainSheet): only while one goes on -->
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/problem_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="6dp"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:trackColor="?attr/colorSurfaceContainerHighest"
+            app:trackCornerRadius="2dp"
+            app:trackThickness="4dp" />
+
+        <x.editor.app.view.MaxHeightScrollView
+            android:id="@+id/problem_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="8dp"
+            android:fadeScrollbars="false"
+            android:overScrollMode="ifContentScrolls"
+            android:scrollbars="vertical">
+
+            <!-- the ring (only while what it says is being found out), then the text -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/problem_progress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginEnd="8dp"
+                    android:indeterminate="true"
+                    android:visibility="gone"
+                    app:indicatorInset="0dp"
+                    app:indicatorSize="14dp"
+                    app:trackThickness="2dp"
+                    app:trackCornerRadius="1dp"
+                    app:trackColor="?attr/colorSurfaceContainerHighest" />
+
+                <TextView
+                    android:id="@+id/problem_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/jetbrains_mono_regular"
+                    android:lineSpacingMultiplier="1.1"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:textIsSelectable="true"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+        </x.editor.app.view.MaxHeightScrollView>
+
+        <!-- the one thing to do next (Edit, Install, Export…): what the first step says; gone
+             when there is none -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/problem_action"
+            style="@style/Widget.XEdit.SmallButton.Tonal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

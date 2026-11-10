@@ -1,0 +1,10 @@
+// lua-language-server: Lua. Off until "enabled" is true.
+{
+  "enabled": false,
+  "extensions": ["lua"],
+  "connection": {
+    // run by the app: the command has to be in its usr/bin (the toolchain)
+    "type": "process",
+    "command": ["lua-language-server"]
+  }
+}

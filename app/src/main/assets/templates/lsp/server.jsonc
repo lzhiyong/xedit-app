@@ -1,0 +1,30 @@
+// A new language server (Language servers → New), as servers/<id>.json: the id of the
+// server is the name of its file, so it is not written here. Comments and trailing commas
+// are allowed. The placeholders, in quotes, are the only ones:
+//   {{name}}       the id given to the new server (as a JSON string): the command it runs
+//                (a guess: check it is the server's real command, and its arguments)
+//   {{extension}}  the extension of the document shown (as a JSON string); none: left out
+// A server does not need to be in the toolchain's packages.json: any right file is listed.
+{
+  // false: the server is not started (it stays listed). A new server is off until its
+  // command, extensions and connection are what they should be: set it to true then, and
+  // save: it starts with the first file of its extensions that is opened.
+  "enabled": false,
+
+  // the files it is for, by their extension (without the dot)
+  "extensions": ["{{extension}}"],
+
+  // How it is reached:
+  //   "auto"     found by itself: the command in the app's usr/bin if it is there (the
+  //              toolchain), else in Termux, bridged to "port" by socat (install socat and
+  //              the server in Termux yourself; a port is picked from the id and the command
+  //              if there is none)
+  //   "process"  local: the command, run by the app itself (an absolute path, or in its
+  //              usr/bin): "command", "env"
+  //   "socket"   a server listening on "host":"port"; "termux": how Termux starts it,
+  //              with socat ({ "command": "socat", "arguments": ["TCP-LISTEN:<port>,bind=127.0.0.1,reuseaddr,fork", "EXEC:<server>"] })
+  "connection": {
+    "type": "auto",
+    "command": ["{{name}}"]
+  }
+}

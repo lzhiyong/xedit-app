@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A file of configuration edited in place on its sheet (SheetFileEditor): the files of
+     the language servers (LanguageServersSheet), of the user's snippets (SnippetsSheet),
+     packages.json (ToolchainSheet), keymap.json (ShortcutsSheet). Hidden until Edit (or
+     an entry of the list) is tapped. As the rules of the formatting sheet are: a title
+     with an icon (the file), an editor of the app with its highlighting, without line
+     numbers or indent guides, its lines not wrapped (file_editor), what is wrong with it or that it is right
+     (file_status), what may be written in it (file_help), and Default / Save; Undo / Redo by
+     the title, and Hide after them where the sheet has no Edit (Paste: in the floating bar). Save is off while the text is as the file is.
+
+     The editor keeps its touches (EditorView.setKeepsTouches): a drag on it scrolls its
+     text, not the sheet. -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!-- the title: the file in the editor -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <FrameLayout style="@style/Widget.XEdit.SectionIcon">
+
+            <ImageView
+                android:id="@+id/file_title_icon"
+                style="@style/Widget.XEdit.SectionIcon.Image"
+                android:src="@drawable/ic_edit"
+                tools:ignore="ContentDescription" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/file_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:ellipsize="middle"
+            android:singleLine="true"
+            android:textAppearance="@style/TextAppearance.XEdit.SectionTitle" />
+
+        <!-- Undo / Redo: back through the edits of the text, and forth; off when there is none -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/file_undo"
+            style="@style/Widget.XEdit.SmallIconButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:contentDescription="@string/action_undo"
+            android:tooltipText="@string/action_undo"
+            app:icon="@drawable/ic_undo" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/file_redo"
+            style="@style/Widget.XEdit.SmallIconButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/action_redo"
+            android:tooltipText="@string/action_redo"
+            app:icon="@drawable/ic_redo" />
+
+        <!-- Hide: the editor folded away, what is typed in it kept (a sheet without Edit in
+             its title: LanguageServersSheet, where a tap on a server shows it again) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/file_collapse"
+            style="@style/Widget.XEdit.SmallIconButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/config_hide"
+            android:tooltipText="@string/config_hide"
+            android:visibility="gone"
+            app:icon="@drawable/ic_unfold_less" />
+
+    </LinearLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        style="?attr/materialCardViewOutlinedStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="260dp">
+
+            <!-- the file as it is written (comments are kept), highlighted as JSON -->
+            <x.editor.app.view.CodeEditorView
+                android:id="@+id/file_editor"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/file_empty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="24dp"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                android:visibility="gone" />
+
+            <include layout="@layout/view_editor_lock" />
+
+        </FrameLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- right, or what is wrong -->
+    <TextView
+        android:id="@+id/file_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:fontFamily="@font/jetbrains_mono_regular"
+        android:textSize="11sp" />
+
+    <TextView
+        android:id="@+id/file_help"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:lineSpacingMultiplier="1.1"
+        android:textColor="?attr/colorOnSurfaceVariant"
+        android:textSize="11sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/file_default"
+            style="@style/Widget.XEdit.SmallButton.Outlined"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/format_rules_default"
+            app:icon="@drawable/ic_restart" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/file_save"
+            style="@style/Widget.XEdit.SmallButton.Filled"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:text="@string/format_rules_save"
+            app:icon="@drawable/ic_save" />
+
+    </LinearLayout>
+
+</LinearLayout>

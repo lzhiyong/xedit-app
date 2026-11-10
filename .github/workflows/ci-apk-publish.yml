@@ -1,0 +1,248 @@
+# Builds the app and publishes the APK to GitHub Releases.
+#
+#   Trigger                       Build type   File name
+#   push to main                  debug        <repo>-debug-<abi>.apk
+#   push of a tag v*              release      <repo>-release-<abi>.apk   (signed)
+#   manual run (Actions tab)      your choice  debug or release
+#
+# - Same app version  -> keep the existing tag, only re-upload the APK
+# - New app version   -> create a new tag (v<versionName>) and a new release
+# Debug and release APKs have different names, so one never overwrites the other.
+#
+# Release builds need these repository secrets
+# (Settings -> Secrets and variables -> Actions):
+#   KEYSTORE_BASE64    base64 of the release keystore  (base64 -w0 release.jks)
+#   KEYSTORE_PASSWORD  keystore password
+#   KEY_ALIAS          key alias
+#   KEY_PASSWORD       key password
+name: CI APK Publish
+
+on:
+  push:
+    branches: [main]     # debug build on every commit
+    tags: ['v*']         # release build when a version tag is pushed
+  # Manual run: keep "Use workflow from" on main (the workflow file is read from that
+  # ref), choose the build type, and for a release type the tag to build in "ref".
+  workflow_dispatch:
+    inputs:
+      build_type:
+        description: Build type
+        type: choice
+        options: [debug, release]
+        default: debug
+      ref:
+        description: Tag or commit to build (required for release, e.g. v1.0.2; empty = the selected branch)
+        required: false
+        default: ''
+
+# Required so the workflow can create tags/releases and upload assets
+permissions:
+  contents: write
+
+# Run one publish at a time so concurrent pushes don't race on the same tag
+concurrency:
+  group: ci-apk-publish
+  cancel-in-progress: false
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}   # Auth for the gh CLI
+      TREE_SITTER_REF: v0.27.1        # tree-sitter version of release builds; must match the F-Droid srclib
+    steps:
+      # Decide debug or release: manual run -> the choice, tag push -> release, else debug.
+      # A release must be built from an explicit ref, so a later commit can never replace the
+      # APK that F-Droid compares against the tagged commit.
+      - name: Decide build type
+        env:
+          INPUT_BUILD_TYPE: ${{ inputs.build_type }}
+          INPUT_REF: ${{ inputs.ref }}
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
+            BT="$INPUT_BUILD_TYPE"
+          elif [ "$GITHUB_REF_TYPE" = "tag" ]; then
+            BT="release"
+          else
+            BT="debug"
+          fi
+          if [ "$BT" = "release" ] && [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ] && [ -z "$INPUT_REF" ]; then
+            echo "A release build needs the tag to build in the 'ref' input (e.g. v1.0.2)." >&2
+            exit 1
+          fi
+          echo "BUILD_TYPE=$BT" >> "$GITHUB_ENV"
+          echo "Build type: **$BT**" >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.ref }}   # Manual run: the ref input; otherwise the pushed ref
+          fetch-depth: 1                          # Only the latest commit is needed for the release notes
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - uses: gradle/actions/setup-gradle@v4   # Gradle cache
+
+      # Extract versionName from the module's Gradle file and derive the tag name.
+      # Works with both `versionName "1.0"` (Groovy) and `versionName = "1.0"` (Kotlin DSL).
+      # A leading "v" in versionName is stripped first, so the tag is always v<version>.
+      - name: Read app version
+        id: ver
+        run: |
+          FILE=$(ls app/build.gradle.kts app/build.gradle 2>/dev/null | head -n1)
+          VERSION=$(grep -oP 'versionName\s*=?\s*"\K[^"]+' "$FILE" | head -n1)
+          if [ -z "$VERSION" ]; then
+            echo "Could not read versionName from $FILE" >&2
+            exit 1
+          fi
+          echo "tag=v${VERSION#v}" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      # The branch (or tag) of tree-sitter to build with. Release builds always use
+      # TREE_SITTER_REF (the F-Droid version); debug builds use treeSitterBranch of
+      # gradle.properties, as before.
+      - name: Read tree-sitter branch
+        id: ts
+        run: |
+          if [ "$BUILD_TYPE" = "release" ]; then
+            BRANCH="$TREE_SITTER_REF"
+          else
+            BRANCH=$(grep -oP '^treeSitterBranch\s*=\s*\K\S+' gradle.properties | head -n1)
+          fi
+          echo "branch=${BRANCH:-master}" >> "$GITHUB_OUTPUT"
+
+      # Only the tree-sitter checkout is cached, not src/main/cpp as a whole: restoring
+      # that would write the module's own .cpp files of an older commit over the ones
+      # checked out (the key did not change with them), and the native code would no
+      # longer match the Kotlin declarations. The script leaves a checkout of the branch
+      # asked for as it is, so a restored one is used without going to the network.
+      - name: Cache tree-sitter sources
+        uses: actions/cache@v4
+        with:
+          path: treesitter/src/main/cpp/tree-sitter
+          key: tree-sitter-${{ steps.ts.outputs.branch }}-${{ hashFiles('treesitter/get_treesitter_source.py') }}
+
+      # Paths are resolved from the script's own directory; an empty placeholder directory
+      # (a stale gitlink) is taken as absent. Gradle runs it again before the build (the
+      # clone task), which then finds the checkout in place.
+      - name: Clone tree-sitter sources
+        run: python3 treesitter/get_treesitter_source.py --branch "${{ steps.ts.outputs.branch }}"
+
+      # Install the CMake version defined in libs.versions.toml ([versions] cmake = "...").
+      # A trailing "+" (meaning "this version or newer") is stripped, so the plain version is
+      # what gets installed. If you pin ndkVersion, add it here too, e.g. "ndk;<version>".
+      - name: Install CMake via sdkmanager
+        run: |
+          CMAKE_VERSION=$(grep -oP '^cmake\s*=\s*"\K[^"+]+' libs.versions.toml | head -n1)
+          if [ -z "$CMAKE_VERSION" ]; then
+            echo "Could not read cmake version from libs.versions.toml" >&2
+            exit 1
+          fi
+          SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          yes | "$SDKMANAGER" --licenses > /dev/null || true   # Accept licenses ("yes" exits with SIGPIPE, ignore it)
+          "$SDKMANAGER" "cmake;$CMAKE_VERSION"
+
+      - name: Build APK (assemble${{ env.BUILD_TYPE }})
+        run: |
+          chmod +x gradlew
+          TASK="assemble${BUILD_TYPE^}"   # assembleDebug / assembleRelease
+          ./gradlew "$TASK" -PtreeSitterBranch="${{ steps.ts.outputs.branch }}" --stacktrace
+
+      # Copy every built APK to release-assets/ as <repo>-<debug|release>-<abi>.apk,
+      # e.g. xedit-app-release-arm64-v8a.apk. The ABI is taken from the file name (ABI
+      # splits); if absent, it is detected from the lib/<abi>/ folders inside the APK.
+      # Multiple ABIs (or none) are named "universal".
+      # Release APKs are built unsigned (the Gradle file has no signingConfig) and are signed
+      # here with apksigner, so the unsigned content stays identical to F-Droid's build.
+      # Debug APKs are already signed with the debug key and are copied as they are.
+      - name: Prepare APK files
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+          KS_PASS: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASS: ${{ secrets.KEY_PASSWORD }}
+        run: |
+          mkdir -p release-assets
+          REPO="${GITHUB_REPOSITORY#*/}"
+
+          if [ "$BUILD_TYPE" = "release" ]; then
+            if [ -z "$KEYSTORE_BASE64" ]; then
+              echo "Missing signing secrets (KEYSTORE_BASE64, KEYSTORE_PASSWORD, KEY_ALIAS, KEY_PASSWORD)." >&2
+              exit 1
+            fi
+            KEYSTORE="$RUNNER_TEMP/release.keystore"
+            echo "$KEYSTORE_BASE64" | base64 -d > "$KEYSTORE"
+            BT=$(ls "$ANDROID_HOME/build-tools" | sort -V | tail -n1)
+            APKSIGNER="$ANDROID_HOME/build-tools/$BT/apksigner"
+          fi
+
+          while read -r SRC; do
+            BASE=$(basename "$SRC")
+            ABI=""
+            for A in arm64-v8a armeabi-v7a x86_64 x86; do   # x86_64 is checked before x86
+              case "$BASE" in *"$A"*) ABI="$A"; break ;; esac
+            done
+            if [ -z "$ABI" ]; then
+              LIBS=$(unzip -Z1 "$SRC" 'lib/*' 2>/dev/null | cut -d/ -f2 | sort -u || true)
+              if [ "$(printf '%s\n' "$LIBS" | grep -c .)" = "1" ]; then ABI="$LIBS"; else ABI="universal"; fi
+            fi
+            OUT="release-assets/${REPO}-${BUILD_TYPE}-${ABI}.apk"
+            if [ "$BUILD_TYPE" = "release" ]; then
+              # minSdk is 26, so v1 (JAR) signing is not needed. --alignment-preserved keeps the
+              # ZIP layout of the unsigned APK as it is; without it apksigner re-aligns the
+              # entries and F-Droid can no longer copy the signature onto its own build.
+              "$APKSIGNER" sign \
+                --ks "$KEYSTORE" --ks-key-alias "$KEY_ALIAS" \
+                --ks-pass env:KS_PASS --key-pass env:KEY_PASS \
+                --v1-signing-enabled false --alignment-preserved \
+                --out "$OUT" "$SRC"
+              "$APKSIGNER" verify --print-certs "$OUT"
+            else
+              cp "$SRC" "$OUT"
+            fi
+          done < <(find "app/build/outputs/apk/$BUILD_TYPE" -name '*.apk')
+
+          [ -n "${KEYSTORE:-}" ] && rm -f "$KEYSTORE"
+          ls -l release-assets
+          ls release-assets/*.apk >/dev/null   # Fail early if nothing was produced
+
+      - name: Publish to GitHub Releases
+        run: |
+          TAG="${{ steps.ver.outputs.tag }}"
+          BUILT_SHA=$(git rev-parse HEAD)   # The commit that was checked out and built
+
+          # Release notes = only the latest commit (the one that was just built).
+          # The old notes are never kept, so the release always shows a single entry.
+          NEW=$(git log -1 --pretty=format:"- %s (%h)" "$BUILT_SHA")
+
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            # ---- Version unchanged: the tag/release already exists ----
+            # Replace the notes with the latest commit under a timestamp heading,
+            # then re-upload the APKs
+            printf '### %s update (%s)\n%s\n' "$(date -u +%F' '%H:%M' UTC')" "$BUILD_TYPE" "$NEW" > notes.md
+
+            if [ "$BUILD_TYPE" = "release" ]; then
+              gh release edit "$TAG" --notes-file notes.md --prerelease=false
+            else
+              gh release edit "$TAG" --notes-file notes.md
+            fi
+            gh release upload "$TAG" release-assets/*.apk --clobber   # Overwrite same-named APK assets
+          else
+            # ---- New version: create the tag and release ----
+            printf '%s\n' "$NEW" > notes.md
+
+            # --target pins the new tag to the commit that was just built
+            # Debug builds are marked as a pre-release (a CI build) on the Releases page
+            PRE=""
+            [ "$BUILD_TYPE" = "debug" ] && PRE="--prerelease"
+            gh release create "$TAG" release-assets/*.apk \
+              --target "$BUILT_SHA" \
+              --title "$TAG" \
+              --notes-file notes.md \
+              $PRE
+          fi
